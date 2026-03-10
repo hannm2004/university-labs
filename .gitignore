@@ -27,7 +27,6 @@ bld/
 project.lock.json
 project.fragment.lock.json
 artifacts/
-*.vsidx
 
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt
@@ -36,6 +35,10 @@ ScaffoldingReadMe.txt
 *.nupkg
 # NuGet Symbol Packages
 *.snupkg
+
+# Visual Studio
+.vs/
+*.vsidx
 
 # Others
 ~$*
