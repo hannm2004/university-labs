@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Webbanhang_NguyenMinhHan.Models.Product>
+<h2>Products</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Product image</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>
+                    @product.Price.ToString("N0") VNĐ
+                </td>
+                <td>@product.Description</td>
+                <td>@product.Category?.Name</td>
+                <td>
+                    <img src="@product.ImageUrl" width="80" height="80" />
+                </td>
+                <td>
+
+                    <a asp-action="Display"
+                       asp-route-id="@product.Id"
+                       class="btn btn-primary btn-sm">
+                        View
+                    </a>
+
+                    <a asp-action="Update"
+                       asp-route-id="@product.Id"
+                       class="btn btn-info btn-sm">
+                        Edit
+                    </a>
+
+                    <a asp-action="Delete"
+                       asp-route-id="@product.Id"
+                       class="btn btn-danger btn-sm">
+                        Delete
+                    </a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

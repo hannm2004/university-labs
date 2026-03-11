@@ -1,0 +1,54 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Webbanhang_NguyenMinhHan.Models.Product
+<h2>Chi Tiết Sản Phẩm</h2>
+
+<hr />
+
+<div class="row">
+
+    <!-- Ảnh sản phẩm -->
+    <div class="col-md-4">
+        <img src="@Model.ImageUrl"
+             style="width:100%;max-width:250px;border-radius:5px;" />
+    </div>
+
+    <!-- Thông tin sản phẩm -->
+    <div class="col-md-8">
+
+        <h4>@Model.Name</h4>
+
+        <p>
+            <strong>Giá:</strong>
+            @Model.Price.ToString("N0") VNĐ
+        </p>
+
+        <p>
+            <strong>Mô tả:</strong>
+            @Model.Description
+        </p>
+
+        <p>
+            <strong>Loại:</strong>
+            @Model.Category?.Name
+        </p>
+
+        <br />
+
+        <a asp-action="Update"
+           asp-route-id="@Model.Id"
+           class="btn btn-primary">
+            Chỉnh sửa
+        </a>
+
+        <a asp-action="Index"
+           class="btn btn-secondary">
+            Quay lại Danh sách
+        </a>
+
+    </div>
+
+</div>
