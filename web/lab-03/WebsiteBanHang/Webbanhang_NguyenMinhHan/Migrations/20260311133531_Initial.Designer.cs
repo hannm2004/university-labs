@@ -11,7 +11,7 @@ using Webbanhang_NguyenMinhHan.Models;
 namespace Webbanhang_NguyenMinhHan.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260309063039_Initial")]
+    [Migration("20260311133531_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
