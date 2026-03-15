@@ -1,0 +1,12 @@
+﻿using Webbanhang_NguyenMinhHan.Models;
+
+namespace Webbanhang_NguyenMinhHan.Repositories
+{
+    public interface IOrderRepository
+    {
+        Task<IEnumerable<Order>> GetAllAsync();
+        Task<Order> GetByIdAsync(int id);
+        Task AddAsync(Order order);
+        Task DeleteAsync(int id);
+    }
+}
