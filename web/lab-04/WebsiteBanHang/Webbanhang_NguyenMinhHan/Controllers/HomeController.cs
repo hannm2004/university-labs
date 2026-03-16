@@ -1,20 +1,22 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Webbanhang_NguyenMinhHan.Models;
+using Webbanhang_NguyenMinhHan.Repositories;
 
 namespace Webbanhang_NguyenMinhHan.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IProductRepository _productRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IProductRepository productRepository)
         {
-            _logger = logger;
+            _productRepository = productRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var products = await _productRepository.GetAllAsync();
             return View();
         }
 
@@ -28,5 +30,6 @@ namespace Webbanhang_NguyenMinhHan.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
     }
 }

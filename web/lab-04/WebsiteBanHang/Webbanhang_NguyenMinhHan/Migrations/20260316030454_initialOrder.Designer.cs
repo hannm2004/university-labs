@@ -12,8 +12,8 @@ using Webbanhang_NguyenMinhHan.Models;
 namespace Webbanhang_NguyenMinhHan.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260315112112_AddOrderTable")]
-    partial class AddOrderTable
+    [Migration("20260316030454_initialOrder")]
+    partial class initialOrder
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -158,29 +158,6 @@ namespace Webbanhang_NguyenMinhHan.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("CustomerName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("OrderDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Orders");
-                });
-
             modelBuilder.Entity("Webbanhang_NguyenMinhHan.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -272,6 +249,67 @@ namespace Webbanhang_NguyenMinhHan.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("Webbanhang_NguyenMinhHan.Models.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Notes")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ShippingAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("Webbanhang_NguyenMinhHan.Models.OrderDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("Webbanhang_NguyenMinhHan.Models.Product", b =>
@@ -380,6 +418,34 @@ namespace Webbanhang_NguyenMinhHan.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Webbanhang_NguyenMinhHan.Models.Order", b =>
+                {
+                    b.HasOne("Webbanhang_NguyenMinhHan.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("ApplicationUser");
+                });
+
+            modelBuilder.Entity("Webbanhang_NguyenMinhHan.Models.OrderDetail", b =>
+                {
+                    b.HasOne("Webbanhang_NguyenMinhHan.Models.Order", "Order")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Webbanhang_NguyenMinhHan.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("Webbanhang_NguyenMinhHan.Models.Product", b =>
                 {
                     b.HasOne("Webbanhang_NguyenMinhHan.Models.Category", "Category")
@@ -405,6 +471,11 @@ namespace Webbanhang_NguyenMinhHan.Migrations
             modelBuilder.Entity("Webbanhang_NguyenMinhHan.Models.Category", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("Webbanhang_NguyenMinhHan.Models.Order", b =>
+                {
+                    b.Navigation("OrderDetails");
                 });
 
             modelBuilder.Entity("Webbanhang_NguyenMinhHan.Models.Product", b =>

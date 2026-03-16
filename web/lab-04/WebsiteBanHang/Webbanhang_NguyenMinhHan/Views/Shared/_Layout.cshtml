@@ -6,6 +6,9 @@
     <title>@ViewData["Title"] - Webbanhang_NguyenMinhHan</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+          rel="stylesheet" />
     <link rel="stylesheet" href="~/Webbanhang_NguyenMinhHan.styles.css" asp-append-version="true" />
 </head>
 <body>
@@ -36,6 +39,12 @@
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
+                    <form class="d-flex">
+                        <button class="btn btn-outline-success" type="submit">
+                            <i class="bi-cart-fill me-1"></i>
+                            Cart
+                        </button>
+                    </form>
                 </div>
             </div>
         </nav>
