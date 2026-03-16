@@ -30,6 +30,30 @@ namespace Webbanhang_NguyenMinhHan.Areas.Admin.Controllers
             ViewBag.Categories = new SelectList(categories, "Id", "Name");
             return View();
         }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Product product, IFormFile
+imageUrl)
+        {
+            if (ModelState.IsValid)
+            {
+                if (imageUrl != null)
+                {
+                    // Lưu hình ảnh đại diện tham khảo bài 02 hàm SaveImage
+                    product.ImageUrl = await SaveImage(imageUrl);
+                }
+                await _productRepository.AddAsync(product);
+                return RedirectToAction(nameof(Index));
+            }
+            // Nếu ModelState không hợp lệ, hiển thị form với dữ liệu đã nhập
+            var categories = await _categoryRepository.GetAllAsync();
+            ViewBag.Categories = new SelectList(categories, "Id", "Name");
+            return View(product);
+        }
+
+
+
         public async Task<IActionResult> Delete(int id)
         {
             var product = await _productRepository.GetByIdAsync(id);
