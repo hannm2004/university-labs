@@ -64,12 +64,12 @@ class AccountController
         }
     }
     function logout()
-    {
-        unset($_SESSION['username']);
-        unset($_SESSION['role']);
+{
+    session_start();
+    session_destroy();
 
-        header('Location: /webbanhang/product');
-    }
+    header('Location: /webbanhang/product');
+}
 
     public function checkLogin()
     {
@@ -88,6 +88,8 @@ class AccountController
                     session_start();
 
                     $_SESSION['username'] = $account->username;
+                    $_SESSION['user_role'] = $account->role;
+                    $_SESSION['user_id'] = $account->id;
 
                     header('Location: /webbanhang/product');
                     exit;

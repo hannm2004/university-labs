@@ -3,7 +3,7 @@
 require_once('app/config/database.php');
 require_once('app/models/ProductModel.php');
 require_once('app/models/CategoryModel.php');
-
+require_once('app/helpers/SessionHelper.php');
 class ProductController
 {
     private $productModel;
@@ -37,13 +37,22 @@ class ProductController
     }
 
     public function add()
-    {
-        $categories = (new CategoryModel($this->db))->getCategories();
-        include_once 'app/views/product/add.php';
+{
+
+    if (!SessionHelper::isAdmin()) {
+        die("Bạn không có quyền!");
     }
+
+    $categories = (new CategoryModel($this->db))->getCategories();
+    include_once 'app/views/product/add.php';
+}
 
     public function save()
     {
+
+    if (!SessionHelper::isAdmin()) {
+        die("Bạn không có quyền!");
+    }
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $name = $_POST['name'] ?? '';
@@ -77,6 +86,10 @@ class ProductController
 
     public function edit($id)
     {
+
+    if (!SessionHelper::isAdmin()) {
+        die("Bạn không có quyền!");
+    }
         $product = $this->productModel->getProductById($id);
         $categories = (new CategoryModel($this->db))->getCategories();
 
@@ -89,6 +102,10 @@ class ProductController
 
     public function update()
     {
+
+    if (!SessionHelper::isAdmin()) {
+        die("Bạn không có quyền!");
+    }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $id = $_POST['id'];
@@ -121,13 +138,22 @@ class ProductController
     }
 
     public function delete($id)
-    {
-        if ($this->productModel->deleteProduct($id)) {
-            header('Location: /webbanhang/Product');
-        } else {
-            echo "Đã xảy ra lỗi khi xóa sản phẩm.";
-        }
+{
+
+    if (!SessionHelper::isAdmin()) {
+        die("Bạn không có quyền!");
     }
+
+    if ($this->productModel->isProductSold($id)) {
+        die("Sản phẩm đã được bán, không thể xoá!");
+    }
+
+    if ($this->productModel->deleteProduct($id)) {
+        header('Location: /webbanhang/Product');
+    } else {
+        echo "Đã xảy ra lỗi khi xóa sản phẩm.";
+    }
+}
 
     private function uploadImage($file)
     {
@@ -204,46 +230,71 @@ class ProductController
     }
     public function checkout()
     {
+
+    if (!SessionHelper::isLoggedIn()) {
+        die("Bạn cần đăng nhập!");
+    }
         include 'app/views/product/checkout.php';
     }
     public function processCheckout()
-    {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $name = $_POST['name'];
-            $phone = $_POST['phone'];
-            $address = $_POST['address'];
-            if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
-                echo "Giỏ hàng trống.";
-                return;
-            }
-            $this->db->beginTransaction();
-            try {
-                $query = "INSERT INTO orders (name, phone, address) VALUES (:name, :phone, :address)";
+{
+
+    if (!SessionHelper::isLoggedIn()) {
+        die("Bạn cần đăng nhập!");
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        $name = $_POST['name'];
+        $phone = $_POST['phone'];
+        $address = $_POST['address'];
+
+        if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
+            echo "Giỏ hàng trống.";
+            return;
+        }
+
+        $this->db->beginTransaction();
+
+        try {
+            $user_id = $_SESSION['user_id']; 
+
+            $query = "INSERT INTO orders (user_id, name, phone, address) 
+                      VALUES (:user_id, :name, :phone, :address)";
+
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(':user_id', $user_id); 
+            $stmt->bindParam(':name', $name);
+            $stmt->bindParam(':phone', $phone);
+            $stmt->bindParam(':address', $address);
+            $stmt->execute();
+
+            $order_id = $this->db->lastInsertId();
+
+            $cart = $_SESSION['cart'];
+
+            foreach ($cart as $product_id => $item) {
+                $query = "INSERT INTO order_details (order_id, product_id, quantity, price) 
+                          VALUES (:order_id, :product_id, :quantity, :price)";
                 $stmt = $this->db->prepare($query);
-                $stmt->bindParam(':name', $name);
-                $stmt->bindParam(':phone', $phone);
-                $stmt->bindParam(':address', $address);
+                $stmt->bindParam(':order_id', $order_id);
+                $stmt->bindParam(':product_id', $product_id);
+                $stmt->bindParam(':quantity', $item['quantity']);
+                $stmt->bindParam(':price', $item['price']);
                 $stmt->execute();
-                $order_id = $this->db->lastInsertId();
-                $cart = $_SESSION['cart'];
-                foreach ($cart as $product_id => $item) {
-                    $query = "INSERT INTO order_details (order_id, product_id, quantity, price) VALUES (:order_id, :product_id, :quantity, :price)";
-                    $stmt = $this->db->prepare($query);
-                    $stmt->bindParam(':order_id', $order_id);
-                    $stmt->bindParam(':product_id', $product_id);
-                    $stmt->bindParam(':quantity', $item['quantity']);
-                    $stmt->bindParam(':price', $item['price']);
-                    $stmt->execute();
-                }
-                unset($_SESSION['cart']);
-                $this->db->commit();
-                header('Location: /webbanhang/Product/orderConfirmation');
-            } catch (Exception $e) {
-                $this->db->rollBack();
-                echo "Đã xảy ra lỗi khi xử lý đơn hàng: " . $e->getMessage();
             }
+
+            unset($_SESSION['cart']);
+            $this->db->commit();
+
+            header('Location: /webbanhang/Product/orderConfirmation');
+
+        } catch (Exception $e) {
+            $this->db->rollBack();
+            echo "Đã xảy ra lỗi khi xử lý đơn hàng: " . $e->getMessage();
         }
     }
+}
 
     public function orderConfirmation()
     {
