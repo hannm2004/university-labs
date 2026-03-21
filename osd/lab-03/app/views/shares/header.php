@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,9 +31,14 @@
                     <a class="nav-link" href="/webbanhang/Product/add">Thêm sản phẩm</a>
                 </li>
                 <li class="nav-item">
+                     <?php if (SessionHelper::isLoggedIn()): ?>
+        <li class="nav-item">
+            <a class="nav-link" href="/webbanhang/Order/history">Lịch sử đơn hàng</a>
+        </li>
+    <?php endif; ?>
                     <?php
                     if (SessionHelper::isLoggedIn()) {
-                        echo "<a class='nav-link'>" . $_SESSION['username'] . "</a>";
+                        echo "<a class='nav-link'>Xin chào, " . $_SESSION['username'] . "</a>";
                     } else {
                         echo "<a class='nav-link' href='/webbanhang/account/login'>Login</a>";
                     }
