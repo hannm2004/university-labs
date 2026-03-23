@@ -48,6 +48,7 @@ namespace Webbanhang_NguyenMinhHan.Controllers
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
             HttpContext.Session.Remove("Cart");
+            HttpContext.Session.Remove("CartCount");
             return View("OrderCompleted", order.Id); // Trang xác nhận hoàn thành đơn hàng
         }
         public async Task<IActionResult> AddToCart(int productId, int quantity)
@@ -65,6 +66,7 @@ namespace Webbanhang_NguyenMinhHan.Controllers
            new ShoppingCart();
             cart.AddItem(cartItem);
             HttpContext.Session.SetObjectAsJson("Cart", cart);
+            HttpContext.Session.SetInt32("CartCount", cart.Items.Sum(i => i.Quantity));
             return RedirectToAction("Index");
         }
         public IActionResult Index()
@@ -88,6 +90,7 @@ new ShoppingCart();
                 cart.RemoveItem(productId);
                 // Lưu lại giỏ hàng vào Session sau khi đã xóa mục
                 HttpContext.Session.SetObjectAsJson("Cart", cart);
+                HttpContext.Session.SetInt32("CartCount", cart.Items.Sum(i => i.Quantity));
             }
             return RedirectToAction("Index");
         }
@@ -106,6 +109,7 @@ new ShoppingCart();
                 }
 
                 HttpContext.Session.SetObjectAsJson("Cart", cart);
+                HttpContext.Session.SetInt32("CartCount", cart.Items.Sum(i => i.Quantity));
             }
 
             return RedirectToAction("Index");

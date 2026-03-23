@@ -62,6 +62,6 @@ app.UseEndpoints(endpoints =>
         pattern: "{area:exists}/{controller=ProductManager}/{action=Index}/{id?}");
     endpoints.MapControllerRoute(
         name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}");
+        pattern: "{controller=Product}/{action=Index}/{id?}");
 });
 app.Run();
