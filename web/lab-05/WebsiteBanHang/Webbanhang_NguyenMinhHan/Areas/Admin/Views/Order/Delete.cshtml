@@ -3,7 +3,10 @@
 <h3>Bạn có chắc muốn xóa đơn hàng này?</h3>
 
 <p>ID: @Model.Id</p>
-<p>Total: @Model.TotalPrice</p>
+<p>
+    Total:
+    @(Model.TotalPrice.ToString("N0", new System.Globalization.CultureInfo("vi-VN")) + " VNĐ")
+</p>
 
 <form asp-action="Delete">
     <input type="hidden" asp-for="Id" />

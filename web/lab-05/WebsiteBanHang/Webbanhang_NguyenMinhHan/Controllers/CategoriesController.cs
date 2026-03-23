@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Webbanhang_NguyenMinhHan.Models;
 using Webbanhang_NguyenMinhHan.Repositories;
 
 namespace Webbanhang_NguyenMinhHan.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CategoriesController : Controller
     {
         private readonly IProductRepository _productRepository;

@@ -3,73 +3,93 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Webbanhang_NguyenMinhHan</title>
+    <title>@ViewData["Title"] - MyShop</title>
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <!-- Bootstrap icons-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
-          rel="stylesheet" />
-    <link rel="stylesheet" href="~/Webbanhang_NguyenMinhHan.styles.css" asp-append-version="true" />
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Webbanhang_NguyenMinhHan</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Trang chủ</a>
-                        </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Product" asp-action="Index">Sản phẩm</a>
-                        </li>
+<body style="background-color:#f8f9fa;">
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Product" asp-action="Add">Thêm sản phẩm</a>
-                        </li>
+    <!-- 🔥 NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
 
+            <!-- Logo -->
+            <a class="navbar-brand fw-bold text-primary" asp-controller="Product" asp-action="Index">
+                🛒 WebBanHang_NguyenMinhHan 
+            </a>
+
+            <!-- Toggle -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContent">
+
+                <!-- Menu -->
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold" asp-controller="Product" asp-action="Index">Trang chủ</a>
+                    </li>
+
+                    @if (User.IsInRole("Admin"))
+                    {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Categories" asp-action="Index">Loại</a>
+                            <a class="nav-link" asp-controller="Product" asp-action="Add">Thêm sản phẩm</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark"
-                               asp-area="Admin"
-                               asp-controller="Order"
-                               asp-action="Index">
+                            <a class="nav-link" asp-controller="Categories" asp-action="Index">Loại</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Admin" asp-controller="Order" asp-action="Index">
                                 Quản lý đơn hàng
                             </a>
                         </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
+                    }
+                </ul>
 
-                    <a asp-controller="ShoppingCart" asp-action="Index" class="btn btn-outline-success">
-                        <i class="bi-cart-fill me-1"></i>
-                        Cart
-                    </a>
-                </div>
+                <!-- 🔍 SEARCH -->
+                <form class="d-flex me-3">
+                    <input class="form-control me-2" type="search" placeholder="Tìm sản phẩm..." />
+                    <button class="btn btn-outline-primary">
+                        <i class="bi-search"></i>
+                    </button>
+                </form>
+
+                <!-- LOGIN -->
+                <partial name="_LoginPartial" />
+
+                <!-- 🛒 CART -->
+                <a asp-controller="ShoppingCart"
+                   asp-action="Index"
+                   class="btn btn-outline-primary position-relative ms-2">
+
+                    <i class="bi-cart-fill"></i>
+
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        @(Context.Session.GetInt32("CartCount") ?? 0)
+                    </span>
+                </a>
+
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+        </div>
+    </nav>
+
+    <!-- CONTENT -->
+    <div class="container mt-4">
+        @RenderBody()
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - Webbanhang_NguyenMinhHan - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+    <!-- FOOTER -->
+    <footer class="mt-5 bg-white border-top text-center py-3">
+        <p class="mb-0 text-muted">
+            © 2026 MyShop | ASP.NET MVC
+        </p>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

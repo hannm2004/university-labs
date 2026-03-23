@@ -1,4 +1,4 @@
-html {
+﻿html {
   font-size: 14px;
 }
 
@@ -19,4 +19,52 @@ html {
 
 body {
   margin-bottom: 60px;
+}
+/* ===== GENERAL ===== */
+body {
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* ===== NAVBAR ===== */
+.navbar .nav-link {
+    transition: 0.3s;
+}
+
+.navbar .nav-link:hover {
+    color: #0d6efd !important;
+}
+
+/* ===== CARD PRODUCT ===== */
+.card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+/* ===== BUTTON ===== */
+.btn {
+    border-radius: 8px;
+}
+
+/* ===== FORM ===== */
+.form-control {
+    border-radius: 8px;
+}
+
+/* ===== PRICE ===== */
+.price {
+    color: red;
+    font-weight: bold;
+    font-size: 18px;
 }

@@ -1,63 +1,82 @@
 ﻿@model IEnumerable<Webbanhang_NguyenMinhHan.Models.Product>
-<h2>Products</h2>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Description</th>
-            <th>Category</th>
-            <th>Product image</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
+
+<h2 class="mb-4">Danh sách sản phẩm</h2>
+
+<div class="container">
+    <div class="row">
+
         @foreach (var product in Model)
         {
-            <tr>
-                <td>@product.Name</td>
-                <td>
-                    @product.Price.ToString("N0") VNĐ
-                </td>
-                <td>@product.Description</td>
-                <td>@product.Category?.Name</td>
-                <td>
-                    <img src="@product.ImageUrl" width="80" height="80" />
-                </td>
-                <td>
+            <div class="col-md-4 col-lg-3 mb-4">
+                <div class="card h-100 shadow-sm">
 
-                    <a asp-action="Display"
-                       asp-route-id="@product.Id"
-                       class="btn btn-primary btn-sm">
-                        View
-                    </a>
+                    <!-- Image -->
+                    <img src="@product.ImageUrl"
+                         class="card-img-top"
+                         style="height:250px; object-fit:cover;" />
 
-                    <a asp-action="Update"
-                       asp-route-id="@product.Id"
-                       class="btn btn-info btn-sm">
-                        Edit
-                    </a>
+                    <!-- Body -->
+                    <div class="card-body text-center">
 
-                    <a asp-action="Delete"
-                       asp-route-id="@product.Id"
-                       class="btn btn-danger btn-sm">
-                        Delete
-                    </a>
-                    <form asp-controller="ShoppingCart" asp-action="AddToCart" method="post">
-    
-                        <input type="hidden" name="productId" value="@product.Id" />
+                        <h5 class="card-title">@product.Name</h5>
 
-                        <label for="quantity">Số lượng:</label>
+                        <p class="text-danger fw-bold">
+                            @product.Price.ToString("N0", new System.Globalization.CultureInfo("vi-VN")) VNĐ
+                        </p>
 
-                        <input type="number" id="quantity" name="quantity" value="1" min="1" />
+                        <p class="text-muted">
+                            @product.Category?.Name
+                        </p>
 
-                        <button class="btn btn-info" type="submit">
-                            Thêm vào giỏ hàng
-                        </button>
+                    </div>
 
-                    </form>
-                </td>
-            </tr>
+                    <!-- Footer -->
+                    <div class="card-footer bg-white text-center">
+
+                        <!-- Add to cart -->
+                        <form asp-controller="ShoppingCart"
+                              asp-action="AddToCart"
+                              method="post"
+                              class="mb-2">
+
+                            <input type="hidden" name="productId" value="@product.Id" />
+
+                            <input type="hidden" name="quantity" value="1" />
+
+                            <button class="btn btn-outline-dark w-100">
+                                <i class="bi-cart-fill"></i> Add to Cart
+                            </button>
+                        </form>
+
+                        <!-- Actions -->
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <div class="d-flex justify-content-between">
+
+                            <a asp-action="Update"
+                               asp-route-id="@product.Id"
+                               class="btn btn-warning btn-sm">
+                                Edit
+                            </a>
+
+                            <a asp-action="Delete"
+                               asp-route-id="@product.Id"
+                               class="btn btn-danger btn-sm">
+                                Delete
+                            </a>
+
+                        </div>}
+                        <a asp-action="Display"
+                           asp-route-id="@product.Id"
+                           class="btn btn-primary btn-sm">
+                            View
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
         }
-    </tbody>
-</table>
+
+    </div>
+</div>
