@@ -7,6 +7,6 @@ class SessionHelper
     }
     public static function isAdmin()
     {
-        return isset($_SESSION['username']) && $_SESSION['user_role'] === 'admin';
+        return isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin';
     }
 }

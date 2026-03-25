@@ -1,87 +1,96 @@
 <?php include 'app/views/shares/header.php'; ?>
 
-<h1>Sửa sản phẩm</h1>
+<h2 class="mb-4">✏️ Sửa sản phẩm</h2>
 
-<form id="edit-product-form">
-    <input type="hidden" id="id" name="id">
+<div class="card shadow-sm p-4" style="max-width:600px;">
+    <form id="edit-product-form">
 
-    <div class="form-group">
-        <label for="name">Tên sản phẩm:</label>
-        <input type="text" id="name" name="name" class="form-control" required>
-    </div>
+        <input type="hidden" id="id" name="id" value="<?= $product->id ?>">
 
-    <div class="form-group">
-        <label for="description">Mô tả:</label>
-        <textarea id="description" name="description" class="form-control" required></textarea>
-    </div>
+        <div class="form-group">
+            <label>Tên sản phẩm:</label>
+            <input type="text" id="name" class="form-control" required>
+        </div>
 
-    <div class="form-group">
-        <label for="price">Giá:</label>
-        <input type="number" id="price" name="price" class="form-control" step="0.01" required>
-    </div>
+        <div class="form-group">
+            <label>Mô tả:</label>
+            <textarea id="description" class="form-control" required></textarea>
+        </div>
 
-    <div class="form-group">
-        <label for="category_id">Danh mục:</label>
-        <select id="category_id" name="category_id" class="form-control" required>
-        </select>
-    </div>
+        <div class="form-group">
+            <label>Giá:</label>
+            <input type="number" id="price" class="form-control" required>
+        </div>
 
-    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
-    <a href="/webbanhang/Product/list" class="btn btn-secondary mt-2">Quay lại danh sách sản phẩm</a>
-</form>
+        <div class="form-group">
+            <label>Danh mục:</label>
+            <select id="category_id" class="form-control"></select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">💾 Lưu</button>
+        <a href="/webbanhang/Product" class="btn btn-secondary">⬅ Quay lại</a>
+
+    </form>
+</div>
 
 <?php include 'app/views/shares/footer.php'; ?>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const productId = <?= $editID ?>;
+    $(document).ready(function() {
 
-        fetch(`/webbanhang/api/product/${productId}`)
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('id').value = data.id;
-                document.getElementById('name').value = data.name;
-                document.getElementById('description').value = data.description;
-                document.getElementById('price').value = data.price;
-                document.getElementById('category_id').value = data.category_id;
+        const productId = <?= $product->id ?>;
+
+        // LOAD CATEGORY trước
+        $.get('/webbanhang/api/category', function(categories) {
+
+            let html = '';
+            categories.forEach(c => {
+                html += `<option value="${c.id}">${c.name}</option>`;
             });
 
-        fetch('/webbanhang/api/category')
-            .then(response => response.json())
-            .then(data => {
-                const categorySelect = document.getElementById('category_id');
-                data.forEach(category => {
-                    const option = document.createElement('option');
-                    option.value = category.id;
-                    option.textContent = category.name;
-                    categorySelect.appendChild(option);
-                });
+            $('#category_id').html(html);
+
+            // Sau đó load product
+            $.get(`/webbanhang/api/product/${productId}`, function(p) {
+                $('#name').val(p.name);
+                $('#description').val(p.description);
+                $('#price').val(p.price);
+                $('#category_id').val(p.category_id);
             });
-
-        document.getElementById('edit-product-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const formData = new FormData(this);
-            const jsonData = {};
-            formData.forEach((value, key) => {
-                jsonData[key] = value;
-            });
-
-            fetch(`/webbanhang/api/product/${jsonData.id}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(jsonData)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.message === 'Product updated successfully') {
-                        location.href = '/webbanhang/Product';
-                    } else {
-                        alert('Cập nhật sản phẩm thất bại');
-                    }
-                });
         });
+
+        // SUBMIT
+        $('#edit-product-form').submit(function(e) {
+            e.preventDefault();
+
+            const product = {
+                id: $('#id').val(),
+                name: $('#name').val(),
+                description: $('#description').val(),
+                price: $('#price').val(),
+                category_id: $('#category_id').val()
+            };
+
+            $.ajax({
+                url: `/webbanhang/api/product/${product.id}`,
+                method: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify(product),
+                success: function(res) {
+                    if (res.message === 'Product updated successfully') {
+                        alert('Cập nhật thành công');
+                        window.location.href = '/webbanhang/Product';
+                    } else {
+                        alert('Cập nhật thất bại');
+                    }
+                },
+                error: function() {
+                    alert('Lỗi khi cập nhật');
+                }
+            });
+        });
+
     });
 </script>

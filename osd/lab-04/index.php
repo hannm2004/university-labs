@@ -16,7 +16,7 @@ $controllerName = isset($url[0]) && $url[0] != '' ? ucfirst($url[0]) . 'Controll
 
 $action = isset($url[1]) && $url[1] != '' ? $url[1] : 'index';
 
-if ($controllerName === 'ApiController' && isset($url[1])) {
+if (isset($url[0]) && $url[0] === 'api' && isset($url[1])) {
     $ApiControllerName = ucfirst($url[1]) . 'ApiController';
     if (file_exists('app/controllers/' . $ApiControllerName . '.php')) {
         require_once 'app/controllers/' . $ApiControllerName . '.php';

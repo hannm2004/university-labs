@@ -64,12 +64,10 @@ class ProductModel
         $price = htmlspecialchars(strip_tags($price));
         $category_id = htmlspecialchars(strip_tags($category_id));
 
-
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':description', $description);
         $stmt->bindParam(':price', $price);
         $stmt->bindParam(':category_id', $category_id);
-
 
         if ($stmt->execute()) {
             return true;
@@ -91,13 +89,11 @@ class ProductModel
         $price = htmlspecialchars(strip_tags($price));
         $category_id = htmlspecialchars(strip_tags($category_id));
 
-
         $stmt->bindParam(':id', $id);
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':description', $description);
         $stmt->bindParam(':price', $price);
         $stmt->bindParam(':category_id', $category_id);
-
 
         if ($stmt->execute()) {
             return true;
@@ -118,5 +114,18 @@ class ProductModel
         }
 
         return false;
+    }
+
+    public function isProductSold($product_id)
+    {
+        $query = "SELECT COUNT(*) as total FROM order_details WHERE product_id = :id";
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(':id', $product_id);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_OBJ);
+
+        return $result->total > 0;
     }
 }
