@@ -6,7 +6,7 @@ require_once('app/models/CategoryModel.php');
 
 class ProductController
 {
-    private $productModel;
+    private $productModel;;
     private $db;
 
     public function __construct()
