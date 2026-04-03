@@ -84,15 +84,28 @@ class ProductApiController
 
     public function destroy($id)
     {
-        header('Content-Type: application/json');
+        header('Content-Type: application/json; charset=utf-8');
 
-        $result = $this->productModel->deleteProduct($id);
-
-        if ($result) {
-            echo json_encode(['message' => 'Product deleted successfully']);
-        } else {
+        if ($this->productModel->isProductSold($id)) {
             http_response_code(400);
-            echo json_encode(['message' => 'Product deletion failed']);
+            echo json_encode([
+                "success" => false,
+                "message" => "This product has already been sold and cannot be deleted"
+            ], JSON_UNESCAPED_UNICODE);
+            return;
+        }
+
+        if ($this->productModel->deleteProduct($id)) {
+            echo json_encode([
+                "success" => true,
+                "message" => "Product deleted successfully"
+            ], JSON_UNESCAPED_UNICODE);
+        } else {
+            http_response_code(500);
+            echo json_encode([
+                "success" => false,
+                "message" => "Failed to delete product"
+            ], JSON_UNESCAPED_UNICODE);
         }
     }
 }

@@ -84,14 +84,19 @@ class ProductController
         }
     }
 
-    public function edit($id)
+    public function edit($id = null)
     {
-
         if (!SessionHelper::isAdmin()) {
             die("Bạn không có quyền!");
         }
+
+        if (!$id) {
+            die("Thiếu ID sản phẩm!");
+        }
+
         $product = $this->productModel->getProductById($id);
         $categories = (new CategoryModel($this->db))->getCategories();
+        $editId = $id;
 
         if ($product) {
             include 'app/views/product/edit.php';
@@ -298,10 +303,5 @@ class ProductController
     public function orderConfirmation()
     {
         include 'app/views/product/orderConfirmation.php';
-    }
-
-    public function api()
-    {
-        include 'app/views/product/api_list.php';
     }
 }
