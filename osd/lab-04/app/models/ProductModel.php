@@ -1,12 +1,12 @@
 <?php
 class ProductModel
 {
-    private $conn;
+    private $db;
     private $table_name = "product";
 
     public function __construct($db)
     {
-        $this->conn = $db;
+        $this->db = $db;
     }
 
     public function getProducts()
@@ -15,23 +15,20 @@ class ProductModel
                   FROM " . $this->table_name . " p
                   LEFT JOIN category c ON p.category_id = c.id";
 
-        $stmt = $this->conn->prepare($query);
+        $stmt = $this->db->prepare($query);
         $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_OBJ);
-
-        return $result;
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
     public function getProductById($id)
     {
         $query = "SELECT * FROM " . $this->table_name . " WHERE id = :id";
 
-        $stmt = $this->conn->prepare($query);
+        $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
 
-        $result = $stmt->fetch(PDO::FETCH_OBJ);
-        return $result;
+        return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
     public function addProduct($name, $description, $price, $category_id)
@@ -57,23 +54,19 @@ class ProductModel
         $query = "INSERT INTO " . $this->table_name . " (name, description, price, category_id)
                   VALUES (:name, :description, :price, :category_id)";
 
-        $stmt = $this->conn->prepare($query);
+        $stmt = $this->db->prepare($query);
 
-        $name = htmlspecialchars(strip_tags($name));
-        $description = htmlspecialchars(strip_tags($description));
-        $price = htmlspecialchars(strip_tags($price));
-        $category_id = htmlspecialchars(strip_tags($category_id));
+        $name = htmlspecialchars(strip_tags($name ?? ''));
+        $description = htmlspecialchars(strip_tags($description ?? ''));
+        $price = is_numeric($price) ? $price : 0;
+        $category_id = htmlspecialchars(strip_tags($category_id ?? ''));
 
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':description', $description);
         $stmt->bindParam(':price', $price);
         $stmt->bindParam(':category_id', $category_id);
 
-        if ($stmt->execute()) {
-            return true;
-        }
-
-        return false;
+        return $stmt->execute();
     }
 
     public function updateProduct($id, $name, $description, $price, $category_id)
@@ -82,12 +75,12 @@ class ProductModel
                   SET name=:name, description=:description, price=:price, category_id=:category_id
                   WHERE id=:id";
 
-        $stmt = $this->conn->prepare($query);
+        $stmt = $this->db->prepare($query);
 
-        $name = htmlspecialchars(strip_tags($name));
-        $description = htmlspecialchars(strip_tags($description));
-        $price = htmlspecialchars(strip_tags($price));
-        $category_id = htmlspecialchars(strip_tags($category_id));
+        $name = htmlspecialchars(strip_tags($name ?? ''));
+        $description = htmlspecialchars(strip_tags($description ?? ''));
+        $price = is_numeric($price) ? $price : 0;
+        $category_id = htmlspecialchars(strip_tags($category_id ?? ''));
 
         $stmt->bindParam(':id', $id);
         $stmt->bindParam(':name', $name);
@@ -95,37 +88,31 @@ class ProductModel
         $stmt->bindParam(':price', $price);
         $stmt->bindParam(':category_id', $category_id);
 
-        if ($stmt->execute()) {
-            return true;
-        }
-
-        return false;
+        return $stmt->execute();
     }
 
     public function deleteProduct($id)
     {
         $query = "DELETE FROM " . $this->table_name . " WHERE id=:id";
 
-        $stmt = $this->conn->prepare($query);
+        $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $id);
 
-        if ($stmt->execute()) {
-            return true;
-        }
-
-        return false;
+        return $stmt->execute();
     }
 
     public function isProductSold($product_id)
     {
-        $query = "SELECT COUNT(*) as total FROM order_details WHERE product_id = :id";
-        $stmt = $this->conn->prepare($query);
+        $query = "SELECT COUNT(*) as total 
+                  FROM order_details 
+                  WHERE product_id = :product_id";
 
-        $stmt->bindParam(':id', $product_id);
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':product_id', $product_id);
         $stmt->execute();
 
-        $result = $stmt->fetch(PDO::FETCH_OBJ);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        return $result->total > 0;
+        return $result['total'] > 0;
     }
 }
