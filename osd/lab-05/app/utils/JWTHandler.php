@@ -8,7 +8,7 @@ class JWTHandler
     private $secret_key;
     public function __construct()
     {
-        $this->secret_key = "HUTECH";
+        $this->secret_key = "HUTECH_SUPER_SECRET_LONG_KEY_MUST_BE_32_BYTES";
     }
     public function encode($data)
     {
