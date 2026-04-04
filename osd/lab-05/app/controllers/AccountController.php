@@ -68,9 +68,10 @@ class AccountController
     }
     function logout()
     {
-        unset($_SESSION['username']);
-        unset($_SESSION['role']);
-        header('Location: /webbanhang/product');
+        session_unset();
+        session_destroy();
+        header('Location: /webbanhang/Product');
+        exit;
     }
 
     public function checkLogin()
@@ -81,6 +82,11 @@ class AccountController
         $password = $data['password'] ?? '';
         $user = $this->accountModel->getAccountByUserName($username);
         if ($user && password_verify($password, $user->password)) {
+            // Set PHP Session for Backend validation
+            $_SESSION['username'] = $user->username;
+            $_SESSION['user_role'] = $user->role;
+            $_SESSION['user_id'] = $user->id;
+
             $token = $this->jwtHandler->encode(['id' => $user->id, 'username' => $user->username]);
             echo json_encode(['token' => $token]);
         } else {
