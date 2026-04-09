@@ -8,7 +8,8 @@ class JWTHandler
     private $secret_key;
     public function __construct()
     {
-        $this->secret_key = "HUTECH";
+        // Phải đủ 256-bit (32+ ký tự) cho firebase/php-jwt v7+ với HS256
+        $this->secret_key = "HUTECH_JWT_SECRET_KEY_256BIT_2024_SECURE";
     }
     public function encode($data)
     {
