@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Models;
 using WebAPI.Repositories;
@@ -22,7 +22,7 @@ namespace WebAPI.Controllers
                 var products = await _productRepository.GetProductsAsync();
                 return Ok(products);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return StatusCode(500, "Internal server error");
             }
@@ -38,7 +38,7 @@ namespace WebAPI.Controllers
                     return NotFound();
                 return Ok(product);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return StatusCode(500, "Internal server error");
             }
@@ -51,7 +51,7 @@ namespace WebAPI.Controllers
                 await _productRepository.AddProductAsync(product);
                 return CreatedAtAction(nameof(GetProductbyID), new { id = product.Id }, product);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return StatusCode(500, "Internal server error");
             }
@@ -66,7 +66,7 @@ namespace WebAPI.Controllers
                 await _productRepository.UpdateProductAsync(product);
                 return NoContent();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return StatusCode(500, "Internal server error");
             }
@@ -79,7 +79,7 @@ namespace WebAPI.Controllers
                 await _productRepository.DeleteProductAsync(id);
                 return NoContent();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return StatusCode(500, "Internal server error");
             }

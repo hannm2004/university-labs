@@ -1,0 +1,90 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch: Lab 02",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build: Lab-02",
+            "program": "${workspaceFolder}/lab-02/WebsiteBanHang/WebsiteBanHang/bin/Debug/net9.0/WebsiteBanHang.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/lab-02/WebsiteBanHang/WebsiteBanHang",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        },
+        {
+            "name": "Launch: Lab 03",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build: Lab-03",
+            "program": "${workspaceFolder}/lab-03/WebsiteBanHang/Webbanhang_NguyenMinhHan/bin/Debug/net8.0/Webbanhang_NguyenMinhHan.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/lab-03/WebsiteBanHang/Webbanhang_NguyenMinhHan",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        },
+        {
+            "name": "Launch: Lab 04",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build: Lab-04",
+            "program": "${workspaceFolder}/lab-04/WebsiteBanHang/Webbanhang_NguyenMinhHan/bin/Debug/net8.0/Webbanhang_NguyenMinhHan.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/lab-04/WebsiteBanHang/Webbanhang_NguyenMinhHan",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        },
+        {
+            "name": "Launch: Lab 05",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build: Lab-05",
+            "program": "${workspaceFolder}/lab-05/WebsiteBanHang/Webbanhang_NguyenMinhHan/bin/Debug/net8.0/Webbanhang_NguyenMinhHan.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/lab-05/WebsiteBanHang/Webbanhang_NguyenMinhHan",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        },
+        {
+            "name": "Launch: Lab 06 - WebAPI",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build: Lab-06",
+            "program": "${workspaceFolder}/lab-06/WebAPI/WebAPI/bin/Debug/net8.0/WebAPI.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/lab-06/WebAPI/WebAPI",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        }
+    ]
+}
