@@ -16,28 +16,28 @@ namespace Lab03_02
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.menuStrip1        = new System.Windows.Forms.MenuStrip();
-            this.heThongMenu       = new System.Windows.Forms.ToolStripMenuItem();
-            this.taoVanBanMoiToolStripMenuItem  = new System.Windows.Forms.ToolStripMenuItem();
-            this.moTapTinToolStripMenuItem       = new System.Windows.Forms.ToolStripMenuItem();
-            this.luuNoiDungToolStripMenuItem     = new System.Windows.Forms.ToolStripMenuItem();
-            this.sep1                            = new System.Windows.Forms.ToolStripSeparator();
-            this.thoatToolStripMenuItem          = new System.Windows.Forms.ToolStripMenuItem();
-            this.dinhDangMenu      = new System.Windows.Forms.ToolStripMenuItem();
-            this.dinhDangToolStripMenuItem       = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStrip1        = new System.Windows.Forms.ToolStrip();
-            this.btnNew            = new System.Windows.Forms.ToolStripButton();
-            this.btnOpen           = new System.Windows.Forms.ToolStripButton();
-            this.btnSave           = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSep1     = new System.Windows.Forms.ToolStripSeparator();
-            this.cmbFonts          = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripSep2     = new System.Windows.Forms.ToolStripSeparator();
-            this.cmbSize           = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripSep3     = new System.Windows.Forms.ToolStripSeparator();
-            this.btnBold           = new System.Windows.Forms.ToolStripButton();
-            this.btnItalic         = new System.Windows.Forms.ToolStripButton();
-            this.btnUnderline      = new System.Windows.Forms.ToolStripButton();
-            this.richText          = new System.Windows.Forms.RichTextBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.heThongMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.taoVanBanMoiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.moTapTinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.luuNoiDungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sep1 = new System.Windows.Forms.ToolStripSeparator();
+            this.thoatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dinhDangMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.dinhDangToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnNew = new System.Windows.Forms.ToolStripButton();
+            this.btnOpen = new System.Windows.Forms.ToolStripButton();
+            this.btnSave = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSep1 = new System.Windows.Forms.ToolStripSeparator();
+            this.cmbFonts = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripSep2 = new System.Windows.Forms.ToolStripSeparator();
+            this.cmbSize = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripSep3 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnBold = new System.Windows.Forms.ToolStripButton();
+            this.btnItalic = new System.Windows.Forms.ToolStripButton();
+            this.btnUnderline = new System.Windows.Forms.ToolStripButton();
+            this.richText = new System.Windows.Forms.RichTextBox();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -45,8 +45,8 @@ namespace Lab03_02
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-                this.heThongMenu,
-                this.dinhDangMenu });
+            this.heThongMenu,
+            this.dinhDangMenu});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(784, 24);
@@ -55,79 +55,79 @@ namespace Lab03_02
             // heThongMenu
             // 
             this.heThongMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-                this.taoVanBanMoiToolStripMenuItem,
-                this.moTapTinToolStripMenuItem,
-                this.luuNoiDungToolStripMenuItem,
-                this.sep1,
-                this.thoatToolStripMenuItem });
+            this.taoVanBanMoiToolStripMenuItem,
+            this.moTapTinToolStripMenuItem,
+            this.luuNoiDungToolStripMenuItem,
+            this.sep1,
+            this.thoatToolStripMenuItem});
             this.heThongMenu.Name = "heThongMenu";
-            this.heThongMenu.Size = new System.Drawing.Size(67, 20);
+            this.heThongMenu.Size = new System.Drawing.Size(69, 20);
             this.heThongMenu.Text = "Hệ thống";
             // 
             // taoVanBanMoiToolStripMenuItem
             // 
             this.taoVanBanMoiToolStripMenuItem.Name = "taoVanBanMoiToolStripMenuItem";
-            this.taoVanBanMoiToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N;
-            this.taoVanBanMoiToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.taoVanBanMoiToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.taoVanBanMoiToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
             this.taoVanBanMoiToolStripMenuItem.Text = "Tạo văn bản mới";
             this.taoVanBanMoiToolStripMenuItem.Click += new System.EventHandler(this.taoVanBanMoiToolStripMenuItem_Click);
             // 
             // moTapTinToolStripMenuItem
             // 
             this.moTapTinToolStripMenuItem.Name = "moTapTinToolStripMenuItem";
-            this.moTapTinToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.moTapTinToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
             this.moTapTinToolStripMenuItem.Text = "Mở tập tin";
             this.moTapTinToolStripMenuItem.Click += new System.EventHandler(this.moTapTinToolStripMenuItem_Click);
             // 
             // luuNoiDungToolStripMenuItem
             // 
             this.luuNoiDungToolStripMenuItem.Name = "luuNoiDungToolStripMenuItem";
-            this.luuNoiDungToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S;
-            this.luuNoiDungToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.luuNoiDungToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.luuNoiDungToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
             this.luuNoiDungToolStripMenuItem.Text = "Lưu nội dung văn bản";
             this.luuNoiDungToolStripMenuItem.Click += new System.EventHandler(this.luuNoiDungToolStripMenuItem_Click);
             // 
             // sep1
             // 
             this.sep1.Name = "sep1";
-            this.sep1.Size = new System.Drawing.Size(217, 6);
+            this.sep1.Size = new System.Drawing.Size(227, 6);
             // 
             // thoatToolStripMenuItem
             // 
             this.thoatToolStripMenuItem.Name = "thoatToolStripMenuItem";
-            this.thoatToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.thoatToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
             this.thoatToolStripMenuItem.Text = "Thoát";
             this.thoatToolStripMenuItem.Click += new System.EventHandler(this.thoatToolStripMenuItem_Click);
             // 
             // dinhDangMenu
             // 
             this.dinhDangMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-                this.dinhDangToolStripMenuItem });
+            this.dinhDangToolStripMenuItem});
             this.dinhDangMenu.Name = "dinhDangMenu";
-            this.dinhDangMenu.Size = new System.Drawing.Size(62, 20);
+            this.dinhDangMenu.Size = new System.Drawing.Size(74, 20);
             this.dinhDangMenu.Text = "Định dạng";
             // 
             // dinhDangToolStripMenuItem
             // 
             this.dinhDangToolStripMenuItem.Name = "dinhDangToolStripMenuItem";
-            this.dinhDangToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.dinhDangToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.dinhDangToolStripMenuItem.Text = "Định dạng...";
             this.dinhDangToolStripMenuItem.Click += new System.EventHandler(this.dinhDangToolStripMenuItem_Click);
             // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-                this.btnNew,
-                this.btnOpen,
-                this.btnSave,
-                this.toolStripSep1,
-                this.cmbFonts,
-                this.toolStripSep2,
-                this.cmbSize,
-                this.toolStripSep3,
-                this.btnBold,
-                this.btnItalic,
-                this.btnUnderline });
+            this.btnNew,
+            this.btnOpen,
+            this.btnSave,
+            this.toolStripSep1,
+            this.cmbFonts,
+            this.toolStripSep2,
+            this.cmbSize,
+            this.toolStripSep3,
+            this.btnBold,
+            this.btnItalic,
+            this.btnUnderline});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(784, 25);
@@ -136,7 +136,7 @@ namespace Lab03_02
             // btnNew
             // 
             this.btnNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnNew.Image = System.Drawing.SystemIcons.Application.ToBitmap();
+            this.btnNew.Image = ((System.Drawing.Image)(resources.GetObject("btnNew.Image")));
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(23, 22);
             this.btnNew.ToolTipText = "Tạo văn bản mới (Ctrl+N)";
@@ -145,7 +145,7 @@ namespace Lab03_02
             // btnOpen
             // 
             this.btnOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnOpen.Image = System.Drawing.SystemIcons.Shield.ToBitmap();
+            this.btnOpen.Image = ((System.Drawing.Image)(resources.GetObject("btnOpen.Image")));
             this.btnOpen.Name = "btnOpen";
             this.btnOpen.Size = new System.Drawing.Size(23, 22);
             this.btnOpen.ToolTipText = "Mở tập tin";
@@ -154,7 +154,7 @@ namespace Lab03_02
             // btnSave
             // 
             this.btnSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnSave.Image = System.Drawing.SystemIcons.Information.ToBitmap();
+            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(23, 22);
             this.btnSave.ToolTipText = "Lưu nội dung văn bản (Ctrl+S)";
@@ -180,7 +180,7 @@ namespace Lab03_02
             // cmbSize
             // 
             this.cmbSize.Name = "cmbSize";
-            this.cmbSize.Size = new System.Drawing.Size(55, 25);
+            this.cmbSize.Size = new System.Drawing.Size(75, 25);
             this.cmbSize.ToolTipText = "Chọn kích thước chữ";
             this.cmbSize.SelectedIndexChanged += new System.EventHandler(this.cmbSize_SelectedIndexChanged);
             // 
@@ -221,15 +221,14 @@ namespace Lab03_02
             // 
             // richText
             // 
+            this.richText.BackColor = System.Drawing.Color.AliceBlue;
             this.richText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richText.Font = new System.Drawing.Font("Tahoma", 14F);
             this.richText.Location = new System.Drawing.Point(0, 49);
             this.richText.Name = "richText";
-            this.richText.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Both;
             this.richText.Size = new System.Drawing.Size(784, 512);
             this.richText.TabIndex = 2;
             this.richText.Text = "";
-            this.richText.BackColor = System.Drawing.Color.AliceBlue;
             // 
             // Form1
             // 
@@ -249,6 +248,7 @@ namespace Lab03_02
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
