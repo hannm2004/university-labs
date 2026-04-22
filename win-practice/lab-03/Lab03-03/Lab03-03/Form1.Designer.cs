@@ -17,6 +17,7 @@ namespace Lab03_03
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.chứcNăngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuThemMoi = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,21 +54,21 @@ namespace Lab03_03
             this.menuThemMoi,
             this.menuThoat});
             this.chứcNăngToolStripMenuItem.Name = "chứcNăngToolStripMenuItem";
-            this.chứcNăngToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
+            this.chứcNăngToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
             this.chứcNăngToolStripMenuItem.Text = "Chức Năng";
             // 
             // menuThemMoi
             // 
             this.menuThemMoi.Name = "menuThemMoi";
             this.menuThemMoi.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.menuThemMoi.Size = new System.Drawing.Size(180, 22);
+            this.menuThemMoi.Size = new System.Drawing.Size(171, 22);
             this.menuThemMoi.Text = "Thêm mới";
             this.menuThemMoi.Click += new System.EventHandler(this.menuThemMoi_Click);
             // 
             // menuThoat
             // 
             this.menuThoat.Name = "menuThoat";
-            this.menuThoat.Size = new System.Drawing.Size(180, 22);
+            this.menuThoat.Size = new System.Drawing.Size(171, 22);
             this.menuThoat.Text = "Thoát";
             this.menuThoat.Click += new System.EventHandler(this.menuThoat_Click);
             // 
@@ -86,7 +87,7 @@ namespace Lab03_03
             // 
             // btnThemMoi
             // 
-            this.btnThemMoi.Image = System.Drawing.SystemIcons.Application.ToBitmap();
+            this.btnThemMoi.Image = ((System.Drawing.Image)(resources.GetObject("btnThemMoi.Image")));
             this.btnThemMoi.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnThemMoi.Name = "btnThemMoi";
             this.btnThemMoi.Size = new System.Drawing.Size(81, 22);
