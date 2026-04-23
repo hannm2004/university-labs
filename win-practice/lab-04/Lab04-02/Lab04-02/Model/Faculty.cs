@@ -20,7 +20,7 @@ namespace Lab04_01.Model
 
         [StringLength(200)]
         public string FacultyName { get; set; }
-        
+        public int? TotalProfessor { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student> Student { get; set; }
