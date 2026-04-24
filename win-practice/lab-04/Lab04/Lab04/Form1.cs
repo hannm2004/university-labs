@@ -213,5 +213,7 @@ namespace Lab04
             frmSearch frm = new frmSearch();
             frm.ShowDialog();
         }
+
+        
     }
 }
