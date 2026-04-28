@@ -4,36 +4,28 @@ namespace Lab05.Model
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
-    [Table("Student")]
-    public partial class Student
+    [Table("Major")]
+    public partial class Major
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Student()
+        public Major()
         {
             StudentMajor = new HashSet<StudentMajor>();
         }
 
-        [Key]
-        [StringLength(20)]
-        public string StudentID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int MajorID { get; set; }
 
         [StringLength(200)]
-        public string FullName { get; set; }
+        public string Name { get; set; }
 
-        public double? AverageScore { get; set; }
+        [StringLength(500)]
+        public string Description { get; set; }
 
         public int? FacultyID { get; set; }
 
-        public int? MajorID { get; set; }
-
-        [StringLength(500)]
-        public string Avatar { get; set; }
-
         public virtual Faculty Faculty { get; set; }
-
-        public virtual Major Major { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StudentMajor> StudentMajor { get; set; }
