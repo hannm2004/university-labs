@@ -418,3 +418,125 @@ END
 
 INSERT INTO CTDDH (SODDH, MASP, SOLUONG)
 VALUES ('DH001', 'SP02', 5)
+
+
+
+CREATE PROCEDURE C1
+    @X INT,
+    @Y CHAR(5)
+AS
+BEGIN
+    DECLARE @ProductCount INT = 1
+    DECLARE @ProductName NVARCHAR(50);
+    DECLARE @ProductDescription NVARCHAR(255)
+    DECLARE @ProductPrice BIGINT
+    DECLARE @CategoryName NVARCHAR(50)
+    SELECT @CategoryName = TENLOAI FROM LOAISP WHERE MALOAI = @Y
+    PRINT 'Tên loại: ' + @CategoryName
+    DECLARE product_cursor CURSOR FOR
+    SELECT TENSP, MOTA, GIA
+    FROM SANPHAM
+    WHERE MALOAI = @Y 
+    ORDER BY GIA DESC
+    OPEN product_cursor
+    FETCH NEXT FROM product_cursor INTO @ProductName, @ProductDescription, @ProductPrice
+    WHILE @@FETCH_STATUS = 0 AND @ProductCount <= @X
+    BEGIN
+        PRINT '• Sản phẩm ' + CAST(@ProductCount AS NVARCHAR(10)) + ': ' + @ProductName + ' - Mô tả: ' + @ProductDescription + ' - Giá: ' + CAST(@ProductPrice AS NVARCHAR(20))
+        SET @ProductCount = @ProductCount + 1
+
+        FETCH NEXT FROM product_cursor INTO @ProductName, @ProductDescription, @ProductPrice
+    END
+
+    CLOSE product_cursor
+    DEALLOCATE product_cursor
+END
+EXEC C1 3, 'L02'
+
+CREATE PROCEDURE C2
+AS
+BEGIN
+    DECLARE @MASP CHAR(5)
+    DECLARE @GIA BIGINT
+    DECLARE @GiaSX BIGINT;
+    DECLARE @NewPrice BIGINT
+    DECLARE product_cursor CURSOR FOR
+    SELECT MASP, GIA
+    FROM SANPHAM
+    OPEN product_cursor
+    FETCH NEXT FROM product_cursor INTO @MASP, @GIA
+    WHILE @@FETCH_STATUS = 0
+    BEGIN
+        SELECT @GiaSX = SUM(L.SOLUONG * N.GIA)
+        FROM LAM L
+        INNER JOIN NGUYENLIEU N ON L.MANL = N.MANL
+        WHERE L.MASP = @MASP;
+        IF ((@GIA - @GiaSX) / @GiaSX) > 0.30
+        BEGIN
+            SET @NewPrice = @GIA * 0.9
+        END
+        ELSE IF (@GIA < @GiaSX)
+        BEGIN
+            SET @NewPrice = @GiaSX
+        END
+        ELSE
+        BEGIN
+            SET @NewPrice = @GIA * 1.05
+        END
+        UPDATE SANPHAM
+        SET GIA = @NewPrice
+        WHERE MASP = @MASP
+        FETCH NEXT FROM product_cursor INTO @MASP, @GIA
+    END
+    CLOSE product_cursor
+    DEALLOCATE product_cursor
+END
+
+EXEC C2
+SELECT *
+FROM SANPHAM
+
+CREATE PROCEDURE C3
+    @Month INT
+AS
+BEGIN
+    DECLARE @OrderDate DATE
+    DECLARE @SODDH CHAR(5)
+    DECLARE @MAKH CHAR(5)
+    DECLARE @TotalAmount BIGINT
+    DECLARE @RowNum INT
+    DECLARE order_cursor CURSOR FOR
+    SELECT DISTINCT CAST(NGAYDAT AS DATE)
+    FROM DONDH
+    WHERE MONTH(NGAYDAT) = @Month
+    ORDER BY CAST(NGAYDAT AS DATE)
+    OPEN order_cursor;
+    FETCH NEXT FROM order_cursor INTO @OrderDate
+    WHILE @@FETCH_STATUS = 0
+    BEGIN
+        PRINT 'Ngày ' + CONVERT(VARCHAR, DAY(@OrderDate)) + '/' + CONVERT(VARCHAR, @Month) + '/' + CONVERT(VARCHAR, YEAR(@OrderDate))
+        SET @RowNum = 1
+        DECLARE order_details_cursor CURSOR FOR
+        SELECT D.SODDH, D.MAKH, SUM(C.SOLUONG * S.GIA) AS TotalAmount
+        FROM DONDH D
+        INNER JOIN CTDDH C ON D.SODDH = C.SODDH
+        INNER JOIN SANPHAM S ON C.MASP = S.MASP
+        WHERE MONTH(D.NGAYDAT) = @Month AND DAY(D.NGAYDAT) = DAY(@OrderDate)
+        GROUP BY D.SODDH, D.MAKH
+        ORDER BY TotalAmount DESC
+        OPEN order_details_cursor
+        FETCH NEXT FROM order_details_cursor INTO @SODDH, @MAKH, @TotalAmount
+        WHILE @@FETCH_STATUS = 0
+        BEGIN
+            PRINT CAST(@RowNum AS VARCHAR) + '- ' + @SODDH + ': ' + @MAKH + ', Tổng tiền: ' + CONVERT(VARCHAR, @TotalAmount)
+            SET @RowNum = @RowNum + 1
+            FETCH NEXT FROM order_details_cursor INTO @SODDH, @MAKH, @TotalAmount;
+        END
+        CLOSE order_details_cursor
+        DEALLOCATE order_details_cursor
+        FETCH NEXT FROM order_cursor INTO @OrderDate
+    END
+    CLOSE order_cursor
+    DEALLOCATE order_cursor
+END
+EXEC C3 3
