@@ -12,6 +12,10 @@ namespace Lab02_03
 {
     public partial class Form1: Form
     {
+        private const int GIA_VE = 80000;
+        private const int MAX_GHE = 8;
+
+        private List<Button> gheDangChon = new List<Button>();
         public Form1()
         {
             InitializeComponent();
@@ -19,97 +23,190 @@ namespace Lab02_03
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            int btnWidth = 50;
-            int btnHeight = 40;
-            int padding = 15;
+            TaoSoDoGhe();
 
-            for (int i = 0; i < 4; i++)
+            if (cboPhim.Items.Count > 0)
+                cboPhim.SelectedIndex = 0;
+        }
+
+        private void TaoSoDoGhe()
+        {
+            panelSoDoGhe.Controls.Clear();
+
+            int kichThuoc = 45;
+            int khoangCach = 5;
+
+            for (int hang = 0; hang < 5; hang++)
             {
-                for (int j = 0; j < 5; j++)
+                for (int cot = 0; cot < 8; cot++)
                 {
-                    int seatNumber = i * 5 + j + 1;
-                    Button btnSeat = new Button();
-                    btnSeat.Name = "btnSeat" + seatNumber;
-                    btnSeat.Text = seatNumber.ToString();
-                    btnSeat.Size = new Size(btnWidth, btnHeight);
-                    btnSeat.BackColor = Color.White;
-                    btnSeat.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
-                    btnSeat.Location = new Point(padding + j * (btnWidth + padding), padding + i * (btnHeight + padding));
-                    btnSeat.Click += new EventHandler(btnChooseASeat);
-                    grpSeats.Controls.Add(btnSeat);
+                    Button btn = new Button();
+
+                    btn.Width = kichThuoc;
+                    btn.Height = kichThuoc;
+
+                    btn.Left = cot * (kichThuoc + khoangCach);
+                    btn.Top = hang * (kichThuoc + khoangCach);
+
+                    btn.Text = $"{(char)('A' + hang)}{cot + 1}";
+
+                    btn.BackColor = Color.White;
+
+                    btn.FlatStyle = FlatStyle.Flat;
+
+                    btn.Tag = "Trong";
+
+                    btn.Click += btnGhe_Click;
+
+                    panelSoDoGhe.Controls.Add(btn);
                 }
             }
         }
 
-        private void btnChooseASeat(object sender, EventArgs e)
+        private void btnGhe_Click(object sender, EventArgs e)
         {
-            Button btn = sender as Button;
-            if (btn == null) return;
+            Button btn = (Button)sender;
 
-            if (btn.BackColor == Color.White)
+            string trangThai = btn.Tag.ToString();
+
+            // Ghế đã bán
+            if (trangThai == "DaBan")
             {
-                btn.BackColor = Color.Blue;
+                MessageBox.Show("Ghế đã được đặt!");
+                return;
             }
-            else if (btn.BackColor == Color.Blue)
+
+            // Ghế đang trống
+            if (trangThai == "Trong")
+            {
+                // Giới hạn 8 ghế
+                if (gheDangChon.Count >= MAX_GHE)
+                {
+                    MessageBox.Show("Chỉ được chọn tối đa 8 ghế!");
+                    return;
+                }
+
+                btn.BackColor = Color.Gold;
+                btn.Tag = "DangChon";
+
+                gheDangChon.Add(btn);
+            }
+            else // Ghế đang chọn
             {
                 btn.BackColor = Color.White;
+                btn.Tag = "Trong";
+
+                gheDangChon.Remove(btn);
             }
-            else if (btn.BackColor == Color.Yellow)
+
+            CapNhatThongTin();
+        }
+
+        private void CapNhatThongTin()
+        {
+            if (gheDangChon.Count == 0)
             {
-                MessageBox.Show("Ghế đã được bán!!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                lblGheDaChon.Text = "";
+                lblTongTien.Text = "0đ";
+                return;
+            }
+
+            lblGheDaChon.Text =
+                string.Join(", ", gheDangChon.Select(x => x.Text));
+
+            lblTongTien.Text =
+                (gheDangChon.Count * GIA_VE).ToString("N0") + "đ";
+        }
+
+        private void btnXacNhan_Click(object sender, EventArgs e)
+        {
+            if (gheDangChon.Count == 0)
+            {
+                MessageBox.Show(
+                    "Vui lòng chọn ít nhất 1 ghế!",
+                    "Thông báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            string danhSach = string.Join(", ", gheDangChon.Select(g => g.Text));
+            int tongTien = gheDangChon.Count * GIA_VE;
+
+            DialogResult ketQua = MessageBox.Show(
+                $"Xác nhận đặt {gheDangChon.Count} ghế:\n{danhSach}\n\nTổng tiền: {tongTien:N0}đ",
+                "Xác nhận đặt vé",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (ketQua == DialogResult.Yes)
+            {
+                foreach (Button ghe in gheDangChon)
+                {
+                    ghe.BackColor = Color.IndianRed;
+                    ghe.Tag = "DaBan";
+                }
+
+                gheDangChon.Clear();
+
+                CapNhatThongTin();
+
+                MessageBox.Show(
+                    "Đặt vé thành công!",
+                    "Thông báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
             }
         }
 
-        private void btnSelect_Click(object sender, EventArgs e)
+        private void btnHuyChon_Click(object sender, EventArgs e)
         {
-            long totalAmount = 0;
-            foreach (Control ctrl in grpSeats.Controls)
+            foreach (Button ghe in gheDangChon)
             {
-                if (ctrl is Button)
+                ghe.BackColor = Color.White;
+                ghe.Tag = "Trong";
+            }
+
+            gheDangChon.Clear();
+
+            CapNhatThongTin();
+        }
+
+        private void cboPhim_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Nếu không có ghế đang chọn thì reset luôn
+            if (gheDangChon.Count == 0)
+            {
+                ResetSoDoGhe();
+                return;
+            }
+
+            DialogResult rs = MessageBox.Show(
+                "Bạn đang chọn ghế.\nĐổi phim sẽ mất lựa chọn.\nTiếp tục?",
+                "Xác nhận",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (rs == DialogResult.Yes)
+            {
+                ResetSoDoGhe();
+            }
+        }
+
+        private void ResetSoDoGhe()
+        {
+            foreach (Control control in panelSoDoGhe.Controls)
+            {
+                if (control is Button btn)
                 {
-                    Button btn = (Button)ctrl;
-                    if (btn.BackColor == Color.Blue)
-                    {
-                        int seatNumber = int.Parse(btn.Text);
-                        int price = 0;
-
-                        if (seatNumber >= 1 && seatNumber <= 5) price = 30000;
-                        else if (seatNumber >= 6 && seatNumber <= 10) price = 40000;
-                        else if (seatNumber >= 11 && seatNumber <= 15) price = 50000;
-                        else if (seatNumber >= 16 && seatNumber <= 20) price = 80000;
-
-                        totalAmount += price;
-                        btn.BackColor = Color.Yellow;
-                    }
+                    btn.BackColor = Color.White;
+                    btn.Tag = "Trong";
                 }
             }
 
-            txtTotalAmount.Text = totalAmount.ToString("N0") + " VNĐ";
-        }
+            gheDangChon.Clear();
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            foreach (Control ctrl in grpSeats.Controls)
-            {
-                if (ctrl is Button)
-                {
-                    Button btn = (Button)ctrl;
-                    if (btn.BackColor == Color.Blue)
-                    {
-                        btn.BackColor = Color.White;
-                    }
-                }
-            }
-            txtTotalAmount.Text = "0 VNĐ";
-        }
-
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn thoát?", "Cảnh Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
-                this.Close();
-            }
+            CapNhatThongTin();
         }
     }
 }
