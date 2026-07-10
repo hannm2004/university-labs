@@ -55,13 +55,13 @@ namespace Lab02_02
                 }
 
                 int selectedRow = GetSelectedRow(txtStudentID.Text);
-                if (selectedRow == -1) // Thêm mới
+                if (selectedRow == -1) 
                 {
                     selectedRow = dgvStudent.Rows.Add();
                     InsertUpdate(selectedRow);
                     MessageBox.Show("Thêm mới dữ liệu thành công!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                else // Cập nhật
+                else 
                 {
                     InsertUpdate(selectedRow);
                     MessageBox.Show("Cập nhật dữ liệu thành công!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -140,5 +140,6 @@ namespace Lab02_02
             txtTotalMale.Text = maleCount.ToString();
             txtTotalFemale.Text = femaleCount.ToString();
         }
+
     }
 }

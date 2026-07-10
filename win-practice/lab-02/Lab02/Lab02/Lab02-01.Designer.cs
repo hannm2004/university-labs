@@ -1,4 +1,4 @@
-namespace Lab02
+﻿namespace Lab02_01
 {
     partial class Form1
     {
@@ -30,125 +30,149 @@ namespace Lab02
         {
             this.label1 = new System.Windows.Forms.Label();
             this.btnCong = new System.Windows.Forms.Button();
-            this.txtNhapA = new System.Windows.Forms.TextBox();
+            this.txtSo1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnTru = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
             this.btnChia = new System.Windows.Forms.Button();
-            this.txtNhapB = new System.Windows.Forms.TextBox();
+            this.txtSo2 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtKetQua = new System.Windows.Forms.TextBox();
+            this.btnXoaLichSu = new System.Windows.Forms.Button();
+            this.lstLichSu = new System.Windows.Forms.ListBox();
+            this.lblKetQua = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(77, 102);
+            this.label1.Location = new System.Drawing.Point(37, 35);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 16);
+            this.label1.Size = new System.Drawing.Size(57, 16);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Number 1";
+            this.label1.Text = "Số thứ 1:";
             // 
             // btnCong
             // 
-            this.btnCong.Location = new System.Drawing.Point(158, 214);
+            this.btnCong.Location = new System.Drawing.Point(144, 136);
             this.btnCong.Name = "btnCong";
-            this.btnCong.Size = new System.Drawing.Size(75, 41);
+            this.btnCong.Size = new System.Drawing.Size(75, 55);
             this.btnCong.TabIndex = 1;
             this.btnCong.Text = "+";
             this.btnCong.UseVisualStyleBackColor = true;
-            this.btnCong.Click += new System.EventHandler(this.btnCong_Click);
+            this.btnCong.Click += new System.EventHandler(this.btnPhepTinh_Click);
             // 
-            // txtNhapA
+            // txtSo1
             // 
-            this.txtNhapA.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNhapA.Location = new System.Drawing.Point(158, 102);
-            this.txtNhapA.Name = "txtNhapA";
-            this.txtNhapA.Size = new System.Drawing.Size(366, 22);
-            this.txtNhapA.TabIndex = 2;
-            this.txtNhapA.TextChanged += new System.EventHandler(this.txtNhapA_TextChanged);
+            this.txtSo1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSo1.Location = new System.Drawing.Point(144, 35);
+            this.txtSo1.Name = "txtSo1";
+            this.txtSo1.Size = new System.Drawing.Size(416, 22);
+            this.txtSo1.TabIndex = 2;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(77, 150);
+            this.label2.Location = new System.Drawing.Point(37, 91);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 16);
+            this.label2.Size = new System.Drawing.Size(57, 16);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Number 2";
+            this.label2.Text = "Số thứ 2:";
             // 
             // btnTru
             // 
-            this.btnTru.Location = new System.Drawing.Point(254, 214);
+            this.btnTru.Location = new System.Drawing.Point(256, 136);
             this.btnTru.Name = "btnTru";
-            this.btnTru.Size = new System.Drawing.Size(75, 41);
+            this.btnTru.Size = new System.Drawing.Size(75, 55);
             this.btnTru.TabIndex = 4;
             this.btnTru.Text = "-";
             this.btnTru.UseVisualStyleBackColor = true;
-            this.btnTru.Click += new System.EventHandler(this.btnTru_Click);
+            this.btnTru.Click += new System.EventHandler(this.btnPhepTinh_Click);
             // 
             // btnNhan
             // 
-            this.btnNhan.Location = new System.Drawing.Point(353, 214);
+            this.btnNhan.Location = new System.Drawing.Point(370, 136);
             this.btnNhan.Name = "btnNhan";
-            this.btnNhan.Size = new System.Drawing.Size(75, 41);
+            this.btnNhan.Size = new System.Drawing.Size(75, 55);
             this.btnNhan.TabIndex = 5;
             this.btnNhan.Text = "x";
             this.btnNhan.UseVisualStyleBackColor = true;
-            this.btnNhan.Click += new System.EventHandler(this.btnNhan_Click);
+            this.btnNhan.Click += new System.EventHandler(this.btnPhepTinh_Click);
             // 
             // btnChia
             // 
-            this.btnChia.Location = new System.Drawing.Point(449, 214);
+            this.btnChia.Location = new System.Drawing.Point(485, 136);
             this.btnChia.Name = "btnChia";
-            this.btnChia.Size = new System.Drawing.Size(75, 41);
+            this.btnChia.Size = new System.Drawing.Size(75, 55);
             this.btnChia.TabIndex = 6;
             this.btnChia.Text = "/";
             this.btnChia.UseVisualStyleBackColor = true;
-            this.btnChia.Click += new System.EventHandler(this.btnChia_Click);
+            this.btnChia.Click += new System.EventHandler(this.btnPhepTinh_Click);
             // 
-            // txtNhapB
+            // txtSo2
             // 
-            this.txtNhapB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNhapB.Location = new System.Drawing.Point(158, 150);
-            this.txtNhapB.Name = "txtNhapB";
-            this.txtNhapB.Size = new System.Drawing.Size(366, 22);
-            this.txtNhapB.TabIndex = 7;
+            this.txtSo2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSo2.Location = new System.Drawing.Point(144, 91);
+            this.txtSo2.Name = "txtSo2";
+            this.txtSo2.Size = new System.Drawing.Size(416, 22);
+            this.txtSo2.TabIndex = 7;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(77, 295);
+            this.label3.Location = new System.Drawing.Point(37, 271);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 16);
+            this.label3.Size = new System.Drawing.Size(103, 16);
             this.label3.TabIndex = 8;
-            this.label3.Text = "Answer";
+            this.label3.Text = "Lịch sử tính toán:";
             // 
-            // txtKetQua
+            // btnXoaLichSu
             // 
-            this.txtKetQua.Enabled = false;
-            this.txtKetQua.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtKetQua.Location = new System.Drawing.Point(158, 295);
-            this.txtKetQua.Name = "txtKetQua";
-            this.txtKetQua.Size = new System.Drawing.Size(366, 22);
-            this.txtKetQua.TabIndex = 9;
+            this.btnXoaLichSu.Location = new System.Drawing.Point(485, 218);
+            this.btnXoaLichSu.Name = "btnXoaLichSu";
+            this.btnXoaLichSu.Size = new System.Drawing.Size(75, 32);
+            this.btnXoaLichSu.TabIndex = 11;
+            this.btnXoaLichSu.Text = "Xóa lịch sử";
+            this.btnXoaLichSu.UseVisualStyleBackColor = true;
+            this.btnXoaLichSu.Click += new System.EventHandler(this.btnXoaLichSu_Click);
+            // 
+            // lstLichSu
+            // 
+            this.lstLichSu.FormattingEnabled = true;
+            this.lstLichSu.Location = new System.Drawing.Point(40, 290);
+            this.lstLichSu.Name = "lstLichSu";
+            this.lstLichSu.Size = new System.Drawing.Size(520, 95);
+            this.lstLichSu.TabIndex = 12;
+            // 
+            // lblKetQua
+            // 
+            this.lblKetQua.AutoSize = true;
+            this.lblKetQua.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblKetQua.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblKetQua.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lblKetQua.Location = new System.Drawing.Point(37, 218);
+            this.lblKetQua.Name = "lblKetQua";
+            this.lblKetQua.Size = new System.Drawing.Size(76, 20);
+            this.lblKetQua.TabIndex = 13;
+            this.lblKetQua.Text = "Kết quả:";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(596, 414);
-            this.Controls.Add(this.txtKetQua);
+            this.Controls.Add(this.lblKetQua);
+            this.Controls.Add(this.lstLichSu);
+            this.Controls.Add(this.btnXoaLichSu);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtNhapB);
+            this.Controls.Add(this.txtSo2);
             this.Controls.Add(this.btnChia);
             this.Controls.Add(this.btnNhan);
             this.Controls.Add(this.btnTru);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtNhapA);
+            this.Controls.Add(this.txtSo1);
             this.Controls.Add(this.btnCong);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
@@ -162,14 +186,16 @@ namespace Lab02
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCong;
-        private System.Windows.Forms.TextBox txtNhapA;
+        private System.Windows.Forms.TextBox txtSo1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnTru;
         private System.Windows.Forms.Button btnNhan;
         private System.Windows.Forms.Button btnChia;
-        private System.Windows.Forms.TextBox txtNhapB;
+        private System.Windows.Forms.TextBox txtSo2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtKetQua;
+        private System.Windows.Forms.Button btnXoaLichSu;
+        private System.Windows.Forms.ListBox lstLichSu;
+        private System.Windows.Forms.Label lblKetQua;
     }
 }
 

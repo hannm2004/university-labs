@@ -32,16 +32,16 @@ namespace Lab02_02
             this.lblGender = new System.Windows.Forms.Label();
             this.lblFullName = new System.Windows.Forms.Label();
             this.lblStudentID = new System.Windows.Forms.Label();
+            this.lblTotalMale = new System.Windows.Forms.Label();
+            this.lblTotalFemale = new System.Windows.Forms.Label();
+            this.txtTotalMale = new System.Windows.Forms.TextBox();
+            this.txtTotalFemale = new System.Windows.Forms.TextBox();
             this.dgvStudent = new System.Windows.Forms.DataGridView();
             this.colStudentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colGender = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colAverageScore = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFaculty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblTotalMale = new System.Windows.Forms.Label();
-            this.txtTotalMale = new System.Windows.Forms.TextBox();
-            this.txtTotalFemale = new System.Windows.Forms.TextBox();
-            this.lblTotalFemale = new System.Windows.Forms.Label();
             this.grpInformation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudent)).BeginInit();
             this.SuspendLayout();
@@ -53,7 +53,7 @@ namespace Lab02_02
             this.lblTitle.ForeColor = System.Drawing.Color.Blue;
             this.lblTitle.Location = new System.Drawing.Point(220, 20);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(434, 31);
+            this.lblTitle.Size = new System.Drawing.Size(367, 31);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Quản Lý Thông Tin Sinh Viên";
             // 
@@ -111,6 +111,7 @@ namespace Lab02_02
             this.cmbFaculty.Name = "cmbFaculty";
             this.cmbFaculty.Size = new System.Drawing.Size(160, 21);
             this.cmbFaculty.TabIndex = 10;
+//            this.cmbFaculty.SelectedIndexChanged += new System.EventHandler(this.cmbFaculty_SelectedIndexChanged);
             // 
             // txtAverageScore
             // 
@@ -152,7 +153,7 @@ namespace Lab02_02
             // 
             this.txtStudentID.Location = new System.Drawing.Point(100, 27);
             this.txtStudentID.Name = "txtStudentID";
-            this.txtStudentID.Size = new System.Drawing.Size(100, 20);
+            this.txtStudentID.Size = new System.Drawing.Size(160, 20);
             this.txtStudentID.TabIndex = 5;
             // 
             // lblFaculty
@@ -200,6 +201,38 @@ namespace Lab02_02
             this.lblStudentID.TabIndex = 0;
             this.lblStudentID.Text = "Mã Sinh Viên";
             // 
+            // lblTotalMale
+            // 
+            this.lblTotalMale.AutoSize = true;
+            this.lblTotalMale.Location = new System.Drawing.Point(452, 365);
+            this.lblTotalMale.Name = "lblTotalMale";
+            this.lblTotalMale.Size = new System.Drawing.Size(74, 13);
+            this.lblTotalMale.TabIndex = 3;
+            this.lblTotalMale.Text = "Tổng SV Nam";
+            // 
+            // lblTotalFemale
+            // 
+            this.lblTotalFemale.AutoSize = true;
+            this.lblTotalFemale.Location = new System.Drawing.Point(644, 365);
+            this.lblTotalFemale.Name = "lblTotalFemale";
+            this.lblTotalFemale.Size = new System.Drawing.Size(21, 13);
+            this.lblTotalFemale.TabIndex = 5;
+            this.lblTotalFemale.Text = "Nữ";
+            // 
+            // txtTotalMale
+            // 
+            this.txtTotalMale.Location = new System.Drawing.Point(532, 365);
+            this.txtTotalMale.Name = "txtTotalMale";
+            this.txtTotalMale.Size = new System.Drawing.Size(85, 20);
+            this.txtTotalMale.TabIndex = 7;
+            // 
+            // txtTotalFemale
+            // 
+            this.txtTotalFemale.Location = new System.Drawing.Point(671, 365);
+            this.txtTotalFemale.Name = "txtTotalFemale";
+            this.txtTotalFemale.Size = new System.Drawing.Size(85, 20);
+            this.txtTotalFemale.TabIndex = 8;
+            // 
             // dgvStudent
             // 
             this.dgvStudent.AllowUserToAddRows = false;
@@ -216,7 +249,7 @@ namespace Lab02_02
             this.dgvStudent.Name = "dgvStudent";
             this.dgvStudent.ReadOnly = true;
             this.dgvStudent.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvStudent.Size = new System.Drawing.Size(550, 272);
+            this.dgvStudent.Size = new System.Drawing.Size(446, 272);
             this.dgvStudent.TabIndex = 2;
             this.dgvStudent.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStudent_CellClick);
             // 
@@ -225,7 +258,6 @@ namespace Lab02_02
             this.colStudentID.HeaderText = "MSSV";
             this.colStudentID.Name = "colStudentID";
             this.colStudentID.ReadOnly = true;
-            this.colStudentID.Width = 80;
             // 
             // colFullName
             // 
@@ -239,64 +271,29 @@ namespace Lab02_02
             this.colGender.HeaderText = "Giới Tính";
             this.colGender.Name = "colGender";
             this.colGender.ReadOnly = true;
-            this.colGender.Width = 70;
+            this.colGender.Width = 50;
             // 
             // colAverageScore
             // 
             this.colAverageScore.HeaderText = "ĐTB";
             this.colAverageScore.Name = "colAverageScore";
             this.colAverageScore.ReadOnly = true;
-            this.colAverageScore.Width = 70;
+            this.colAverageScore.Width = 50;
             // 
             // colFaculty
             // 
             this.colFaculty.HeaderText = "Khoa";
             this.colFaculty.Name = "colFaculty";
             this.colFaculty.ReadOnly = true;
-            this.colFaculty.Width = 120;
-            // 
-            // lblTotalMale
-            // 
-            this.lblTotalMale.AutoSize = true;
-            this.lblTotalMale.Location = new System.Drawing.Point(580, 365);
-            this.lblTotalMale.Name = "lblTotalMale";
-            this.lblTotalMale.Size = new System.Drawing.Size(73, 13);
-            this.lblTotalMale.TabIndex = 3;
-            this.lblTotalMale.Text = "Tổng SV Nam";
-            // 
-            // txtTotalMale
-            // 
-            this.txtTotalMale.Location = new System.Drawing.Point(660, 362);
-            this.txtTotalMale.Name = "txtTotalMale";
-            this.txtTotalMale.ReadOnly = true;
-            this.txtTotalMale.Size = new System.Drawing.Size(50, 20);
-            this.txtTotalMale.TabIndex = 4;
-            // 
-            // txtTotalFemale
-            // 
-            this.txtTotalFemale.Location = new System.Drawing.Point(810, 362);
-            this.txtTotalFemale.Name = "txtTotalFemale";
-            this.txtTotalFemale.ReadOnly = true;
-            this.txtTotalFemale.Size = new System.Drawing.Size(50, 20);
-            this.txtTotalFemale.TabIndex = 6;
-            // 
-            // lblTotalFemale
-            // 
-            this.lblTotalFemale.AutoSize = true;
-            this.lblTotalFemale.Location = new System.Drawing.Point(760, 365);
-            this.lblTotalFemale.Name = "lblTotalFemale";
-            this.lblTotalFemale.Size = new System.Drawing.Size(21, 13);
-            this.lblTotalFemale.TabIndex = 5;
-            this.lblTotalFemale.Text = "Nữ";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(884, 411);
+            this.ClientSize = new System.Drawing.Size(791, 411);
             this.Controls.Add(this.txtTotalFemale);
-            this.Controls.Add(this.lblTotalFemale);
             this.Controls.Add(this.txtTotalMale);
+            this.Controls.Add(this.lblTotalFemale);
             this.Controls.Add(this.lblTotalMale);
             this.Controls.Add(this.dgvStudent);
             this.Controls.Add(this.grpInformation);
@@ -329,15 +326,15 @@ namespace Lab02_02
         private System.Windows.Forms.Label lblGender;
         private System.Windows.Forms.Label lblFullName;
         private System.Windows.Forms.Label lblStudentID;
+        private System.Windows.Forms.Label lblTotalMale;
+        private System.Windows.Forms.Label lblTotalFemale;
+        private System.Windows.Forms.TextBox txtTotalMale;
+        private System.Windows.Forms.TextBox txtTotalFemale;
         private System.Windows.Forms.DataGridView dgvStudent;
         private System.Windows.Forms.DataGridViewTextBoxColumn colStudentID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFullName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colGender;
         private System.Windows.Forms.DataGridViewTextBoxColumn colAverageScore;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFaculty;
-        private System.Windows.Forms.Label lblTotalMale;
-        private System.Windows.Forms.TextBox txtTotalMale;
-        private System.Windows.Forms.TextBox txtTotalFemale;
-        private System.Windows.Forms.Label lblTotalFemale;
     }
 }
