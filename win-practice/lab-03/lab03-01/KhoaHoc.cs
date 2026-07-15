@@ -9,12 +9,14 @@ namespace lab03_01
     public class KhoaHoc
     {
         public string MaKhoaHoc { get; set; }
+
         public string TenKhoaHoc { get; set; }
+
         public int SoTinChi { get; set; }
 
         public override string ToString()
         {
-            return $"{MaKhoaHoc} - {TenKhoaHoc} ({SoTinChi} tín chỉ)";
+            return $"{MaKhoaHoc} - {TenKhoaHoc} - {SoTinChi} tín chỉ";
         }
     }
 }

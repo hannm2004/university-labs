@@ -82,6 +82,7 @@ namespace lab03_01
             this.LayoutMdi(MdiLayout.TileVertical);
         }
 
+
         private void mnuDongTatCa_Click(object sender, EventArgs e)
         {
             if (this.MdiChildren.Length == 0)
