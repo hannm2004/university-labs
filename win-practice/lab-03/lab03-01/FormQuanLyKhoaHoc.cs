@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace lab03_01
 {
     public partial class FormQuanLyKhoaHoc : Form
     {
+        // Danh sách khóa học
         private List<KhoaHoc> dsKhoaHoc = new List<KhoaHoc>();
 
         public FormQuanLyKhoaHoc()
@@ -19,91 +15,54 @@ namespace lab03_01
             InitializeComponent();
         }
 
-        private void BtnThem_Click(object sender, EventArgs e)
-        {
-            string ma = txtMaKhoaHoc.Text.Trim();
-            string ten = txtTenKhoaHoc.Text.Trim();
-            int soTinChi = (int)nudSoTinChi.Value;
-
-            // Kiểm tra rỗng
-            if (string.IsNullOrEmpty(ma))
-            {
-                MessageBox.Show("Vui lòng nhập mã khóa học!");
-                txtMaKhoaHoc.Focus();
-                return;
-            }
-
-            if (string.IsNullOrEmpty(ten))
-            {
-                MessageBox.Show("Vui lòng nhập tên khóa học!");
-                txtTenKhoaHoc.Focus();
-                return;
-            }
-
-            // Kiểm tra trùng mã
-            if (dsKhoaHoc.Any(x => x.MaKhoaHoc == ma))
-            {
-                MessageBox.Show("Mã khóa học đã tồn tại!");
-                txtMaKhoaHoc.Focus();
-                return;
-            }
-
-            // Tạo khóa học
-            KhoaHoc kh = new KhoaHoc()
-            {
-                MaKhoaHoc = ma,
-                TenKhoaHoc = ten,
-                SoTinChi = soTinChi
-            };
-
-            dsKhoaHoc.Add(kh);
-
-            // Hiển thị ListBox
-            lstKhoaHoc.Items.Add(kh);
-
-            MessageBox.Show("Thêm khóa học thành công!");
-
-            // Xóa dữ liệu
-            txtMaKhoaHoc.Clear();
-            txtTenKhoaHoc.Clear();
-            nudSoTinChi.Value = 1;
-
-            txtMaKhoaHoc.Focus();
-        }
-
+        // Nút Thêm
         private void btnThem_Click(object sender, EventArgs e)
         {
             string ma = txtMaKhoaHoc.Text.Trim();
             string ten = txtTenKhoaHoc.Text.Trim();
             int soTinChi = (int)nudSoTinChi.Value;
 
-            // Kiểm tra dữ liệu
+            // Kiểm tra mã
             if (string.IsNullOrWhiteSpace(ma))
             {
-                MessageBox.Show("Vui lòng nhập mã khóa học!");
+                MessageBox.Show(
+                    "Vui lòng nhập mã khóa học!",
+                    "Thông báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
                 txtMaKhoaHoc.Focus();
                 return;
             }
 
+            // Kiểm tra tên
             if (string.IsNullOrWhiteSpace(ten))
             {
-                MessageBox.Show("Vui lòng nhập tên khóa học!");
+                MessageBox.Show(
+                    "Vui lòng nhập tên khóa học!",
+                    "Thông báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
                 txtTenKhoaHoc.Focus();
                 return;
             }
 
             // Kiểm tra trùng mã
-            foreach (KhoaHoc kh in dsKhoaHoc)
+            if (dsKhoaHoc.Any(x => x.MaKhoaHoc.Equals(ma, StringComparison.OrdinalIgnoreCase)))
             {
-                if (kh.MaKhoaHoc.Equals(ma, StringComparison.OrdinalIgnoreCase))
-                {
-                    MessageBox.Show("Mã khóa học đã tồn tại!");
-                    txtMaKhoaHoc.Focus();
-                    return;
-                }
+                MessageBox.Show(
+                    "Mã khóa học đã tồn tại!",
+                    "Thông báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                txtMaKhoaHoc.Focus();
+                txtMaKhoaHoc.SelectAll();
+                return;
             }
 
-            // Tạo khóa học mới
+            // Tạo đối tượng
             KhoaHoc khoaHoc = new KhoaHoc
             {
                 MaKhoaHoc = ma,
@@ -111,19 +70,47 @@ namespace lab03_01
                 SoTinChi = soTinChi
             };
 
-            // Thêm vào danh sách
+            // Lưu danh sách
             dsKhoaHoc.Add(khoaHoc);
 
-            // Hiển thị lên ListBox
+            // Hiển thị ListBox
             lstKhoaHoc.Items.Add(khoaHoc);
 
-            MessageBox.Show("Thêm khóa học thành công!");
+            // Thêm tên khoa vào dữ liệu dùng chung
+            if (!DuLieuDungChung.DanhSachKhoa.Contains(ten))
+            {
+                DuLieuDungChung.DanhSachKhoa.Add(ten);
+            }
 
-            // Xóa dữ liệu nhập
+            MessageBox.Show(
+                "Thêm khóa học thành công!",
+                "Thông báo",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+
+            LamMoi();
+        }
+
+        // Làm mới dữ liệu nhập
+        private void LamMoi()
+        {
             txtMaKhoaHoc.Clear();
             txtTenKhoaHoc.Clear();
+
             nudSoTinChi.Value = 1;
+
             txtMaKhoaHoc.Focus();
+        }
+
+        // Nếu cần tải lại ListBox
+        private void HienThiDanhSach()
+        {
+            lstKhoaHoc.Items.Clear();
+
+            foreach (KhoaHoc kh in dsKhoaHoc)
+            {
+                lstKhoaHoc.Items.Add(kh);
+            }
         }
     }
 }

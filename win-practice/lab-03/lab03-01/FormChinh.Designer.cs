@@ -30,7 +30,7 @@
         {
             menuStripChinh = new MenuStrip();
             mnuHeThong = new ToolStripMenuItem();
-            quảnLýKhóaHọcToolStripMenuItem = new ToolStripMenuItem();
+            mnuQuanLyKhoaHoc = new ToolStripMenuItem();
             mnuQuanLySinhVien = new ToolStripMenuItem();
             mnuThoat = new ToolStripMenuItem();
             mnuCuaSo = new ToolStripMenuItem();
@@ -53,29 +53,31 @@
             // 
             // mnuHeThong
             // 
-            mnuHeThong.DropDownItems.AddRange(new ToolStripItem[] { quảnLýKhóaHọcToolStripMenuItem, mnuQuanLySinhVien, mnuThoat });
+            mnuHeThong.DropDownItems.AddRange(new ToolStripItem[] { mnuQuanLyKhoaHoc, mnuQuanLySinhVien, mnuThoat });
             mnuHeThong.Name = "mnuHeThong";
             mnuHeThong.Size = new Size(69, 20);
             mnuHeThong.Text = "Hệ thống";
             // 
-            // quảnLýKhóaHọcToolStripMenuItem
+            // mnuQuanLyKhoaHoc
             // 
-            quảnLýKhóaHọcToolStripMenuItem.Name = "quảnLýKhóaHọcToolStripMenuItem";
-            quảnLýKhóaHọcToolStripMenuItem.Size = new Size(180, 22);
-            quảnLýKhóaHọcToolStripMenuItem.Text = "Quản lý khóa học";
-//            quảnLýKhóaHọcToolStripMenuItem.Click += this.quảnLýKhóaHọcToolStripMenuItem_Click;
+            mnuQuanLyKhoaHoc.Name = "mnuQuanLyKhoaHoc";
+            mnuQuanLyKhoaHoc.Size = new Size(180, 22);
+            mnuQuanLyKhoaHoc.Text = "Quản lý khóa học";
+            mnuQuanLyKhoaHoc.Click += mnuQuanLyKhoaHoc_Click;
             // 
             // mnuQuanLySinhVien
             // 
             mnuQuanLySinhVien.Name = "mnuQuanLySinhVien";
             mnuQuanLySinhVien.Size = new Size(180, 22);
             mnuQuanLySinhVien.Text = "Quản lý sinh viên";
+            mnuQuanLySinhVien.Click += mnuQuanLySinhVien_Click;
             // 
             // mnuThoat
             // 
             mnuThoat.Name = "mnuThoat";
             mnuThoat.Size = new Size(180, 22);
             mnuThoat.Text = "Thoát";
+            mnuThoat.Click += mnuThoat_Click;
             // 
             // mnuCuaSo
             // 
@@ -87,26 +89,30 @@
             // mnuSapXepTang
             // 
             mnuSapXepTang.Name = "mnuSapXepTang";
-            mnuSapXepTang.Size = new Size(152, 22);
+            mnuSapXepTang.Size = new Size(180, 22);
             mnuSapXepTang.Text = "Sắp xếp tầng";
+            mnuSapXepTang.Click += mnuSapXepTang_Click;
             // 
             // mnuSapXepNgang
             // 
             mnuSapXepNgang.Name = "mnuSapXepNgang";
-            mnuSapXepNgang.Size = new Size(152, 22);
+            mnuSapXepNgang.Size = new Size(180, 22);
             mnuSapXepNgang.Text = "Sắp xếp ngang";
+            mnuSapXepNgang.Click += mnuSapXepNgang_Click;
             // 
             // mnuSapXepDoc
             // 
             mnuSapXepDoc.Name = "mnuSapXepDoc";
-            mnuSapXepDoc.Size = new Size(152, 22);
+            mnuSapXepDoc.Size = new Size(180, 22);
             mnuSapXepDoc.Text = "Sắp xếp dọc";
+            mnuSapXepDoc.Click += mnuSapXepDoc_Click;
             // 
             // mnuDongTatCa
             // 
             mnuDongTatCa.Name = "mnuDongTatCa";
-            mnuDongTatCa.Size = new Size(152, 22);
+            mnuDongTatCa.Size = new Size(180, 22);
             mnuDongTatCa.Text = "Đóng tất cả";
+            mnuDongTatCa.Click += mnuDongTatCa_Click;
             // 
             // FormChinh
             // 
@@ -126,11 +132,13 @@
             PerformLayout();
         }
 
+
+
         #endregion
 
         private MenuStrip menuStripChinh;
         private ToolStripMenuItem mnuHeThong;
-        private ToolStripMenuItem quảnLýKhóaHọcToolStripMenuItem;
+        private ToolStripMenuItem mnuQuanLyKhoaHoc;
         private ToolStripMenuItem mnuQuanLySinhVien;
         private ToolStripMenuItem mnuThoat;
         private ToolStripMenuItem mnuCuaSo;
