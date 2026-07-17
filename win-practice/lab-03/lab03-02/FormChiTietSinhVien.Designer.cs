@@ -168,7 +168,7 @@
             btnLuu.Name = "btnLuu";
             btnLuu.Size = new Size(120, 44);
             btnLuu.TabIndex = 13;
-            btnLuu.Text = "Lưu";
+            btnLuu.Text = "💾 Lưu";
             btnLuu.UseVisualStyleBackColor = false;
             btnLuu.Click += btnLuu_Click;
             // 
@@ -181,7 +181,7 @@
             btnHuy.Name = "btnHuy";
             btnHuy.Size = new Size(120, 44);
             btnHuy.TabIndex = 14;
-            btnHuy.Text = "Hủy";
+            btnHuy.Text = "❌ Hủy";
             btnHuy.UseVisualStyleBackColor = false;
             btnHuy.Click += btnHuy_Click;
             // 

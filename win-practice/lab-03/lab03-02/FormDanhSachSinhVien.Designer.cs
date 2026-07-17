@@ -52,7 +52,7 @@
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(120, 30);
             btnThem.TabIndex = 0;
-            btnThem.Text = "Thêm";
+            btnThem.Text = "➕ Thêm";
             btnThem.UseVisualStyleBackColor = false;
             btnThem.Click += btnThem_Click;
             // 
@@ -66,7 +66,7 @@
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(120, 30);
             btnXoa.TabIndex = 2;
-            btnXoa.Text = "Xóa";
+            btnXoa.Text = "🗑️ Xóa";
             btnXoa.UseVisualStyleBackColor = false;
             btnXoa.Click += btnXoa_Click;
             // 
@@ -80,7 +80,7 @@
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(120, 30);
             btnSua.TabIndex = 1;
-            btnSua.Text = "Sửa";
+            btnSua.Text = "✏️ Sửa";
             btnSua.UseVisualStyleBackColor = false;
             btnSua.Click += btnSua_Click;
             // 

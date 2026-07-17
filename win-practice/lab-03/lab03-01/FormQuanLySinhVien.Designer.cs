@@ -193,52 +193,56 @@
             // btnThem
             // 
             btnThem.BackColor = Color.Green;
+            btnThem.FlatStyle = FlatStyle.Flat;
             btnThem.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnThem.ForeColor = Color.White;
             btnThem.Location = new Point(35, 196);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(120, 50);
             btnThem.TabIndex = 2;
-            btnThem.Text = "+ Thêm";
+            btnThem.Text = "➕ Thêm";
             btnThem.UseVisualStyleBackColor = false;
             btnThem.Click += btnThem_Click;
             // 
             // btnCapNhat
             // 
             btnCapNhat.BackColor = Color.DodgerBlue;
+            btnCapNhat.FlatStyle = FlatStyle.Flat;
             btnCapNhat.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCapNhat.ForeColor = Color.White;
             btnCapNhat.Location = new Point(177, 196);
             btnCapNhat.Name = "btnCapNhat";
             btnCapNhat.Size = new Size(120, 50);
             btnCapNhat.TabIndex = 3;
-            btnCapNhat.Text = "Cập nhật";
+            btnCapNhat.Text = "✏️ Cập nhật";
             btnCapNhat.UseVisualStyleBackColor = false;
             btnCapNhat.Click += btnCapNhat_Click;
             // 
             // btnXoa
             // 
             btnXoa.BackColor = Color.Red;
+            btnXoa.FlatStyle = FlatStyle.Flat;
             btnXoa.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnXoa.ForeColor = Color.White;
             btnXoa.Location = new Point(317, 196);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(120, 50);
             btnXoa.TabIndex = 4;
-            btnXoa.Text = "Xóa";
+            btnXoa.Text = "🗑️ Xóa";
             btnXoa.UseVisualStyleBackColor = false;
             btnXoa.Click += btnXoa_Click;
             // 
             // button4
             // 
             button4.BackColor = SystemColors.ControlDark;
+            button4.FlatStyle = FlatStyle.Flat;
             button4.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button4.ForeColor = Color.White;
             button4.Location = new Point(458, 196);
             button4.Name = "button4";
             button4.Size = new Size(120, 50);
             button4.TabIndex = 5;
-            button4.Text = "Làm mới";
+            button4.Text = "🔄 Làm mới";
             button4.UseVisualStyleBackColor = false;
             button4.Click += btnLamMoi_Click;
             // 
