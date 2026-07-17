@@ -18,10 +18,7 @@ namespace lab03_01
         public FormQuanLySinhVien()
         {
             InitializeComponent();
-        }
 
-        private void FormQuanLySinhVien_Load(object sender, EventArgs e)
-        {
             dgvSinhVien.Columns.Clear();
 
             dgvSinhVien.Columns.Add("MaSV", "Mã SV");
@@ -35,6 +32,8 @@ namespace lab03_01
 
             lblTongSV.Text = "Tổng số sinh viên: 0";
         }
+
+        
 
         private void HienThiDanhSach(List<SinhVien> ds = null)
         {

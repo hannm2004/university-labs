@@ -7,7 +7,7 @@ namespace lab03_01
 {
     public partial class FormQuanLyKhoaHoc : Form
     {
-        // Danh sách khóa học
+
         private List<KhoaHoc> dsKhoaHoc = new List<KhoaHoc>();
 
         public FormQuanLyKhoaHoc()
@@ -15,14 +15,14 @@ namespace lab03_01
             InitializeComponent();
         }
 
-        // Nút Thêm
+
         private void btnThem_Click(object sender, EventArgs e)
         {
             string ma = txtMaKhoaHoc.Text.Trim();
             string ten = txtTenKhoaHoc.Text.Trim();
             int soTinChi = (int)nudSoTinChi.Value;
 
-            // Kiểm tra mã
+
             if (string.IsNullOrWhiteSpace(ma))
             {
                 MessageBox.Show(
@@ -35,7 +35,7 @@ namespace lab03_01
                 return;
             }
 
-            // Kiểm tra tên
+
             if (string.IsNullOrWhiteSpace(ten))
             {
                 MessageBox.Show(
@@ -48,7 +48,7 @@ namespace lab03_01
                 return;
             }
 
-            // Kiểm tra trùng mã
+
             if (dsKhoaHoc.Any(x => x.MaKhoaHoc.Equals(ma, StringComparison.OrdinalIgnoreCase)))
             {
                 MessageBox.Show(
@@ -62,7 +62,7 @@ namespace lab03_01
                 return;
             }
 
-            // Tạo đối tượng
+
             KhoaHoc khoaHoc = new KhoaHoc
             {
                 MaKhoaHoc = ma,
@@ -70,13 +70,12 @@ namespace lab03_01
                 SoTinChi = soTinChi
             };
 
-            // Lưu danh sách
+
             dsKhoaHoc.Add(khoaHoc);
 
-            // Hiển thị ListBox
             lstKhoaHoc.Items.Add(khoaHoc);
 
-            // Thêm tên khoa vào dữ liệu dùng chung
+
             if (!DuLieuDungChung.DanhSachKhoa.Contains(ten))
             {
                 DuLieuDungChung.DanhSachKhoa.Add(ten);
@@ -91,7 +90,6 @@ namespace lab03_01
             LamMoi();
         }
 
-        // Làm mới dữ liệu nhập
         private void LamMoi()
         {
             txtMaKhoaHoc.Clear();
@@ -102,7 +100,7 @@ namespace lab03_01
             txtMaKhoaHoc.Focus();
         }
 
-        // Nếu cần tải lại ListBox
+
         private void HienThiDanhSach()
         {
             lstKhoaHoc.Items.Clear();
