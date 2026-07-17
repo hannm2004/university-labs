@@ -79,8 +79,9 @@
             btnLuu.Name = "btnLuu";
             btnLuu.Size = new Size(120, 40);
             btnLuu.TabIndex = 14;
-            btnLuu.Text = "Lưu ảnh";
+            btnLuu.Text = "💾 Lưu ảnh";
             btnLuu.UseVisualStyleBackColor = false;
+            btnLuu.Click += btnLuu_Click;
             // 
             // btnXoaTatCa
             // 
@@ -91,8 +92,9 @@
             btnXoaTatCa.Name = "btnXoaTatCa";
             btnXoaTatCa.Size = new Size(120, 40);
             btnXoaTatCa.TabIndex = 13;
-            btnXoaTatCa.Text = "Xóa tất cả";
+            btnXoaTatCa.Text = "🗑 Xóa tất cả";
             btnXoaTatCa.UseVisualStyleBackColor = false;
+            btnXoaTatCa.Click += btnXoa_Click;
             // 
             // lblDoDay
             // 
@@ -114,6 +116,7 @@
             trkDoDay.Size = new Size(120, 45);
             trkDoDay.TabIndex = 10;
             trkDoDay.Value = 3;
+            trkDoDay.Scroll += trkDoDay_Scroll;
             // 
             // label3
             // 
@@ -134,6 +137,7 @@
             btnChonMau.TabIndex = 0;
             btnChonMau.Text = "Chọn...";
             btnChonMau.UseVisualStyleBackColor = true;
+            btnChonMau.Click += btnChonMau_Click;
             // 
             // pnlMauDangChon
             // 
@@ -164,6 +168,7 @@
             btnCucTay.TabIndex = 5;
             btnCucTay.Text = "\U0001f9fd Cục tẩy";
             btnCucTay.UseVisualStyleBackColor = true;
+            btnCucTay.Click += btnCucTay_Click;
             // 
             // btnHinhTron
             // 
@@ -174,6 +179,7 @@
             btnHinhTron.TabIndex = 4;
             btnHinhTron.Text = "○ Hình tròn";
             btnHinhTron.UseVisualStyleBackColor = true;
+            btnHinhTron.Click += btnHinhTron_Click;
             // 
             // btnChuNhat
             // 
@@ -184,6 +190,7 @@
             btnChuNhat.TabIndex = 3;
             btnChuNhat.Text = "▭ Chữ nhật";
             btnChuNhat.UseVisualStyleBackColor = true;
+            btnChuNhat.Click += btnChuNhat_Click;
             // 
             // btnDuongThang
             // 
@@ -194,6 +201,7 @@
             btnDuongThang.TabIndex = 2;
             btnDuongThang.Text = "╱ Đường thẳng";
             btnDuongThang.UseVisualStyleBackColor = true;
+            btnDuongThang.Click += btnDuongThang_Click;
             // 
             // btnButVe
             // 
@@ -204,6 +212,7 @@
             btnButVe.TabIndex = 1;
             btnButVe.Text = "✏ Bút vẽ";
             btnButVe.UseVisualStyleBackColor = true;
+            btnButVe.Click += btnButVe_Click;
             // 
             // picCanvas
             // 
@@ -215,6 +224,11 @@
             picCanvas.Size = new Size(814, 611);
             picCanvas.TabIndex = 0;
             picCanvas.TabStop = false;
+            picCanvas.Paint += picCanvas_Paint;
+            picCanvas.MouseDown += picCanvas_MouseDown;
+            picCanvas.MouseLeave += picCanvas_MouseLeave;
+            picCanvas.MouseMove += picCanvas_MouseMove;
+            picCanvas.MouseUp += picCanvas_MouseUp;
             // 
             // Form1
             // 
@@ -228,31 +242,12 @@
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Ứng dụng vẽ tranh mini";
+            Load += Form1_Load;
             panelTool.ResumeLayout(false);
             panelTool.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)trkDoDay).EndInit();
             ((System.ComponentModel.ISupportInitialize)picCanvas).EndInit();
             ResumeLayout(false);
-
-            Load += Form1_Load;
-
-            btnButVe.Click += btnButVe_Click;
-            btnDuongThang.Click += btnDuongThang_Click;
-            btnChuNhat.Click += btnChuNhat_Click;
-            btnHinhTron.Click += btnHinhTron_Click;
-            btnCucTay.Click += btnCucTay_Click;
-
-            btnChonMau.Click += btnChonMau_Click;
-            btnXoaTatCa.Click += btnXoa_Click;
-            btnLuu.Click += btnLuu_Click;
-
-            trkDoDay.Scroll += trkDoDay_Scroll;
-
-            picCanvas.MouseDown += picCanvas_MouseDown;
-            picCanvas.MouseMove += picCanvas_MouseMove;
-            picCanvas.MouseUp += picCanvas_MouseUp;
-            picCanvas.Paint += picCanvas_Paint;
-            picCanvas.MouseLeave += picCanvas_MouseLeave;
         }
 
 
