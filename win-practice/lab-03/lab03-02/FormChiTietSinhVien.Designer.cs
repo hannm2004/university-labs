@@ -153,6 +153,7 @@
             // 
             // dtNgaySinh
             // 
+            dtNgaySinh.Format = DateTimePickerFormat.Short;
             dtNgaySinh.Location = new Point(268, 151);
             dtNgaySinh.Name = "dtNgaySinh";
             dtNgaySinh.Size = new Size(312, 23);
@@ -209,7 +210,7 @@
             MinimizeBox = false;
             Name = "FormChiTietSinhVien";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "Thêm sinh viên mới";
+            Text = "Thông Tin Sinh Viên";
             ResumeLayout(false);
             PerformLayout();
         }

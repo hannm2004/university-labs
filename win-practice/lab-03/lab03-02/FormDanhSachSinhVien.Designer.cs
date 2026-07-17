@@ -31,9 +31,6 @@
             btnThem = new Button();
             btnXoa = new Button();
             btnSua = new Button();
-            btnThem.Click += btnThem_Click;
-            btnSua.Click += btnSua_Click;
-            btnXoa.Click += btnXoa_Click;
             dgvSinhVien = new DataGridView();
             MaSV = new DataGridViewTextBoxColumn();
             HoTen = new DataGridViewTextBoxColumn();
@@ -48,6 +45,7 @@
             // btnThem
             // 
             btnThem.BackColor = Color.Green;
+            btnThem.FlatStyle = FlatStyle.Flat;
             btnThem.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnThem.ForeColor = Color.White;
             btnThem.Location = new Point(39, 27);
@@ -56,10 +54,12 @@
             btnThem.TabIndex = 0;
             btnThem.Text = "Thêm";
             btnThem.UseVisualStyleBackColor = false;
+            btnThem.Click += btnThem_Click;
             // 
             // btnXoa
             // 
             btnXoa.BackColor = Color.Red;
+            btnXoa.FlatStyle = FlatStyle.Flat;
             btnXoa.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnXoa.ForeColor = Color.White;
             btnXoa.Location = new Point(291, 27);
@@ -68,10 +68,12 @@
             btnXoa.TabIndex = 2;
             btnXoa.Text = "Xóa";
             btnXoa.UseVisualStyleBackColor = false;
+            btnXoa.Click += btnXoa_Click;
             // 
             // btnSua
             // 
             btnSua.BackColor = Color.Blue;
+            btnSua.FlatStyle = FlatStyle.Flat;
             btnSua.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSua.ForeColor = Color.White;
             btnSua.Location = new Point(165, 27);
@@ -80,20 +82,24 @@
             btnSua.TabIndex = 1;
             btnSua.Text = "Sửa";
             btnSua.UseVisualStyleBackColor = false;
+            btnSua.Click += btnSua_Click;
             // 
             // dgvSinhVien
             // 
             dgvSinhVien.AllowUserToAddRows = false;
             dgvSinhVien.AllowUserToDeleteRows = false;
+            dgvSinhVien.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvSinhVien.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSinhVien.Columns.AddRange(new DataGridViewColumn[] { MaSV, HoTen, NgaySinh, GioiTinh, Khoa, DiemTB });
             dgvSinhVien.Location = new Point(39, 78);
             dgvSinhVien.MultiSelect = false;
             dgvSinhVien.Name = "dgvSinhVien";
             dgvSinhVien.ReadOnly = true;
+            dgvSinhVien.RowHeadersVisible = false;
             dgvSinhVien.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvSinhVien.Size = new Size(704, 289);
             dgvSinhVien.TabIndex = 3;
+            dgvSinhVien.CellFormatting += dgvSinhVien_CellFormatting;
             // 
             // MaSV
             // 
@@ -146,13 +152,16 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 427);
+            ClientSize = new Size(784, 411);
             Controls.Add(lblTong);
             Controls.Add(dgvSinhVien);
             Controls.Add(btnXoa);
             Controls.Add(btnSua);
             Controls.Add(btnThem);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "FormDanhSachSinhVien";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Danh Sách Sinh Viên";
             ((System.ComponentModel.ISupportInitialize)dgvSinhVien).EndInit();
             ResumeLayout(false);

@@ -102,6 +102,7 @@
             btnThem.TabIndex = 6;
             btnThem.Text = "➕ Thêm";
             btnThem.UseVisualStyleBackColor = false;
+            btnThem.Click += btnThem_Click;
             // 
             // label4
             // 
@@ -136,6 +137,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "FormQuanLyKhoaHoc";
+            StartPosition = FormStartPosition.Manual;
             Text = "Quản lý Khóa học";
             ((System.ComponentModel.ISupportInitialize)nudSoTinChi).EndInit();
             ResumeLayout(false);

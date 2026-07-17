@@ -30,18 +30,18 @@
         {
             label1 = new Label();
             grpThongTin = new GroupBox();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            label5 = new Label();
-            label6 = new Label();
-            txtMaSV = new TextBox();
-            txtHoTen = new TextBox();
-            dtpNgaySinh = new DateTimePicker();
-            radNam = new RadioButton();
-            radNu = new RadioButton();
-            txtDiemTB = new TextBox();
             cboKhoa = new ComboBox();
+            txtDiemTB = new TextBox();
+            radNu = new RadioButton();
+            radNam = new RadioButton();
+            dtpNgaySinh = new DateTimePicker();
+            txtHoTen = new TextBox();
+            txtMaSV = new TextBox();
+            label6 = new Label();
+            label5 = new Label();
+            label4 = new Label();
+            label3 = new Label();
+            label2 = new Label();
             btnThem = new Button();
             btnCapNhat = new Button();
             btnXoa = new Button();
@@ -85,84 +85,21 @@
             grpThongTin.TabStop = false;
             grpThongTin.Text = "Thông tin sinh viên";
             // 
-            // label2
+            // cboKhoa
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(402, 28);
-            label2.Name = "label2";
-            label2.Size = new Size(61, 15);
-            label2.TabIndex = 1;
-            label2.Text = "Họ và tên:";
+            cboKhoa.FormattingEnabled = true;
+            cboKhoa.Items.AddRange(new object[] { "Công nghệ thông tin", "Quản trị kinh doanh", "Marketing", "Ngôn ngữ Anh", "Kế toán" });
+            cboKhoa.Location = new Point(87, 114);
+            cboKhoa.Name = "cboKhoa";
+            cboKhoa.Size = new Size(405, 23);
+            cboKhoa.TabIndex = 12;
             // 
-            // label3
+            // txtDiemTB
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(21, 117);
-            label3.Name = "label3";
-            label3.Size = new Size(37, 15);
-            label3.TabIndex = 2;
-            label3.Text = "Khoa:";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(21, 73);
-            label4.Name = "label4";
-            label4.Size = new Size(63, 15);
-            label4.TabIndex = 3;
-            label4.Text = "Ngày sinh:";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(402, 73);
-            label5.Name = "label5";
-            label5.Size = new Size(55, 15);
-            label5.TabIndex = 4;
-            label5.Text = "Giới tính:";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(606, 69);
-            label6.Name = "label6";
-            label6.Size = new Size(54, 15);
-            label6.TabIndex = 5;
-            label6.Text = "Điểm TB:";
-            // 
-            // txtMaSV
-            // 
-            txtMaSV.Location = new Point(88, 25);
-            txtMaSV.Name = "txtMaSV";
-            txtMaSV.Size = new Size(174, 23);
-            txtMaSV.TabIndex = 6;
-            // 
-            // txtHoTen
-            // 
-            txtHoTen.Location = new Point(470, 25);
-            txtHoTen.Name = "txtHoTen";
-            txtHoTen.Size = new Size(174, 23);
-            txtHoTen.TabIndex = 7;
-            // 
-            // dtpNgaySinh
-            // 
-            dtpNgaySinh.Format = DateTimePickerFormat.Short;
-            dtpNgaySinh.Location = new Point(88, 67);
-            dtpNgaySinh.Name = "dtpNgaySinh";
-            dtpNgaySinh.Size = new Size(200, 23);
-            dtpNgaySinh.TabIndex = 8;
-            // 
-            // radNam
-            // 
-            radNam.AutoSize = true;
-            radNam.Location = new Point(463, 69);
-            radNam.Name = "radNam";
-            radNam.Size = new Size(51, 19);
-            radNam.TabIndex = 9;
-            radNam.TabStop = true;
-            radNam.Text = "Nam";
-            radNam.UseVisualStyleBackColor = true;
-//            radNam.CheckedChanged += radioButton1_CheckedChanged;
+            txtDiemTB.Location = new Point(663, 61);
+            txtDiemTB.Name = "txtDiemTB";
+            txtDiemTB.Size = new Size(70, 23);
+            txtDiemTB.TabIndex = 11;
             // 
             // radNu
             // 
@@ -175,21 +112,83 @@
             radNu.Text = "Nữ";
             radNu.UseVisualStyleBackColor = true;
             // 
-            // txtDiemTB
+            // radNam
             // 
-            txtDiemTB.Location = new Point(663, 61);
-            txtDiemTB.Name = "txtDiemTB";
-            txtDiemTB.Size = new Size(70, 23);
-            txtDiemTB.TabIndex = 11;
+            radNam.AutoSize = true;
+            radNam.Location = new Point(463, 69);
+            radNam.Name = "radNam";
+            radNam.Size = new Size(51, 19);
+            radNam.TabIndex = 9;
+            radNam.TabStop = true;
+            radNam.Text = "Nam";
+            radNam.UseVisualStyleBackColor = true;
             // 
-            // cboKhoa
+            // dtpNgaySinh
             // 
-            cboKhoa.FormattingEnabled = true;
-            cboKhoa.Items.AddRange(new object[] { "Công nghệ thông tin", "Quản trị kinh doanh", "Marketing", "Ngôn ngữ Anh", "Kế toán" });
-            cboKhoa.Location = new Point(87, 114);
-            cboKhoa.Name = "cboKhoa";
-            cboKhoa.Size = new Size(405, 23);
-            cboKhoa.TabIndex = 12;
+            dtpNgaySinh.Format = DateTimePickerFormat.Short;
+            dtpNgaySinh.Location = new Point(88, 67);
+            dtpNgaySinh.Name = "dtpNgaySinh";
+            dtpNgaySinh.Size = new Size(200, 23);
+            dtpNgaySinh.TabIndex = 8;
+            // 
+            // txtHoTen
+            // 
+            txtHoTen.Location = new Point(470, 25);
+            txtHoTen.Name = "txtHoTen";
+            txtHoTen.Size = new Size(174, 23);
+            txtHoTen.TabIndex = 7;
+            // 
+            // txtMaSV
+            // 
+            txtMaSV.Location = new Point(88, 25);
+            txtMaSV.Name = "txtMaSV";
+            txtMaSV.Size = new Size(174, 23);
+            txtMaSV.TabIndex = 6;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(606, 69);
+            label6.Name = "label6";
+            label6.Size = new Size(54, 15);
+            label6.TabIndex = 5;
+            label6.Text = "Điểm TB:";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(402, 73);
+            label5.Name = "label5";
+            label5.Size = new Size(55, 15);
+            label5.TabIndex = 4;
+            label5.Text = "Giới tính:";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(21, 73);
+            label4.Name = "label4";
+            label4.Size = new Size(63, 15);
+            label4.TabIndex = 3;
+            label4.Text = "Ngày sinh:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(21, 117);
+            label3.Name = "label3";
+            label3.Size = new Size(37, 15);
+            label3.TabIndex = 2;
+            label3.Text = "Khoa:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(402, 28);
+            label2.Name = "label2";
+            label2.Size = new Size(61, 15);
+            label2.TabIndex = 1;
+            label2.Text = "Họ và tên:";
             // 
             // btnThem
             // 
@@ -202,6 +201,7 @@
             btnThem.TabIndex = 2;
             btnThem.Text = "+ Thêm";
             btnThem.UseVisualStyleBackColor = false;
+            btnThem.Click += btnThem_Click;
             // 
             // btnCapNhat
             // 
@@ -214,6 +214,7 @@
             btnCapNhat.TabIndex = 3;
             btnCapNhat.Text = "Cập nhật";
             btnCapNhat.UseVisualStyleBackColor = false;
+            btnCapNhat.Click += btnCapNhat_Click;
             // 
             // btnXoa
             // 
@@ -226,6 +227,7 @@
             btnXoa.TabIndex = 4;
             btnXoa.Text = "Xóa";
             btnXoa.UseVisualStyleBackColor = false;
+            btnXoa.Click += btnXoa_Click;
             // 
             // button4
             // 
@@ -238,6 +240,7 @@
             button4.TabIndex = 5;
             button4.Text = "Làm mới";
             button4.UseVisualStyleBackColor = false;
+            button4.Click += btnLamMoi_Click;
             // 
             // label8
             // 
@@ -257,9 +260,20 @@
             // 
             // dgvSinhVien
             // 
+            dgvSinhVien.AllowUserToAddRows = false;
+            dgvSinhVien.AllowUserToDeleteRows = false;
+            dgvSinhVien.AllowUserToResizeColumns = false;
+            dgvSinhVien.AllowUserToResizeRows = false;
+            dgvSinhVien.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvSinhVien.BackgroundColor = Color.White;
             dgvSinhVien.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvSinhVien.EditMode = DataGridViewEditMode.EditProgrammatically;
             dgvSinhVien.Location = new Point(36, 300);
+            dgvSinhVien.MultiSelect = false;
             dgvSinhVien.Name = "dgvSinhVien";
+            dgvSinhVien.ReadOnly = true;
+            dgvSinhVien.RowHeadersVisible = false;
+            dgvSinhVien.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvSinhVien.Size = new Size(804, 214);
             dgvSinhVien.TabIndex = 9;
             // 
@@ -322,5 +336,11 @@
         private TextBox txtTimKiem;
         private DataGridView dgvSinhVien;
         private Label lblTongSV;
+        private DataGridViewTextBoxColumn colMaSV;
+        private DataGridViewTextBoxColumn colHoTen;
+        private DataGridViewTextBoxColumn ColNgaySinh;
+        private DataGridViewTextBoxColumn ColGioiTinh;
+        private DataGridViewTextBoxColumn ColKhoa;
+        private DataGridViewTextBoxColumn ColDiemTB;
     }
 }
