@@ -348,5 +348,11 @@ namespace lab04_01
 
             LayDanhSachKhoa();
         }
+
+        private void tìmKiếmToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormTraCuuSinhVien frm = new FormTraCuuSinhVien();
+            frm.ShowDialog();
+        }
     }
 }

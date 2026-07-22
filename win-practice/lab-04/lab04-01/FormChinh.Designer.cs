@@ -32,6 +32,8 @@
             menuStrip1 = new MenuStrip();
             tệpToolStripMenuItem = new ToolStripMenuItem();
             dữLiệuToolStripMenuItem = new ToolStripMenuItem();
+            quanLyKhoaToolStripMenuItem = new ToolStripMenuItem();
+            tìmKiếmToolStripMenuItem = new ToolStripMenuItem();
             grpThongTin = new GroupBox();
             btnLamMoi = new Button();
             btnSua = new Button();
@@ -57,8 +59,6 @@
             statusStripChinh = new StatusStrip();
             lblTrangThai = new ToolStripStatusLabel();
             lblTongSo = new ToolStripStatusLabel();
-            quanLyKhoaToolStripMenuItem = new ToolStripMenuItem();
-            tìmKiếmToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             grpThongTin.SuspendLayout();
             pnlDanhSach.SuspendLayout();
@@ -87,6 +87,24 @@
             dữLiệuToolStripMenuItem.Name = "dữLiệuToolStripMenuItem";
             dữLiệuToolStripMenuItem.Size = new Size(56, 20);
             dữLiệuToolStripMenuItem.Text = "Dữ liệu";
+            // 
+            // quanLyKhoaToolStripMenuItem
+            // 
+            quanLyKhoaToolStripMenuItem.Image = (Image)resources.GetObject("quanLyKhoaToolStripMenuItem.Image");
+            quanLyKhoaToolStripMenuItem.Name = "quanLyKhoaToolStripMenuItem";
+            quanLyKhoaToolStripMenuItem.ShortcutKeys = Keys.F1;
+            quanLyKhoaToolStripMenuItem.Size = new Size(180, 22);
+            quanLyKhoaToolStripMenuItem.Text = "Quản lý khoa";
+            quanLyKhoaToolStripMenuItem.Click += quanLyKhoaToolStripMenuItem_Click;
+            // 
+            // tìmKiếmToolStripMenuItem
+            // 
+            tìmKiếmToolStripMenuItem.Image = (Image)resources.GetObject("tìmKiếmToolStripMenuItem.Image");
+            tìmKiếmToolStripMenuItem.Name = "tìmKiếmToolStripMenuItem";
+            tìmKiếmToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.F;
+            tìmKiếmToolStripMenuItem.Size = new Size(180, 22);
+            tìmKiếmToolStripMenuItem.Text = "Tìm kiếm";
+            tìmKiếmToolStripMenuItem.Click += tìmKiếmToolStripMenuItem_Click;
             // 
             // grpThongTin
             // 
@@ -356,23 +374,6 @@
             lblTongSo.Spring = true;
             lblTongSo.Text = "Tổng số sinh viên: 0";
             lblTongSo.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // quanLyKhoaToolStripMenuItem
-            // 
-            quanLyKhoaToolStripMenuItem.Image = (Image)resources.GetObject("quanLyKhoaToolStripMenuItem.Image");
-            quanLyKhoaToolStripMenuItem.Name = "quanLyKhoaToolStripMenuItem";
-            quanLyKhoaToolStripMenuItem.ShortcutKeys = Keys.F1;
-            quanLyKhoaToolStripMenuItem.Size = new Size(180, 22);
-            quanLyKhoaToolStripMenuItem.Text = "Quản lý khoa";
-            quanLyKhoaToolStripMenuItem.Click += quanLyKhoaToolStripMenuItem_Click;
-            // 
-            // tìmKiếmToolStripMenuItem
-            // 
-            tìmKiếmToolStripMenuItem.Image = (Image)resources.GetObject("tìmKiếmToolStripMenuItem.Image");
-            tìmKiếmToolStripMenuItem.Name = "tìmKiếmToolStripMenuItem";
-            tìmKiếmToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.F;
-            tìmKiếmToolStripMenuItem.Size = new Size(180, 22);
-            tìmKiếmToolStripMenuItem.Text = "Tìm kiếm";
             // 
             // Form1
             // 
