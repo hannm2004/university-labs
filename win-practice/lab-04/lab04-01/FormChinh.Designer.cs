@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             menuStrip1 = new MenuStrip();
             tệpToolStripMenuItem = new ToolStripMenuItem();
             dữLiệuToolStripMenuItem = new ToolStripMenuItem();
@@ -56,6 +57,8 @@
             statusStripChinh = new StatusStrip();
             lblTrangThai = new ToolStripStatusLabel();
             lblTongSo = new ToolStripStatusLabel();
+            quanLyKhoaToolStripMenuItem = new ToolStripMenuItem();
+            tìmKiếmToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             grpThongTin.SuspendLayout();
             pnlDanhSach.SuspendLayout();
@@ -80,6 +83,7 @@
             // 
             // dữLiệuToolStripMenuItem
             // 
+            dữLiệuToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { quanLyKhoaToolStripMenuItem, tìmKiếmToolStripMenuItem });
             dữLiệuToolStripMenuItem.Name = "dữLiệuToolStripMenuItem";
             dữLiệuToolStripMenuItem.Size = new Size(56, 20);
             dữLiệuToolStripMenuItem.Text = "Dữ liệu";
@@ -313,6 +317,7 @@
             dgvSinhVien.Size = new Size(698, 418);
             dgvSinhVien.TabIndex = 3;
             dgvSinhVien.CellClick += dgvSinhVien_CellClick;
+            dgvSinhVien.CellContentClick += dgvSinhVien_CellContentClick;
             // 
             // lblTitle
             // 
@@ -351,6 +356,23 @@
             lblTongSo.Spring = true;
             lblTongSo.Text = "Tổng số sinh viên: 0";
             lblTongSo.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // quanLyKhoaToolStripMenuItem
+            // 
+            quanLyKhoaToolStripMenuItem.Image = (Image)resources.GetObject("quanLyKhoaToolStripMenuItem.Image");
+            quanLyKhoaToolStripMenuItem.Name = "quanLyKhoaToolStripMenuItem";
+            quanLyKhoaToolStripMenuItem.ShortcutKeys = Keys.F1;
+            quanLyKhoaToolStripMenuItem.Size = new Size(180, 22);
+            quanLyKhoaToolStripMenuItem.Text = "Quản lý khoa";
+            quanLyKhoaToolStripMenuItem.Click += quanLyKhoaToolStripMenuItem_Click;
+            // 
+            // tìmKiếmToolStripMenuItem
+            // 
+            tìmKiếmToolStripMenuItem.Image = (Image)resources.GetObject("tìmKiếmToolStripMenuItem.Image");
+            tìmKiếmToolStripMenuItem.Name = "tìmKiếmToolStripMenuItem";
+            tìmKiếmToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.F;
+            tìmKiếmToolStripMenuItem.Size = new Size(180, 22);
+            tìmKiếmToolStripMenuItem.Text = "Tìm kiếm";
             // 
             // Form1
             // 
@@ -413,5 +435,7 @@
         private StatusStrip statusStripChinh;
         private ToolStripStatusLabel lblTrangThai;
         private ToolStripStatusLabel lblTongSo;
+        private ToolStripMenuItem quanLyKhoaToolStripMenuItem;
+        private ToolStripMenuItem tìmKiếmToolStripMenuItem;
     }
 }
