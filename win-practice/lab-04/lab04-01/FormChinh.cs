@@ -334,5 +334,25 @@ namespace lab04_01
         {
             LamMoiForm();
         }
+
+        private void dgvSinhVien_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void quanLyKhoaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormQuanLyKhoa frm = new FormQuanLyKhoa();
+
+            frm.ShowDialog();
+
+            LayDanhSachKhoa();
+        }
+
+        private void tìmKiếmToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormTraCuuSinhVien frm = new FormTraCuuSinhVien();
+            frm.ShowDialog();
+        }
     }
 }

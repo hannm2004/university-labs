@@ -13,6 +13,10 @@ namespace lab04_01.Models
 
         public string TenKhoa { get; set; } = "";
 
+        public int? NamThanhLap { get; set; }
+
+        public int? TongSoGiangVien { get; set; }
+
         [Browsable(false)]
         public List<SinhVien> SinhViens { get; set; } = new();
 
