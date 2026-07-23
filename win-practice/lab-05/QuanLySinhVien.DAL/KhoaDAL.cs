@@ -1,0 +1,78 @@
+﻿using QuanLySinhVien.DAL.Models;
+
+namespace QuanLySinhVien.DAL
+{
+    public class KhoaDAL
+    {
+        public List<Khoa> LayDanhSach()
+        {
+            using var db = new QuanLySinhVienDbContext();
+
+            return db.Khoas
+                     .OrderBy(k => k.TenKhoa)
+                     .ToList();
+        }
+
+        public Khoa? LayTheoId(int id)
+        {
+            using var db = new QuanLySinhVienDbContext();
+
+            return db.Khoas.FirstOrDefault(k => k.Id == id);
+        }
+
+        public bool KiemTraTrungTen(string tenKhoa, int? idLoaiTru = null)
+        {
+            using var db = new QuanLySinhVienDbContext();
+
+            tenKhoa = tenKhoa.Trim().ToLower();
+
+            return db.Khoas.Any(k =>
+                k.TenKhoa.ToLower() == tenKhoa &&
+                (!idLoaiTru.HasValue || k.Id != idLoaiTru.Value));
+        }
+
+        public void ThemMoi(Khoa khoa)
+        {
+            using var db = new QuanLySinhVienDbContext();
+
+            db.Khoas.Add(khoa);
+            db.SaveChanges();
+        }
+
+        public void CapNhat(Khoa khoa)
+        {
+            using var db = new QuanLySinhVienDbContext();
+
+            Khoa? khoaTrongDb = db.Khoas.FirstOrDefault(k => k.Id == khoa.Id);
+
+            if (khoaTrongDb == null)
+                throw new Exception("Không tìm thấy khoa cần cập nhật.");
+
+            khoaTrongDb.TenKhoa = khoa.TenKhoa;
+            khoaTrongDb.NamThanhLap = khoa.NamThanhLap;
+            khoaTrongDb.TongSoGiangVien = khoa.TongSoGiangVien;
+
+            db.SaveChanges();
+        }
+
+        public void Xoa(int id)
+        {
+            using var db = new QuanLySinhVienDbContext();
+
+            Khoa? khoa = db.Khoas.FirstOrDefault(k => k.Id == id);
+
+            if (khoa == null)
+                throw new Exception("Không tìm thấy khoa cần xóa.");
+
+            db.Khoas.Remove(khoa);
+            db.SaveChanges();
+        }
+
+        public int DemSoSinhVienThuocKhoa(int khoaId)
+        {
+            using var db = new QuanLySinhVienDbContext();
+
+            return db.SinhViens.Count(s => s.KhoaId == khoaId);
+        }
+    }
+}
