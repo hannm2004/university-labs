@@ -1,24 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+
 namespace QuanLySinhVien.DAL.Models
 {
     public class Khoa
     {
         public int Id { get; set; }
 
+        [DisplayName("Tên khoa")]
         public string TenKhoa { get; set; } = "";
 
+        [DisplayName("Năm thành lập")]
         public int? NamThanhLap { get; set; }
 
+        [DisplayName("Tổng GV")]
         public int? TongSoGiangVien { get; set; }
 
         [Browsable(false)]
-        public List<SinhVien> SinhViens { get; set; } = new();
+        public List<ChuyenNganh> ChuyenNganhs { get; set; } = new();
 
         public override string ToString()
         {
