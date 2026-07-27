@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using QuanLySinhVien.DAL.Models;
-namespace QuanLySinhVien.DAL
+namespace QuanLySinhVien.DAL.Models
 {
     public class QuanLySinhVienDbContext : DbContext
     {
         public DbSet<SinhVien> SinhViens { get; set; } = null!;
         public DbSet<Khoa> Khoas { get; set; } = null!;
+        public DbSet<ChuyenNganh> ChuyenNganhs { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

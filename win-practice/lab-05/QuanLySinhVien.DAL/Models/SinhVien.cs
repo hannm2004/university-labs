@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace QuanLySinhVien.DAL.Models
 {
@@ -27,18 +21,34 @@ namespace QuanLySinhVien.DAL.Models
         [DisplayName("Điểm TB")]
         public double? DiemTB { get; set; }
 
-        [Browsable(false)]
-        public int KhoaId { get; set; }
+        // ===== Quan hệ mới =====
 
         [Browsable(false)]
-        public Khoa? Khoa { get; set; }
+        public int? ChuyenNganhId { get; set; }
 
-        [DisplayName("Tên Khoa")]
+        [Browsable(false)]
+        public ChuyenNganh? ChuyenNganh { get; set; }
+
+        // Hiển thị trên DataGridView
+        [DisplayName("Chuyên ngành")]
+        public string TenChuyenNganh
+        {
+            get
+            {
+                return ChuyenNganh == null
+                    ? ""
+                    : ChuyenNganh.TenChuyenNganh;
+            }
+        }
+
+        [DisplayName("Khoa")]
         public string TenKhoa
         {
             get
             {
-                return Khoa == null ? "" : Khoa.TenKhoa;
+                return ChuyenNganh?.Khoa == null
+                    ? ""
+                    : ChuyenNganh.Khoa.TenKhoa;
             }
         }
     }

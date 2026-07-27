@@ -226,6 +226,13 @@ namespace QuanLySinhVien.GUI
             frm.ShowDialog();
         }
 
+        private void menuQuanLyChuyenNganh_Click(object sender, EventArgs e)
+        {
+            FormQuanLyChuyenNganh frm = new FormQuanLyChuyenNganh();
+
+            frm.ShowDialog();
+        }
+
         private void btnThemKhoa_Click(object sender, EventArgs e)
         {
             using (FormThemKhoa frm = new FormThemKhoa())
