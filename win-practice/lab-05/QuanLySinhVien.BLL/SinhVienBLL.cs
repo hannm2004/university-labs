@@ -82,7 +82,7 @@ namespace QuanLySinhVien.BLL
 
         public void CapNhat(
             int id,
-            string maSVHienTai,
+            string maSV,
             string hoTen,
             DateTime ngaySinh,
             string gioiTinh,
@@ -90,7 +90,7 @@ namespace QuanLySinhVien.BLL
             string? diemTBText)
         {
             ValidateDuLieu(
-                maSVHienTai,
+                maSV,
                 hoTen,
                 khoaId,
                 diemTBText,
@@ -99,7 +99,7 @@ namespace QuanLySinhVien.BLL
             SinhVien sv = new SinhVien
             {
                 Id = id,
-                MaSV = maSVHienTai.Trim(),
+                MaSV = maSV.Trim(),
                 HoTen = hoTen.Trim(),
                 NgaySinh = ngaySinh,
                 GioiTinh = gioiTinh,
@@ -116,7 +116,7 @@ namespace QuanLySinhVien.BLL
         }
 
         public List<SinhVien> TimKiem(
-            string? tuKhoaVanBan,
+            string? tuKhoa,
             int? khoaId,
             double diemTu,
             double diemDen,
@@ -126,7 +126,7 @@ namespace QuanLySinhVien.BLL
                 throw new Exception("Điểm từ không được lớn hơn điểm đến.");
 
             return sinhVienDAL.TimKiem(
-                tuKhoaVanBan,
+                tuKhoa,
                 khoaId,
                 diemTu,
                 diemDen,

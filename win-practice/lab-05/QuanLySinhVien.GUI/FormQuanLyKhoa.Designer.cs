@@ -1,4 +1,4 @@
-﻿namespace lab04_01
+﻿namespace QuanLySinhVien.GUI
 {
     partial class FormQuanLyKhoa
     {

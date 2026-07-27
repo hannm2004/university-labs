@@ -37,9 +37,7 @@ namespace QuanLySinhVien.BLL
             if (tongSoGiangVien.HasValue)
             {
                 if (tongSoGiangVien < 0)
-                {
                     throw new Exception("Tổng số giảng viên không được âm.");
-                }
             }
         }
 

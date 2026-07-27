@@ -1,4 +1,4 @@
-﻿namespace lab04_01
+﻿namespace QuanLySinhVien.GUI
 {
     partial class FormThemKhoa
     {
@@ -94,7 +94,7 @@
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterParent;
             Text = "Thêm Khoa Mới";
-  //          Load += FormThemKhoa_Load;
+  //        Load += FormThemKhoa_Load;
             ResumeLayout(false);
             PerformLayout();
         }

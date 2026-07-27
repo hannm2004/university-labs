@@ -67,6 +67,7 @@ namespace QuanLySinhVien.DAL
                 throw new Exception("Không tìm thấy sinh viên.");
 
             db.SinhViens.Remove(sv);
+
             db.SaveChanges();
         }
 
@@ -79,13 +80,13 @@ namespace QuanLySinhVien.DAL
         {
             using var db = new QuanLySinhVienDbContext();
 
-            IQueryable<SinhVien> truyVan = db.SinhViens
+            var truyVan = db.SinhViens
                 .Include(s => s.Khoa)
                 .AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(tuKhoaVanBan))
             {
-                string tuKhoa = tuKhoaVanBan.Trim().ToLower();
+                string tuKhoa = tuKhoaVanBan.ToLower();
 
                 truyVan = truyVan.Where(s =>
                     s.MaSV.ToLower().Contains(tuKhoa) ||
@@ -94,21 +95,22 @@ namespace QuanLySinhVien.DAL
 
             if (khoaId.HasValue)
             {
-                truyVan = truyVan.Where(s => s.KhoaId == khoaId);
+                truyVan = truyVan.Where(s => s.KhoaId == khoaId.Value);
             }
 
-            List<SinhVien> ds = truyVan.ToList();
+            var ketQua = truyVan.ToList();
 
-            ds = ds.Where(s =>
+            ketQua = ketQua.Where(s =>
             {
-                if (s.DiemTB == null)
+                if (!s.DiemTB.HasValue)
                     return baoGomChuaCoDiem;
 
-                return s.DiemTB >= diemTu &&
-                       s.DiemTB <= diemDen;
+                return s.DiemTB.Value >= diemTu &&
+                       s.DiemTB.Value <= diemDen;
+
             }).ToList();
 
-            return ds;
+            return ketQua;
         }
     }
 }

@@ -324,6 +324,7 @@
             dgvSinhVien.AllowUserToDeleteRows = false;
             dgvSinhVien.AllowUserToResizeRows = false;
             dgvSinhVien.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvSinhVien.BackgroundColor = SystemColors.ButtonHighlight;
             dgvSinhVien.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSinhVien.Dock = DockStyle.Fill;
             dgvSinhVien.Location = new Point(0, 0);
