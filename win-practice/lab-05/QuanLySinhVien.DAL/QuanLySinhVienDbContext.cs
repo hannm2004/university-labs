@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-
-namespace QuanLySinhVien.DAL.Models
+using QuanLySinhVien.DAL.Models;
+namespace QuanLySinhVien.DAL
 {
     public class QuanLySinhVienDbContext : DbContext
     {

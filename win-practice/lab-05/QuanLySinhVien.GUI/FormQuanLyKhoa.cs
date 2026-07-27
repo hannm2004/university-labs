@@ -1,7 +1,8 @@
-﻿using lab04_01.Models;
-using Microsoft.EntityFrameworkCore;
-
-namespace lab04_01
+﻿using Microsoft.EntityFrameworkCore;
+using QuanLySinhVien.DAL;
+using QuanLySinhVien.DAL.Models;
+using System;
+namespace QuanLySinhVien.GUI
 {
     public partial class FormQuanLyKhoa : Form
     {

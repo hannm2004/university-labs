@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormChinh));
             menuStrip1 = new MenuStrip();
             tệpToolStripMenuItem = new ToolStripMenuItem();
             dữLiệuToolStripMenuItem = new ToolStripMenuItem();
@@ -64,7 +64,7 @@
             pnlDanhSach.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSinhVien).BeginInit();
             statusStripChinh.SuspendLayout();
-//            SuspendLayout();
+            SuspendLayout();
             // 
             // menuStrip1
             // 
@@ -93,7 +93,7 @@
             quanLyKhoaToolStripMenuItem.Image = (Image)resources.GetObject("quanLyKhoaToolStripMenuItem.Image");
             quanLyKhoaToolStripMenuItem.Name = "quanLyKhoaToolStripMenuItem";
             quanLyKhoaToolStripMenuItem.ShortcutKeys = Keys.F1;
-            quanLyKhoaToolStripMenuItem.Size = new Size(180, 22);
+            quanLyKhoaToolStripMenuItem.Size = new Size(163, 22);
             quanLyKhoaToolStripMenuItem.Text = "Quản lý khoa";
             quanLyKhoaToolStripMenuItem.Click += quanLyKhoaToolStripMenuItem_Click;
             // 
@@ -102,7 +102,7 @@
             tìmKiếmToolStripMenuItem.Image = (Image)resources.GetObject("tìmKiếmToolStripMenuItem.Image");
             tìmKiếmToolStripMenuItem.Name = "tìmKiếmToolStripMenuItem";
             tìmKiếmToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.F;
-            tìmKiếmToolStripMenuItem.Size = new Size(180, 22);
+            tìmKiếmToolStripMenuItem.Size = new Size(163, 22);
             tìmKiếmToolStripMenuItem.Text = "Tìm kiếm";
             tìmKiếmToolStripMenuItem.Click += tìmKiếmToolStripMenuItem_Click;
             // 
@@ -324,6 +324,7 @@
             dgvSinhVien.AllowUserToDeleteRows = false;
             dgvSinhVien.AllowUserToResizeRows = false;
             dgvSinhVien.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvSinhVien.BackgroundColor = SystemColors.ButtonHighlight;
             dgvSinhVien.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSinhVien.Dock = DockStyle.Fill;
             dgvSinhVien.Location = new Point(0, 0);
@@ -335,7 +336,6 @@
             dgvSinhVien.Size = new Size(698, 418);
             dgvSinhVien.TabIndex = 3;
             dgvSinhVien.CellClick += dgvSinhVien_CellClick;
-            dgvSinhVien.CellContentClick += dgvSinhVien_CellContentClick;
             // 
             // lblTitle
             // 
@@ -375,7 +375,7 @@
             lblTongSo.Text = "Tổng số sinh viên: 0";
             lblTongSo.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // Form1
+            // FormChinh
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -390,10 +390,10 @@
             MainMenuStrip = menuStrip1;
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "Form1";
+            Name = "FormChinh";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Quản Lý Sinh Viên";
-            Load += Form1_Load;
+            Load += FormChinh_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             grpThongTin.ResumeLayout(false);

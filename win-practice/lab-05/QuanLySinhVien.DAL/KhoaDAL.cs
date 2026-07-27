@@ -1,4 +1,5 @@
-﻿using QuanLySinhVien.DAL.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using QuanLySinhVien.DAL.Models;
 
 namespace QuanLySinhVien.DAL
 {
@@ -9,8 +10,8 @@ namespace QuanLySinhVien.DAL
             using var db = new QuanLySinhVienDbContext();
 
             return db.Khoas
-                     .OrderBy(k => k.TenKhoa)
-                     .ToList();
+                .OrderBy(k => k.TenKhoa)
+                .ToList();
         }
 
         public Khoa? LayTheoId(int id)
@@ -20,15 +21,20 @@ namespace QuanLySinhVien.DAL
             return db.Khoas.FirstOrDefault(k => k.Id == id);
         }
 
-        public bool KiemTraTrungTen(string tenKhoa, int? idLoaiTru = null)
+        public bool KiemTraTrungTen(string tenKhoa)
         {
             using var db = new QuanLySinhVienDbContext();
 
-            tenKhoa = tenKhoa.Trim().ToLower();
+            return db.Khoas.Any(k => k.TenKhoa == tenKhoa);
+        }
+
+        public bool KiemTraTrungTen(string tenKhoa, int idLoaiTru)
+        {
+            using var db = new QuanLySinhVienDbContext();
 
             return db.Khoas.Any(k =>
-                k.TenKhoa.ToLower() == tenKhoa &&
-                (!idLoaiTru.HasValue || k.Id != idLoaiTru.Value));
+                k.TenKhoa == tenKhoa &&
+                k.Id != idLoaiTru);
         }
 
         public void ThemMoi(Khoa khoa)
@@ -36,6 +42,7 @@ namespace QuanLySinhVien.DAL
             using var db = new QuanLySinhVienDbContext();
 
             db.Khoas.Add(khoa);
+
             db.SaveChanges();
         }
 
@@ -46,7 +53,7 @@ namespace QuanLySinhVien.DAL
             Khoa? khoaTrongDb = db.Khoas.FirstOrDefault(k => k.Id == khoa.Id);
 
             if (khoaTrongDb == null)
-                throw new Exception("Không tìm thấy khoa cần cập nhật.");
+                throw new Exception("Không tìm thấy khoa.");
 
             khoaTrongDb.TenKhoa = khoa.TenKhoa;
             khoaTrongDb.NamThanhLap = khoa.NamThanhLap;
@@ -62,9 +69,10 @@ namespace QuanLySinhVien.DAL
             Khoa? khoa = db.Khoas.FirstOrDefault(k => k.Id == id);
 
             if (khoa == null)
-                throw new Exception("Không tìm thấy khoa cần xóa.");
+                throw new Exception("Không tìm thấy khoa.");
 
             db.Khoas.Remove(khoa);
+
             db.SaveChanges();
         }
 
