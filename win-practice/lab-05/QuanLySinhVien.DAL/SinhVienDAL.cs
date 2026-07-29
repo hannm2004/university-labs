@@ -10,8 +10,9 @@ namespace QuanLySinhVien.DAL
             using var db = new QuanLySinhVienDbContext();
 
             return db.SinhViens
-                .Include(s => s.Khoa)
-                .OrderBy(s => s.MaSV)
+                .Include(x => x.ChuyenNganh)
+                .ThenInclude(x => x.Khoa)
+                .OrderBy(x => x.MaSV)
                 .ToList();
         }
 
@@ -20,8 +21,9 @@ namespace QuanLySinhVien.DAL
             using var db = new QuanLySinhVienDbContext();
 
             return db.SinhViens
-                .Include(s => s.Khoa)
-                .FirstOrDefault(s => s.Id == id);
+                .Include(x => x.ChuyenNganh)
+                .ThenInclude(x => x.Khoa)
+                .FirstOrDefault(x => x.Id == id);
         }
 
         public bool KiemTraTrungMa(string maSV)
@@ -48,10 +50,11 @@ namespace QuanLySinhVien.DAL
             if (svTrongDb == null)
                 throw new Exception("Không tìm thấy sinh viên.");
 
+            // Không sửa MaSV
             svTrongDb.HoTen = sv.HoTen;
             svTrongDb.NgaySinh = sv.NgaySinh;
             svTrongDb.GioiTinh = sv.GioiTinh;
-            svTrongDb.KhoaId = sv.KhoaId;
+            svTrongDb.ChuyenNganhId = sv.ChuyenNganhId;
             svTrongDb.DiemTB = sv.DiemTB;
 
             db.SaveChanges();
@@ -67,13 +70,12 @@ namespace QuanLySinhVien.DAL
                 throw new Exception("Không tìm thấy sinh viên.");
 
             db.SinhViens.Remove(sv);
-
             db.SaveChanges();
         }
 
         public List<SinhVien> TimKiem(
             string? tuKhoaVanBan,
-            int? khoaId,
+            int? chuyenNganhId,
             double diemTu,
             double diemDen,
             bool baoGomChuaCoDiem)
@@ -81,23 +83,28 @@ namespace QuanLySinhVien.DAL
             using var db = new QuanLySinhVienDbContext();
 
             var truyVan = db.SinhViens
-                .Include(s => s.Khoa)
+                .Include(x => x.ChuyenNganh)
+                .ThenInclude(x => x.Khoa)
                 .AsQueryable();
 
+            // Tìm theo mã hoặc họ tên
             if (!string.IsNullOrWhiteSpace(tuKhoaVanBan))
             {
-                string tuKhoa = tuKhoaVanBan.ToLower();
+                string tuKhoa = tuKhoaVanBan.Trim().ToLower();
 
                 truyVan = truyVan.Where(s =>
                     s.MaSV.ToLower().Contains(tuKhoa) ||
                     s.HoTen.ToLower().Contains(tuKhoa));
             }
 
-            if (khoaId.HasValue)
+            // Lọc theo chuyên ngành
+            if (chuyenNganhId.HasValue)
             {
-                truyVan = truyVan.Where(s => s.KhoaId == khoaId.Value);
+                truyVan = truyVan.Where(s =>
+                    s.ChuyenNganhId == chuyenNganhId.Value);
             }
 
+            // Đưa về bộ nhớ để xử lý nullable
             var ketQua = truyVan.ToList();
 
             ketQua = ketQua.Where(s =>
@@ -111,6 +118,24 @@ namespace QuanLySinhVien.DAL
             }).ToList();
 
             return ketQua;
+        }
+
+        public void DangKyChuyenNganh(string maSV, int chuyenNganhId)
+        {
+            using var db = new QuanLySinhVienDbContext();
+
+            var sv = db.SinhViens
+                .FirstOrDefault(x => x.MaSV == maSV);
+
+
+            if (sv == null)
+                throw new Exception("Không tìm thấy sinh viên");
+
+
+            sv.ChuyenNganhId = chuyenNganhId;
+
+
+            db.SaveChanges();
         }
     }
 }

@@ -1,43 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using QuanLySinhVien.BLL;
+﻿using QuanLySinhVien.BLL;
 using QuanLySinhVien.DAL.Models;
 
 namespace QuanLySinhVien.GUI
 {
-    public partial class FormQuanLyChuyenNganh: Form
+    public partial class FormQuanLyChuyenNganh : Form
     {
         private readonly ChuyenNganhBLL chuyenNganhBLL = new();
         private readonly KhoaBLL khoaBLL = new();
 
         private int? idDangSua = null;
+
         public FormQuanLyChuyenNganh()
         {
             InitializeComponent();
         }
+
         private void FormQuanLyChuyenNganh_Load(object sender, EventArgs e)
         {
-            LoadKhoa();
-            LoadChuyenNganh();
+            LayDanhSachKhoa();
+            LayDanhSachChuyenNganh();
             LamMoiForm();
         }
 
-        private void LoadKhoa()
+        private void LayDanhSachKhoa()
         {
-            cboKhoa.DataSource = khoaBLL.LayDanhSach();
-            cboKhoa.DisplayMember = "TenKhoa";
-            cboKhoa.ValueMember = "Id";
-            cboKhoa.SelectedIndex = -1;
+            cboChuyenNganh.DataSource = khoaBLL.LayDanhSach();
+            cboChuyenNganh.DisplayMember = "TenKhoa";
+            cboChuyenNganh.ValueMember = "Id";
+            cboChuyenNganh.SelectedIndex = -1;
         }
 
-        private void LoadChuyenNganh()
+        private void LayDanhSachChuyenNganh()
         {
             var ds = chuyenNganhBLL.LayDanhSach();
 
@@ -51,7 +44,7 @@ namespace QuanLySinhVien.GUI
         {
             txtTenChuyenNganh.Clear();
 
-            cboKhoa.SelectedIndex = -1;
+            cboChuyenNganh.SelectedIndex = -1;
 
             idDangSua = null;
 
@@ -60,12 +53,12 @@ namespace QuanLySinhVien.GUI
             txtTenChuyenNganh.Focus();
         }
 
-        private void dgvChuyenNganh_CellClick(object sender,DataGridViewCellEventArgs e)
+        private void dgvChuyenNganh_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0)
                 return;
 
-            ChuyenNganh cn =
+            ChuyenNganh? cn =
                 dgvChuyenNganh.Rows[e.RowIndex].DataBoundItem as ChuyenNganh;
 
             if (cn == null)
@@ -75,7 +68,7 @@ namespace QuanLySinhVien.GUI
 
             txtTenChuyenNganh.Text = cn.TenChuyenNganh;
 
-            cboKhoa.SelectedValue = cn.KhoaId;
+            cboChuyenNganh.SelectedValue = cn.KhoaId;
         }
 
         private void btnThem_Click(object sender, EventArgs e)
@@ -84,13 +77,11 @@ namespace QuanLySinhVien.GUI
             {
                 chuyenNganhBLL.ThemMoi(
                     txtTenChuyenNganh.Text,
-                    (int?)cboKhoa.SelectedValue);
+                    (int)cboChuyenNganh.SelectedValue);
 
-                MessageBox.Show(
-                    "Thêm thành công!",
-                    "Thông báo");
+                MessageBox.Show("Thêm thành công.");
 
-                LoadChuyenNganh();
+                LayDanhSachChuyenNganh();
 
                 LamMoiForm();
             }
@@ -104,7 +95,8 @@ namespace QuanLySinhVien.GUI
         {
             if (idDangSua == null)
             {
-                MessageBox.Show("Chọn chuyên ngành.");
+                MessageBox.Show("Hãy chọn chuyên ngành.");
+
                 return;
             }
 
@@ -113,11 +105,11 @@ namespace QuanLySinhVien.GUI
                 chuyenNganhBLL.CapNhat(
                     idDangSua.Value,
                     txtTenChuyenNganh.Text,
-                    (int?)cboKhoa.SelectedValue);
+                    (int)cboChuyenNganh.SelectedValue);
 
                 MessageBox.Show("Cập nhật thành công.");
 
-                LoadChuyenNganh();
+                LayDanhSachChuyenNganh();
 
                 LamMoiForm();
             }
@@ -131,18 +123,18 @@ namespace QuanLySinhVien.GUI
         {
             if (idDangSua == null)
             {
-                MessageBox.Show("Chọn chuyên ngành.");
+                MessageBox.Show("Hãy chọn chuyên ngành.");
+
                 return;
             }
 
             if (MessageBox.Show(
-                "Bạn có chắc muốn xóa?",
+                "Bạn chắc chắn muốn xóa?",
                 "Xác nhận",
-                MessageBoxButtons.YesNo)
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question)
                 == DialogResult.No)
-            {
                 return;
-            }
 
             try
             {
@@ -150,7 +142,7 @@ namespace QuanLySinhVien.GUI
 
                 MessageBox.Show("Đã xóa.");
 
-                LoadChuyenNganh();
+                LayDanhSachChuyenNganh();
 
                 LamMoiForm();
             }

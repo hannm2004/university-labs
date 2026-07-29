@@ -10,15 +10,18 @@ namespace QuanLySinhVien.DAL
             using var db = new QuanLySinhVienDbContext();
 
             return db.Khoas
-                .OrderBy(k => k.TenKhoa)
-                .ToList();
+                     .Include(k => k.ChuyenNganhs)
+                     .OrderBy(k => k.TenKhoa)
+                     .ToList();
         }
 
         public Khoa? LayTheoId(int id)
         {
             using var db = new QuanLySinhVienDbContext();
 
-            return db.Khoas.FirstOrDefault(k => k.Id == id);
+            return db.Khoas
+                     .Include(k => k.ChuyenNganhs)
+                     .FirstOrDefault(k => k.Id == id);
         }
 
         public bool KiemTraTrungTen(string tenKhoa)
@@ -50,7 +53,8 @@ namespace QuanLySinhVien.DAL
         {
             using var db = new QuanLySinhVienDbContext();
 
-            Khoa? khoaTrongDb = db.Khoas.FirstOrDefault(k => k.Id == khoa.Id);
+            Khoa? khoaTrongDb = db.Khoas
+                                  .FirstOrDefault(k => k.Id == khoa.Id);
 
             if (khoaTrongDb == null)
                 throw new Exception("Không tìm thấy khoa.");
@@ -80,7 +84,11 @@ namespace QuanLySinhVien.DAL
         {
             using var db = new QuanLySinhVienDbContext();
 
-            return db.SinhViens.Count(s => s.KhoaId == khoaId);
+            return db.SinhViens
+                     .Include(s => s.ChuyenNganh)
+                     .Count(s =>
+                         s.ChuyenNganh != null &&
+                         s.ChuyenNganh.KhoaId == khoaId);
         }
     }
 }

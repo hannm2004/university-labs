@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+
 namespace QuanLySinhVien.DAL.Models
 {
     public class QuanLySinhVienDbContext : DbContext
@@ -14,7 +10,25 @@ namespace QuanLySinhVien.DAL.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=LAPTOP-PN800PJP;Database=Lab04_QuanLySV;Trusted_Connection=True;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer(
+                @"Server=LAPTOP-PN800PJP;Database=Lab04_QuanLySV;Trusted_Connection=True;TrustServerCertificate=True;");
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<ChuyenNganh>()
+                .HasOne(cn => cn.Khoa)
+                .WithMany(k => k.ChuyenNganhs)
+                .HasForeignKey(cn => cn.KhoaId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<SinhVien>()
+                .HasOne(sv => sv.ChuyenNganh)
+                .WithMany(cn => cn.SinhViens)
+                .HasForeignKey(sv => sv.ChuyenNganhId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

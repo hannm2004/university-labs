@@ -12,6 +12,11 @@ namespace QuanLySinhVien.BLL
             return chuyenNganhDAL.LayDanhSach();
         }
 
+        public List<ChuyenNganh> LayTheoKhoa(int khoaId)
+        {
+            return chuyenNganhDAL.LayTheoKhoa(khoaId);
+        }
+
         public ChuyenNganh? LayTheoId(int id)
         {
             return chuyenNganhDAL.LayTheoId(id);

@@ -21,7 +21,7 @@
         private void InitializeComponent()
         {
             grpThongTin = new GroupBox();
-            cboKhoa = new ComboBox();
+            cboChuyenNganh = new ComboBox();
             txtTenChuyenNganh = new TextBox();
             label2 = new Label();
             label1 = new Label();
@@ -44,7 +44,7 @@
             // 
             // grpThongTin
             // 
-            grpThongTin.Controls.Add(cboKhoa);
+            grpThongTin.Controls.Add(cboChuyenNganh);
             grpThongTin.Controls.Add(txtTenChuyenNganh);
             grpThongTin.Controls.Add(label2);
             grpThongTin.Controls.Add(label1);
@@ -88,14 +88,14 @@
             label2.Text = "Khoa:";
 
             // 
-            // cboKhoa
+            // cboChuyenNganh
             // 
-            cboKhoa.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboKhoa.FormattingEnabled = true;
-            cboKhoa.Location = new Point(15, 120);
-            cboKhoa.Name = "cboKhoa";
-            cboKhoa.Size = new Size(215, 23);
-            cboKhoa.TabIndex = 3;
+            cboChuyenNganh.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboChuyenNganh.FormattingEnabled = true;
+            cboChuyenNganh.Location = new Point(15, 120);
+            cboChuyenNganh.Name = "cboChuyenNganh";
+            cboChuyenNganh.Size = new Size(215, 23);
+            cboChuyenNganh.TabIndex = 3;
 
             // 
             // btnThem
@@ -168,8 +168,7 @@
             // lblTitle
             // 
             lblTitle.AutoSize = true;
-            // Corrected Font initialization
-            lblTitle.Font = new Font(new FontFamily("Segoe UI"), 18F, FontStyle.Bold, GraphicsUnit.Point);
+            lblTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
             lblTitle.ForeColor = Color.RoyalBlue;
             lblTitle.Location = new Point(250, 18);
             lblTitle.Name = "lblTitle";
@@ -245,7 +244,7 @@
 
         private GroupBox grpThongTin;
         private TextBox txtTenChuyenNganh;
-        private ComboBox cboKhoa;
+        private ComboBox cboChuyenNganh;
         private Label label1;
         private Label label2;
         private Button btnThem;
