@@ -26,11 +26,11 @@ namespace QuanLySinhVien.GUI
             {
                 var ds = khoaBLL.LayDanhSach();
 
-                cboKhoa.DataSource = ds;
-                cboKhoa.DisplayMember = "TenKhoa";
-                cboKhoa.ValueMember = "Id";
+                cboChuyenNganh.DataSource = ds;
+                cboChuyenNganh.DisplayMember = "TenKhoa";
+                cboChuyenNganh.ValueMember = "Id";
 
-                cboKhoa.SelectedIndex = -1;
+                cboChuyenNganh.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
@@ -44,9 +44,9 @@ namespace QuanLySinhVien.GUI
             {
                 int? khoaId = null;
 
-                if (cboKhoa.SelectedIndex >= 0)
+                if (cboChuyenNganh.SelectedIndex >= 0)
                 {
-                    khoaId = (int)cboKhoa.SelectedValue;
+                    khoaId = (int)cboChuyenNganh.SelectedValue;
                 }
 
                 var ketQua = sinhVienBLL.TimKiem(
@@ -77,9 +77,9 @@ namespace QuanLySinhVien.GUI
             {
                 int? khoaId = null;
 
-                if (cboKhoa.SelectedIndex >= 0 && cboKhoa.SelectedValue != null)
+                if (cboChuyenNganh.SelectedIndex >= 0 && cboChuyenNganh.SelectedValue != null)
                 {
-                    khoaId = (int)cboKhoa.SelectedValue;
+                    khoaId = (int)cboChuyenNganh.SelectedValue;
                 }
 
                 var ketQua = sinhVienBLL.TimKiem(
@@ -105,9 +105,9 @@ namespace QuanLySinhVien.GUI
             TimKiemSinhVien();
         }
 
-        private void cboKhoa_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboChuyenNganh_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboKhoa.SelectedIndex >= 0)
+            if (cboChuyenNganh.SelectedIndex >= 0)
                 TimKiemSinhVien();
         }
 
@@ -130,7 +130,7 @@ namespace QuanLySinhVien.GUI
         {
             txtTuKhoa.Clear();
 
-            cboKhoa.SelectedIndex = -1;
+            cboChuyenNganh.SelectedIndex = -1;
 
             nudTu.Value = 0;
 

@@ -1,7 +1,5 @@
-﻿using System;
-using QuanLySinhVien.BLL;
+﻿using QuanLySinhVien.BLL;
 using QuanLySinhVien.DAL.Models;
-using System.Windows.Forms;
 
 namespace QuanLySinhVien.GUI
 {
@@ -9,6 +7,7 @@ namespace QuanLySinhVien.GUI
     {
         private readonly SinhVienBLL sinhVienBLL = new();
         private readonly KhoaBLL khoaBLL = new();
+        private readonly ChuyenNganhBLL chuyenNganhBLL = new();
 
         private int? idDangSua = null;
 
@@ -19,22 +18,21 @@ namespace QuanLySinhVien.GUI
 
         private void FormChinh_Load(object sender, EventArgs e)
         {
-            LayDanhSachKhoa();
-            LamMoiForm();
+            LayDanhSachChuyenNganh();
             LayDanhSachSinhVien();
+            LamMoiForm();
         }
 
-        private void LayDanhSachKhoa()
+        private void LayDanhSachChuyenNganh()
         {
             try
             {
-                var ds = khoaBLL.LayDanhSach();
+                var ds = chuyenNganhBLL.LayDanhSach();
 
-                cboKhoa.DataSource = ds;
-                cboKhoa.DisplayMember = "TenKhoa";
-                cboKhoa.ValueMember = "Id";
-
-                cboKhoa.SelectedIndex = -1;
+                cboChuyenNganh.DataSource = ds;
+                cboChuyenNganh.DisplayMember = "TenChuyenNganh";
+                cboChuyenNganh.ValueMember = "Id";
+                cboChuyenNganh.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
@@ -62,16 +60,14 @@ namespace QuanLySinhVien.GUI
         private void LamMoiForm()
         {
             txtMaSV.Clear();
-
             txtHoTen.Clear();
-
             txtDiemTB.Clear();
 
-            cboKhoa.SelectedIndex = -1;
-
-            rdoNam.Checked = true;
+            cboChuyenNganh.SelectedIndex = -1;
 
             dtpNgaySinh.Value = DateTime.Now;
+
+            rdoNam.Checked = true;
 
             idDangSua = null;
 
@@ -87,10 +83,10 @@ namespace QuanLySinhVien.GUI
                     txtHoTen.Text,
                     dtpNgaySinh.Value,
                     rdoNam.Checked ? "Nam" : "Nữ",
-                    (int)cboKhoa.SelectedValue,
+                    (int)cboChuyenNganh.SelectedValue,
                     txtDiemTB.Text);
 
-                MessageBox.Show("Thêm thành công.");
+                MessageBox.Show("Thêm sinh viên thành công.");
 
                 LayDanhSachSinhVien();
 
@@ -102,16 +98,12 @@ namespace QuanLySinhVien.GUI
             }
         }
 
-
-
         private void dgvSinhVien_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0)
                 return;
 
-            SinhVien sv =
-                dgvSinhVien.Rows[e.RowIndex].DataBoundItem
-                as SinhVien;
+            SinhVien? sv = dgvSinhVien.Rows[e.RowIndex].DataBoundItem as SinhVien;
 
             if (sv == null)
                 return;
@@ -123,43 +115,31 @@ namespace QuanLySinhVien.GUI
 
             dtpNgaySinh.Value = sv.NgaySinh;
 
-            cboKhoa.SelectedValue = sv.KhoaId;
+            txtDiemTB.Text = sv.DiemTB?.ToString() ?? "";
 
-            txtDiemTB.Text =
-                sv.DiemTB?.ToString() ?? "";
+            cboChuyenNganh.SelectedValue = sv.ChuyenNganhId;
 
-            rdoNam.Checked =
-                sv.GioiTinh == "Nam";
-
-            rdoNu.Checked =
-                sv.GioiTinh == "Nữ";
+            rdoNam.Checked = sv.GioiTinh == "Nam";
+            rdoNu.Checked = sv.GioiTinh == "Nữ";
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
             if (idDangSua == null)
             {
-                MessageBox.Show("Chọn sinh viên.");
-
+                MessageBox.Show("Vui lòng chọn sinh viên.");
                 return;
             }
 
             try
             {
                 sinhVienBLL.CapNhat(
-
                     idDangSua.Value,
-
                     txtMaSV.Text,
-
                     txtHoTen.Text,
-
                     dtpNgaySinh.Value,
-
                     rdoNam.Checked ? "Nam" : "Nữ",
-
-                    (int)cboKhoa.SelectedValue,
-
+                    (int)cboChuyenNganh.SelectedValue,
                     txtDiemTB.Text);
 
                 MessageBox.Show("Cập nhật thành công.");
@@ -178,23 +158,22 @@ namespace QuanLySinhVien.GUI
         {
             if (idDangSua == null)
             {
-                MessageBox.Show("Chọn sinh viên.");
-
+                MessageBox.Show("Vui lòng chọn sinh viên.");
                 return;
             }
 
             if (MessageBox.Show(
                 "Bạn chắc chắn muốn xóa?",
                 "Xác nhận",
-                MessageBoxButtons.YesNo)
-                == DialogResult.No)
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question) == DialogResult.No)
                 return;
 
             try
             {
                 sinhVienBLL.Xoa(idDangSua.Value);
 
-                MessageBox.Show("Đã xóa.");
+                MessageBox.Show("Xóa thành công.");
 
                 LayDanhSachSinhVien();
 
@@ -213,35 +192,48 @@ namespace QuanLySinhVien.GUI
 
         private void quanLyKhoaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormQuanLyKhoa frm = new FormQuanLyKhoa();
+            FormQuanLyKhoa frm = new();
 
             frm.ShowDialog();
 
-            LayDanhSachKhoa();
+            LayDanhSachChuyenNganh();
         }
 
         private void tìmKiếmToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormTraCuuSinhVien frm = new FormTraCuuSinhVien();
+            FormTraCuuSinhVien frm = new();
+
             frm.ShowDialog();
         }
 
         private void menuQuanLyChuyenNganh_Click(object sender, EventArgs e)
         {
-            FormQuanLyChuyenNganh frm = new FormQuanLyChuyenNganh();
+            FormQuanLyChuyenNganh frm = new();
 
+            frm.ShowDialog();
+
+            LayDanhSachChuyenNganh();
+        }
+
+        private void btnThemChuyenNganh_Click(object sender, EventArgs e)
+        {
+            FormQuanLyChuyenNganh frm = new();
+
+            frm.ShowDialog();
+
+            LayDanhSachChuyenNganh();
+        }
+
+        private void quảnLýChuyênNgànhToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormQuanLyChuyenNganh frm = new FormQuanLyChuyenNganh();
             frm.ShowDialog();
         }
 
-        private void btnThemKhoa_Click(object sender, EventArgs e)
+        private void đăngKýChuyênNgànhToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (FormThemKhoa frm = new FormThemKhoa())
-            {
-                if (frm.ShowDialog() == DialogResult.OK)
-                {
-                    LayDanhSachKhoa();
-                }
-            }
+            FormDangKyChuyenNganh frm = new FormDangKyChuyenNganh();
+            frm.ShowDialog();
         }
     }
 }

@@ -20,7 +20,7 @@ namespace QuanLySinhVien.BLL
         private void ValidateDuLieu(
             string maSV,
             string hoTen,
-            int khoaId,
+            int chuyenNganhId,
             string? diemTBText,
             out double? diemTB)
         {
@@ -30,8 +30,8 @@ namespace QuanLySinhVien.BLL
             if (string.IsNullOrWhiteSpace(hoTen))
                 throw new Exception("Họ tên không được để trống.");
 
-            if (khoaId <= 0)
-                throw new Exception("Vui lòng chọn khoa.");
+            if (chuyenNganhId <= 0)
+                throw new Exception("Vui lòng chọn chuyên ngành.");
 
             diemTB = null;
 
@@ -52,13 +52,13 @@ namespace QuanLySinhVien.BLL
             string hoTen,
             DateTime ngaySinh,
             string gioiTinh,
-            int khoaId,
+            int chuyenNganhId,
             string? diemTBText)
         {
             ValidateDuLieu(
                 maSV,
                 hoTen,
-                khoaId,
+                chuyenNganhId,
                 diemTBText,
                 out double? diemTB);
 
@@ -73,7 +73,7 @@ namespace QuanLySinhVien.BLL
                 HoTen = hoTen.Trim(),
                 NgaySinh = ngaySinh,
                 GioiTinh = gioiTinh,
-                KhoaId = khoaId,
+                ChuyenNganhId = chuyenNganhId,
                 DiemTB = diemTB
             };
 
@@ -86,13 +86,13 @@ namespace QuanLySinhVien.BLL
             string hoTen,
             DateTime ngaySinh,
             string gioiTinh,
-            int khoaId,
+            int chuyenNganhId,
             string? diemTBText)
         {
             ValidateDuLieu(
                 maSV,
                 hoTen,
-                khoaId,
+                chuyenNganhId,
                 diemTBText,
                 out double? diemTB);
 
@@ -103,7 +103,7 @@ namespace QuanLySinhVien.BLL
                 HoTen = hoTen.Trim(),
                 NgaySinh = ngaySinh,
                 GioiTinh = gioiTinh,
-                KhoaId = khoaId,
+                ChuyenNganhId = chuyenNganhId,
                 DiemTB = diemTB
             };
 
@@ -117,7 +117,7 @@ namespace QuanLySinhVien.BLL
 
         public List<SinhVien> TimKiem(
             string? tuKhoa,
-            int? khoaId,
+            int? chuyenNganhId,
             double diemTu,
             double diemDen,
             bool baoGomChuaCoDiem)
@@ -127,10 +127,18 @@ namespace QuanLySinhVien.BLL
 
             return sinhVienDAL.TimKiem(
                 tuKhoa,
-                khoaId,
+                chuyenNganhId,
                 diemTu,
                 diemDen,
                 baoGomChuaCoDiem);
+        }
+
+        public void DangKyChuyenNganh(string maSV, int chuyenNganhId)
+        {
+            sinhVienDAL.DangKyChuyenNganh(
+                maSV,
+                chuyenNganhId
+            );
         }
     }
 }

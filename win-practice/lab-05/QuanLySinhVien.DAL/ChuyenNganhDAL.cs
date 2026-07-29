@@ -62,6 +62,15 @@ namespace QuanLySinhVien.DAL
 
             db.SaveChanges();
         }
+        public List<ChuyenNganh> LayTheoKhoa(int khoaId)
+        {
+            using var db = new QuanLySinhVienDbContext();
+
+            return db.ChuyenNganhs
+                .Where(x => x.KhoaId == khoaId)
+                .OrderBy(x => x.TenChuyenNganh)
+                .ToList();
+        }
 
         public void Xoa(int id)
         {

@@ -34,7 +34,7 @@
             label3 = new Label();
             label4 = new Label();
             txtTuKhoa = new TextBox();
-            cboKhoa = new ComboBox();
+            cboChuyenNganh = new ComboBox();
             nudTu = new NumericUpDown();
             nudDen = new NumericUpDown();
             label5 = new Label();
@@ -106,16 +106,16 @@
             txtTuKhoa.TabIndex = 4;
             txtTuKhoa.TextChanged += txtTuKhoa_TextChanged;
             // 
-            // cboKhoa
+            // cboChuyenNganh
             // 
-            cboKhoa.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboKhoa.FormattingEnabled = true;
-            cboKhoa.Items.AddRange(new object[] { "-- Tất cả Khoa --" });
-            cboKhoa.Location = new Point(171, 111);
-            cboKhoa.Name = "cboKhoa";
-            cboKhoa.Size = new Size(250, 23);
-            cboKhoa.TabIndex = 5;
-            cboKhoa.SelectedIndexChanged += cboKhoa_SelectedIndexChanged;
+            cboChuyenNganh.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboChuyenNganh.FormattingEnabled = true;
+            cboChuyenNganh.Items.AddRange(new object[] { "-- Tất cả Khoa --" });
+            cboChuyenNganh.Location = new Point(171, 111);
+            cboChuyenNganh.Name = "cboChuyenNganh";
+            cboChuyenNganh.Size = new Size(250, 23);
+            cboChuyenNganh.TabIndex = 5;
+            cboChuyenNganh.SelectedIndexChanged += cboChuyenNganh_SelectedIndexChanged;
             // 
             // nudTu
             // 
@@ -214,7 +214,7 @@
             Controls.Add(label5);
             Controls.Add(nudDen);
             Controls.Add(nudTu);
-            Controls.Add(cboKhoa);
+            Controls.Add(cboChuyenNganh);
             Controls.Add(txtTuKhoa);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -244,7 +244,7 @@
         private Label label3;
         private Label label4;
         private TextBox txtTuKhoa;
-        private ComboBox cboKhoa;
+        private ComboBox cboChuyenNganh;
         private NumericUpDown nudTu;
         private NumericUpDown nudDen;
         private Label label5;

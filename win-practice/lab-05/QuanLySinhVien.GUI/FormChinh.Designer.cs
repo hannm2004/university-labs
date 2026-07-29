@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormChinh));
             menuStrip1 = new MenuStrip();
             tệpToolStripMenuItem = new ToolStripMenuItem();
             dữLiệuToolStripMenuItem = new ToolStripMenuItem();
             quanLyKhoaToolStripMenuItem = new ToolStripMenuItem();
             tìmKiếmToolStripMenuItem = new ToolStripMenuItem();
+            quảnLýChuyênNgànhToolStripMenuItem = new ToolStripMenuItem();
+            đăngKýChuyênNgànhToolStripMenuItem = new ToolStripMenuItem();
             grpThongTin = new GroupBox();
             btnLamMoi = new Button();
             btnSua = new Button();
@@ -41,8 +42,8 @@
             btnThem = new Button();
             txtDiemTB = new TextBox();
             label4 = new Label();
-            btnThemKhoa = new Button();
-            cboKhoa = new ComboBox();
+            btnThemChuyenNganh = new Button();
+            cboChuyenNganh = new ComboBox();
             label3 = new Label();
             rdoNu = new RadioButton();
             rdoNam = new RadioButton();
@@ -83,28 +84,40 @@
             // 
             // dữLiệuToolStripMenuItem
             // 
-            dữLiệuToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { quanLyKhoaToolStripMenuItem, tìmKiếmToolStripMenuItem });
+            dữLiệuToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { quanLyKhoaToolStripMenuItem, tìmKiếmToolStripMenuItem, quảnLýChuyênNgànhToolStripMenuItem, đăngKýChuyênNgànhToolStripMenuItem });
             dữLiệuToolStripMenuItem.Name = "dữLiệuToolStripMenuItem";
             dữLiệuToolStripMenuItem.Size = new Size(56, 20);
             dữLiệuToolStripMenuItem.Text = "Dữ liệu";
             // 
             // quanLyKhoaToolStripMenuItem
             // 
-            quanLyKhoaToolStripMenuItem.Image = (Image)resources.GetObject("quanLyKhoaToolStripMenuItem.Image");
             quanLyKhoaToolStripMenuItem.Name = "quanLyKhoaToolStripMenuItem";
             quanLyKhoaToolStripMenuItem.ShortcutKeys = Keys.F1;
-            quanLyKhoaToolStripMenuItem.Size = new Size(163, 22);
+            quanLyKhoaToolStripMenuItem.Size = new Size(196, 22);
             quanLyKhoaToolStripMenuItem.Text = "Quản lý khoa";
             quanLyKhoaToolStripMenuItem.Click += quanLyKhoaToolStripMenuItem_Click;
             // 
             // tìmKiếmToolStripMenuItem
             // 
-            tìmKiếmToolStripMenuItem.Image = (Image)resources.GetObject("tìmKiếmToolStripMenuItem.Image");
             tìmKiếmToolStripMenuItem.Name = "tìmKiếmToolStripMenuItem";
             tìmKiếmToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.F;
-            tìmKiếmToolStripMenuItem.Size = new Size(163, 22);
+            tìmKiếmToolStripMenuItem.Size = new Size(196, 22);
             tìmKiếmToolStripMenuItem.Text = "Tìm kiếm";
             tìmKiếmToolStripMenuItem.Click += tìmKiếmToolStripMenuItem_Click;
+            // 
+            // quảnLýChuyênNgànhToolStripMenuItem
+            // 
+            quảnLýChuyênNgànhToolStripMenuItem.Name = "quảnLýChuyênNgànhToolStripMenuItem";
+            quảnLýChuyênNgànhToolStripMenuItem.Size = new Size(196, 22);
+            quảnLýChuyênNgànhToolStripMenuItem.Text = "Quản lý chuyên ngành";
+            quảnLýChuyênNgànhToolStripMenuItem.Click += quảnLýChuyênNgànhToolStripMenuItem_Click;
+            // 
+            // đăngKýChuyênNgànhToolStripMenuItem
+            // 
+            đăngKýChuyênNgànhToolStripMenuItem.Name = "đăngKýChuyênNgànhToolStripMenuItem";
+            đăngKýChuyênNgànhToolStripMenuItem.Size = new Size(196, 22);
+            đăngKýChuyênNgànhToolStripMenuItem.Text = "Đăng ký chuyên ngành";
+            đăngKýChuyênNgànhToolStripMenuItem.Click += đăngKýChuyênNgànhToolStripMenuItem_Click;
             // 
             // grpThongTin
             // 
@@ -114,8 +127,8 @@
             grpThongTin.Controls.Add(btnThem);
             grpThongTin.Controls.Add(txtDiemTB);
             grpThongTin.Controls.Add(label4);
-            grpThongTin.Controls.Add(btnThemKhoa);
-            grpThongTin.Controls.Add(cboKhoa);
+            grpThongTin.Controls.Add(btnThemChuyenNganh);
+            grpThongTin.Controls.Add(cboChuyenNganh);
             grpThongTin.Controls.Add(label3);
             grpThongTin.Controls.Add(rdoNu);
             grpThongTin.Controls.Add(rdoNam);
@@ -200,35 +213,35 @@
             label4.TabIndex = 16;
             label4.Text = "Điểm TB:";
             // 
-            // btnThemKhoa
+            // btnThemChuyenNganh
             // 
-            btnThemKhoa.BackColor = Color.Gold;
-            btnThemKhoa.FlatStyle = FlatStyle.Flat;
-            btnThemKhoa.Location = new Point(195, 283);
-            btnThemKhoa.Name = "btnThemKhoa";
-            btnThemKhoa.Size = new Size(30, 25);
-            btnThemKhoa.TabIndex = 15;
-            btnThemKhoa.Text = "+";
-            btnThemKhoa.UseVisualStyleBackColor = false;
-            btnThemKhoa.Click += btnThemKhoa_Click;
+            btnThemChuyenNganh.BackColor = Color.Gold;
+            btnThemChuyenNganh.FlatStyle = FlatStyle.Flat;
+            btnThemChuyenNganh.Location = new Point(195, 283);
+            btnThemChuyenNganh.Name = "btnThemChuyenNganh";
+            btnThemChuyenNganh.Size = new Size(30, 25);
+            btnThemChuyenNganh.TabIndex = 15;
+            btnThemChuyenNganh.Text = "+";
+            btnThemChuyenNganh.UseVisualStyleBackColor = false;
+            btnThemChuyenNganh.Click += btnThemChuyenNganh_Click;
             // 
-            // cboKhoa
+            // cboChuyenNganh
             // 
-            cboKhoa.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboKhoa.FormattingEnabled = true;
-            cboKhoa.Location = new Point(22, 283);
-            cboKhoa.Name = "cboKhoa";
-            cboKhoa.Size = new Size(160, 23);
-            cboKhoa.TabIndex = 14;
+            cboChuyenNganh.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboChuyenNganh.FormattingEnabled = true;
+            cboChuyenNganh.Location = new Point(22, 283);
+            cboChuyenNganh.Name = "cboChuyenNganh";
+            cboChuyenNganh.Size = new Size(160, 23);
+            cboChuyenNganh.TabIndex = 14;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Location = new Point(22, 255);
             label3.Name = "label3";
-            label3.Size = new Size(37, 15);
+            label3.Size = new Size(88, 15);
             label3.TabIndex = 13;
-            label3.Text = "Khoa:";
+            label3.Text = "Chuyên ngành:";
             // 
             // rdoNu
             // 
@@ -425,8 +438,8 @@
         private Button btnThem;
         private TextBox txtDiemTB;
         private Label label4;
-        private Button btnThemKhoa;
-        private ComboBox cboKhoa;
+        private Button btnThemChuyenNganh;
+        private ComboBox cboChuyenNganh;
         private Label label3;
         private Button btnXoa;
         private Button btnLamMoi;
@@ -438,5 +451,7 @@
         private ToolStripStatusLabel lblTongSo;
         private ToolStripMenuItem quanLyKhoaToolStripMenuItem;
         private ToolStripMenuItem tìmKiếmToolStripMenuItem;
+        private ToolStripMenuItem quảnLýChuyênNgànhToolStripMenuItem;
+        private ToolStripMenuItem đăngKýChuyênNgànhToolStripMenuItem;
     }
 }
