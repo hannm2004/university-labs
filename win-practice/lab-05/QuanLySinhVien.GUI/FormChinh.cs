@@ -64,13 +64,9 @@ namespace QuanLySinhVien.GUI
             txtDiemTB.Clear();
 
             cboChuyenNganh.SelectedIndex = -1;
-
             dtpNgaySinh.Value = DateTime.Now;
-
             rdoNam.Checked = true;
-
             idDangSua = null;
-
             dgvSinhVien.ClearSelection();
         }
 
@@ -193,34 +189,28 @@ namespace QuanLySinhVien.GUI
         private void quanLyKhoaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormQuanLyKhoa frm = new();
-
             frm.ShowDialog();
-
             LayDanhSachChuyenNganh();
         }
 
         private void tìmKiếmToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormTraCuuSinhVien frm = new();
-
             frm.ShowDialog();
         }
 
         private void menuQuanLyChuyenNganh_Click(object sender, EventArgs e)
         {
             FormQuanLyChuyenNganh frm = new();
-
             frm.ShowDialog();
-
             LayDanhSachChuyenNganh();
         }
+
 
         private void btnThemChuyenNganh_Click(object sender, EventArgs e)
         {
             FormQuanLyChuyenNganh frm = new();
-
             frm.ShowDialog();
-
             LayDanhSachChuyenNganh();
         }
 
@@ -234,6 +224,8 @@ namespace QuanLySinhVien.GUI
         {
             FormDangKyChuyenNganh frm = new FormDangKyChuyenNganh();
             frm.ShowDialog();
+            LayDanhSachSinhVien();
+            LayDanhSachChuyenNganh();
         }
     }
 }

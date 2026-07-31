@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormChinh));
             menuStrip1 = new MenuStrip();
             tệpToolStripMenuItem = new ToolStripMenuItem();
             dữLiệuToolStripMenuItem = new ToolStripMenuItem();
@@ -91,6 +92,7 @@
             // 
             // quanLyKhoaToolStripMenuItem
             // 
+            quanLyKhoaToolStripMenuItem.Image = (Image)resources.GetObject("quanLyKhoaToolStripMenuItem.Image");
             quanLyKhoaToolStripMenuItem.Name = "quanLyKhoaToolStripMenuItem";
             quanLyKhoaToolStripMenuItem.ShortcutKeys = Keys.F1;
             quanLyKhoaToolStripMenuItem.Size = new Size(196, 22);
@@ -99,6 +101,7 @@
             // 
             // tìmKiếmToolStripMenuItem
             // 
+            tìmKiếmToolStripMenuItem.Image = (Image)resources.GetObject("tìmKiếmToolStripMenuItem.Image");
             tìmKiếmToolStripMenuItem.Name = "tìmKiếmToolStripMenuItem";
             tìmKiếmToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.F;
             tìmKiếmToolStripMenuItem.Size = new Size(196, 22);
@@ -107,6 +110,7 @@
             // 
             // quảnLýChuyênNgànhToolStripMenuItem
             // 
+            quảnLýChuyênNgànhToolStripMenuItem.Image = (Image)resources.GetObject("quảnLýChuyênNgànhToolStripMenuItem.Image");
             quảnLýChuyênNgànhToolStripMenuItem.Name = "quảnLýChuyênNgànhToolStripMenuItem";
             quảnLýChuyênNgànhToolStripMenuItem.Size = new Size(196, 22);
             quảnLýChuyênNgànhToolStripMenuItem.Text = "Quản lý chuyên ngành";
@@ -114,6 +118,7 @@
             // 
             // đăngKýChuyênNgànhToolStripMenuItem
             // 
+            đăngKýChuyênNgànhToolStripMenuItem.Image = (Image)resources.GetObject("đăngKýChuyênNgànhToolStripMenuItem.Image");
             đăngKýChuyênNgànhToolStripMenuItem.Name = "đăngKýChuyênNgànhToolStripMenuItem";
             đăngKýChuyênNgànhToolStripMenuItem.Size = new Size(196, 22);
             đăngKýChuyênNgànhToolStripMenuItem.Text = "Đăng ký chuyên ngành";
@@ -157,6 +162,7 @@
             btnLamMoi.TabIndex = 21;
             btnLamMoi.Text = "↻ Làm mới";
             btnLamMoi.UseVisualStyleBackColor = false;
+            btnLamMoi.Click += btnLamMoi_Click;
             // 
             // btnSua
             // 
