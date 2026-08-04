@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace QuanLyBanHang.DAL.Entities
+﻿namespace QuanLyBanHang.DAL.Entities
 {
-    class Oder
+    public class Order
     {
+        public int Id { get; set; }
+
+        public DateTime NgayDat { get; set; }
+
+        public string TrangThai { get; set; } = "Đang xử lý";
+
+        public int CustomerId { get; set; }
+
+        public virtual Customer Customer { get; set; }
+
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+            = new List<OrderDetail>();
     }
 }

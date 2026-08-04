@@ -1,12 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using QuanLyBanHang.DAL.Entities;
 
-namespace QuanLyBanHang.BLL
+public class ProductBLL
 {
-    class ProductBLL
+    private readonly ProductDAL _productDAL = new ProductDAL();
+
+    public List<Product> GetAll()
     {
+        return _productDAL.GetAll();
+    }
+
+    public void Add(Product p)
+    {
+        _productDAL.Add(p);
+    }
+
+    public void Update(Product p)
+    {
+        _productDAL.Update(p);
+    }
+
+    public void Delete(Product p)
+    {
+        _productDAL.Delete(p);
     }
 }

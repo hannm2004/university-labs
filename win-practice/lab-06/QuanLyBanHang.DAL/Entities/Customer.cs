@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace QuanLyBanHang.DAL.Entities
+﻿namespace QuanLyBanHang.DAL.Entities
 {
-    class Customer
+    public class Customer
     {
+        public int Id { get; set; }
+
+        public string HoTen { get; set; } = string.Empty;
+
+        public string SoDienThoai { get; set; } = string.Empty;
+
+        public virtual ICollection<Order> Orders { get; set; }
+            = new List<Order>();
     }
 }
