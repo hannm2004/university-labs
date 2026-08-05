@@ -14,10 +14,7 @@ namespace QuanLyBanHang.GUI
         {
             InitializeComponent();
 
-            var context = new ApplicationDbContext();
-            var productDAL = new ProductDAL(context);
-
-            _productBLL = new ProductBLL(productDAL);
+            _productBLL = new ProductBLL();
         }
 
         private void FormProduct_Load(object sender, EventArgs e)
@@ -29,7 +26,7 @@ namespace QuanLyBanHang.GUI
         {
             dgvProduct.DataSource = null;
             dgvProduct.DataSource = _productBLL.GetAll();
-
+            dgvProduct.Columns["OrderDetails"].Visible = false;
             lblTongSP.Text = $"Tổng số sản phẩm: {dgvProduct.Rows.Count}";
         }
         private bool ValidateInput()

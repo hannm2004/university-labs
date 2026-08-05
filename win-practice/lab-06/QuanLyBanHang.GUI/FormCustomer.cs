@@ -7,17 +7,13 @@ namespace QuanLyBanHang.GUI
 {
     public partial class FormCustomer : Form
     {
-        private readonly CustomerBLL _customerBLL;
         private Customer? _selectedCustomer;
+
+        private readonly CustomerBLL _customerBLL = new CustomerBLL();
 
         public FormCustomer()
         {
             InitializeComponent();
-
-            var context = new ApplicationDbContext();
-
-            var customerDAL = new CustomerDAL(context);
-            _customerBLL = new CustomerBLL(customerDAL);
         }
 
         private void FormCustomer_Load(object sender, EventArgs e)
@@ -29,7 +25,7 @@ namespace QuanLyBanHang.GUI
         {
             dgvCustomer.DataSource = null;
             dgvCustomer.DataSource = _customerBLL.GetAll();
-
+            dgvCustomer.Columns["Orders"].Visible = false;
             lblTongKH.Text = $"Tổng số khách hàng: {dgvCustomer.Rows.Count}";
         }
 

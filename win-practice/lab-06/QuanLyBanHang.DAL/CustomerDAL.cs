@@ -1,41 +1,37 @@
 ﻿using QuanLyBanHang.DAL.Entities;
-using QuanLyBanHang.DAL;
 
-public class CustomerDAL
+namespace QuanLyBanHang.DAL
 {
-    private readonly ApplicationDbContext _context =
-    new ApplicationDbContext();
-
-    public CustomerDAL()
+    public class CustomerDAL
     {
-        _context = new ApplicationDbContext();
-    }
+        private readonly ApplicationDbContext _context = new ApplicationDbContext();
 
-    public List<Customer> GetAll()
-    {
-        return _context.Customers.ToList();
-    }
+        public List<Customer> GetAll()
+        {
+            return _context.Customers.ToList();
+        }
 
-    public Customer? GetById(int id)
-    {
-        return _context.Customers.Find(id);
-    }
+        public Customer? GetById(int id)
+        {
+            return _context.Customers.Find(id);
+        }
 
-    public void Add(Customer customer)
-    {
-        _context.Customers.Add(customer);
-        _context.SaveChanges();
-    }
+        public void Add(Customer customer)
+        {
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+        }
 
-    public void Update(Customer customer)
-    {
-        _context.Customers.Update(customer);
-        _context.SaveChanges();
-    }
+        public void Update(Customer customer)
+        {
+            _context.Customers.Update(customer);
+            _context.SaveChanges();
+        }
 
-    public void Delete(Customer customer)
-    {
-        _context.Customers.Remove(customer);
-        _context.SaveChanges();
+        public void Delete(Customer customer)
+        {
+            _context.Customers.Remove(customer);
+            _context.SaveChanges();
+        }
     }
 }

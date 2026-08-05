@@ -221,6 +221,7 @@
             Name = "FormCustomer";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Quản lý khách hàng";
+            Load += FormCustomer_Load;
             pnlHeader.ResumeLayout(false);
             pnlHeader.PerformLayout();
             grpThongTin.ResumeLayout(false);

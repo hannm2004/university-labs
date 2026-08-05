@@ -7,11 +7,6 @@ namespace QuanLyBanHang.BLL
     {
         private readonly CustomerDAL _customerDAL = new CustomerDAL();
 
-        public CustomerBLL(CustomerDAL customerDAL)
-        {
-            _customerDAL = customerDAL;
-        }
-
         public List<Customer> GetAll()
         {
             return _customerDAL.GetAll();

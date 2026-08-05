@@ -6,33 +6,35 @@
         {
             InitializeComponent();
         }
+
         private void mnuSanPham_Click(object sender, EventArgs e)
         {
-            using FormProduct f = new FormProduct();
-
-            f.ShowDialog();
+            FormProduct f = new FormProduct();
+            f.MdiParent = this;
+            f.Show();
         }
+
         private void mnuKhachHang_Click(object sender, EventArgs e)
         {
-            using FormCustomer f = new FormCustomer();
-
-            f.ShowDialog();
+            FormCustomer f = new FormCustomer();
+            f.MdiParent = this;
+            f.Show();
         }
+
         private void mnuTaoDonHang_Click(object sender, EventArgs e)
         {
-            using FormCreateOrder f = new FormCreateOrder();
-
-            if (f.ShowDialog() == DialogResult.OK)
-            {
-                // Có thể reload dữ liệu nếu cần
-            }
+            FormCreateOrder f = new FormCreateOrder();
+            f.MdiParent = this;
+            f.Show();
         }
+
         private void mnuDanhSachDonHang_Click(object sender, EventArgs e)
         {
-            using FormOrderList f = new FormOrderList();
-
-            f.ShowDialog();
+            FormOrderList f = new FormOrderList();
+            f.MdiParent = this;
+            f.Show();
         }
+
         private void mnuThoat_Click(object sender, EventArgs e)
         {
             Close();

@@ -1,31 +1,37 @@
 ﻿using QuanLyBanHang.DAL.Entities;
-using QuanLyBanHang.DAL;
 
-public class ProductDAL
+namespace QuanLyBanHang.DAL
 {
-    private readonly ApplicationDbContext _context =
-        new ApplicationDbContext();
-
-    public List<Product> GetAll()
+    public class ProductDAL
     {
-        return _context.Products.ToList();
-    }
+        private readonly ApplicationDbContext _context = new ApplicationDbContext();
 
-    public void Add(Product product)
-    {
-        _context.Products.Add(product);
-        _context.SaveChanges();
-    }
+        public List<Product> GetAll()
+        {
+            return _context.Products.ToList();
+        }
 
-    public void Update(Product product)
-    {
-        _context.Products.Update(product);
-        _context.SaveChanges();
-    }
+        public Product? GetById(int id)
+        {
+            return _context.Products.Find(id);
+        }
 
-    public void Delete(Product product)
-    {
-        _context.Products.Remove(product);
-        _context.SaveChanges();
+        public void Add(Product product)
+        {
+            _context.Products.Add(product);
+            _context.SaveChanges();
+        }
+
+        public void Update(Product product)
+        {
+            _context.Products.Update(product);
+            _context.SaveChanges();
+        }
+
+        public void Delete(Product product)
+        {
+            _context.Products.Remove(product);
+            _context.SaveChanges();
+        }
     }
 }
