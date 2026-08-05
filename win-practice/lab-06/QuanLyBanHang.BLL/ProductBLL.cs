@@ -1,26 +1,30 @@
-﻿using QuanLyBanHang.DAL.Entities;
+﻿using QuanLyBanHang.DAL;
+using QuanLyBanHang.DAL.Entities;
 
-public class ProductBLL
+namespace QuanLyBanHang.BLL
 {
-    private readonly ProductDAL _productDAL = new ProductDAL();
-
-    public List<Product> GetAll()
+    public class ProductBLL
     {
-        return _productDAL.GetAll();
-    }
+        private readonly ProductDAL _productDAL = new ProductDAL();
 
-    public void Add(Product p)
-    {
-        _productDAL.Add(p);
-    }
+        public List<Product> GetAll()
+        {
+            return _productDAL.GetAll();
+        }
 
-    public void Update(Product p)
-    {
-        _productDAL.Update(p);
-    }
+        public void Add(Product product)
+        {
+            _productDAL.Add(product);
+        }
 
-    public void Delete(Product p)
-    {
-        _productDAL.Delete(p);
+        public void Update(Product product)
+        {
+            _productDAL.Update(product);
+        }
+
+        public void Delete(Product product)
+        {
+            _productDAL.Delete(product);
+        }
     }
 }
