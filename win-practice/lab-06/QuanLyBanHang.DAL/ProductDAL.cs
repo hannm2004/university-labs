@@ -1,4 +1,5 @@
-﻿using QuanLyBanHang.DAL.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using QuanLyBanHang.DAL.Entities;
 
 namespace QuanLyBanHang.DAL
 {
@@ -8,7 +9,9 @@ namespace QuanLyBanHang.DAL
 
         public List<Product> GetAll()
         {
-            return _context.Products.ToList();
+            return _context.Products
+                .AsNoTracking()
+                .ToList();
         }
 
         public Product? GetById(int id)

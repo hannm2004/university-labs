@@ -197,9 +197,21 @@ namespace QuanLyBanHang.GUI
 
                 Close();
             }
+            catch (DbUpdateException)
+            {
+                MessageBox.Show(
+                    "Không thể tạo đơn hàng.",
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(
+                    ex.Message,
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
     }

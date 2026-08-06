@@ -88,6 +88,7 @@
             // 
             // dgvOrder
             // 
+            dgvOrder.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvOrder.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvOrder.Location = new Point(18, 55);
             dgvOrder.Name = "dgvOrder";
@@ -141,7 +142,7 @@
             btnDong.Size = new Size(140, 42);
             btnDong.TabIndex = 4;
             btnDong.Text = "Đóng";
-            btnDong.UseVisualStyleBackColor = false;
+            btnDong.Click += new EventHandler(btnDong_Click);
             // 
             // FormOrderList
             // 

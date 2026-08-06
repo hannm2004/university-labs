@@ -45,16 +45,30 @@ namespace QuanLyBanHang.GUI
                 return false;
             }
 
-            if (!decimal.TryParse(txtDonGia.Text, out _))
+            if (!decimal.TryParse(txtDonGia.Text, out decimal donGia))
             {
                 MessageBox.Show("Đơn giá không hợp lệ.");
                 txtDonGia.Focus();
                 return false;
             }
 
-            if (!int.TryParse(txtSoLuongTon.Text, out _))
+            if (donGia <= 0)
+            {
+                MessageBox.Show("Đơn giá phải lớn hơn 0.");
+                txtDonGia.Focus();
+                return false;
+            }
+
+            if (!int.TryParse(txtSoLuongTon.Text, out int soLuongTon))
             {
                 MessageBox.Show("Số lượng tồn không hợp lệ.");
+                txtSoLuongTon.Focus();
+                return false;
+            }
+
+            if (soLuongTon < 0)
+            {
+                MessageBox.Show("Số lượng tồn không được nhỏ hơn 0.");
                 txtSoLuongTon.Focus();
                 return false;
             }
@@ -85,9 +99,21 @@ namespace QuanLyBanHang.GUI
 
                 ClearInput();
             }
+            catch (DbUpdateException)
+            {
+                MessageBox.Show(
+                    "Không thể thêm sản phẩm.\n\nKiểm tra lại mã sản phẩm hoặc dữ liệu nhập.",
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(
+                    $"Có lỗi xảy ra:\n{ex.Message}",
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -147,9 +173,21 @@ namespace QuanLyBanHang.GUI
 
                 ClearInput();
             }
+            catch (DbUpdateException)
+            {
+                MessageBox.Show(
+                    "Không thể cập nhật sản phẩm.",
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(
+                    $"Có lỗi xảy ra:\n{ex.Message}",
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -180,9 +218,21 @@ namespace QuanLyBanHang.GUI
 
                 ClearInput();
             }
+            catch (DbUpdateException)
+            {
+                MessageBox.Show(
+                    "Không thể xóa sản phẩm.\n\nSản phẩm có thể đang được sử dụng trong đơn hàng.",
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(
+                    $"Có lỗi xảy ra:\n{ex.Message}",
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 

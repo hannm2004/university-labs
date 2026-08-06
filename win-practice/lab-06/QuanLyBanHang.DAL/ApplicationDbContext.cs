@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Reflection.Emit;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Protocols;
 using QuanLyBanHang.DAL.Entities;
+using System.Configuration;
 
 namespace QuanLyBanHang.DAL
 {
@@ -14,6 +15,7 @@ namespace QuanLyBanHang.DAL
         public DbSet<Order> Orders { get; set; }
 
         public DbSet<OrderDetail> OrderDetails { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -57,6 +59,25 @@ namespace QuanLyBanHang.DAL
             modelBuilder.Entity<OrderDetail>()
                 .Property(d => d.DonGiaLucBan)
                 .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<Product>()
+                .Property(p => p.MaSP)
+                .HasMaxLength(20);
+
+            modelBuilder.Entity<Product>()
+                .Property(p => p.TenSP)
+                .HasMaxLength(100);
+
+            modelBuilder.Entity<Customer>()
+                .Property(c => c.HoTen)
+                .HasMaxLength(100);
+
+            modelBuilder.Entity<Customer>()
+                .Property(c => c.SoDienThoai)
+                .HasMaxLength(15);
+            modelBuilder.Entity<Product>()
+                .HasIndex(p => p.MaSP)
+                .IsUnique();
         }
     }
 }
