@@ -81,8 +81,6 @@ namespace QuanLyBanHang.DAL
                     }
                 }
 
-                _context.OrderDetails.RemoveRange(order.OrderDetails);
-
                 _context.Orders.Remove(order);
 
                 _context.SaveChanges();

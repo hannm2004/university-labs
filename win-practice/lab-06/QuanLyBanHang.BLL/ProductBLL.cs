@@ -14,11 +14,20 @@ namespace QuanLyBanHang.BLL
 
         public void Add(Product product)
         {
+            if (_productDAL.GetAll().Any(x => x.MaSP == product.MaSP))
+                throw new Exception("Mã sản phẩm đã tồn tại.");
+
             _productDAL.Add(product);
         }
 
         public void Update(Product product)
         {
+            if (_productDAL.GetAll().Any(x =>
+                x.MaSP == product.MaSP &&
+                x.Id != product.Id))
+            {
+                throw new Exception("Mã sản phẩm đã tồn tại.");
+            }
             _productDAL.Update(product);
         }
 

@@ -95,9 +95,21 @@ namespace QuanLyBanHang.GUI
 
                 ClearInput();
             }
+            catch (DbUpdateException)
+            {
+                MessageBox.Show(
+                    "Không thể thêm khách hàng.",
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(
+                    $"Có lỗi xảy ra:\n{ex.Message}",
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -139,9 +151,21 @@ namespace QuanLyBanHang.GUI
 
                 ClearInput();
             }
+            catch (DbUpdateException)
+            {
+                MessageBox.Show(
+                    "Không thể cập nhật khách hàng.",
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(
+                    $"Có lỗi xảy ra:\n{ex.Message}",
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -172,9 +196,21 @@ namespace QuanLyBanHang.GUI
 
                 ClearInput();
             }
+            catch (DbUpdateException)
+            {
+                MessageBox.Show(
+                    "Không thể xóa khách hàng.\n\nKhách hàng đang có đơn hàng.",
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(
+                    $"Có lỗi xảy ra:\n{ex.Message}",
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 

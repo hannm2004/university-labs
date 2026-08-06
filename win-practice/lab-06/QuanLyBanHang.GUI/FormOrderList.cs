@@ -1,4 +1,5 @@
-﻿using QuanLyBanHang.BLL;
+﻿using Microsoft.EntityFrameworkCore;
+using QuanLyBanHang.BLL;
 using QuanLyBanHang.DAL.Entities;
 
 namespace QuanLyBanHang.GUI
@@ -22,8 +23,10 @@ namespace QuanLyBanHang.GUI
         {
             dgvOrder.AutoGenerateColumns = true;
 
+            var orders = _orderBLL.GetAll();
+
             dgvOrder.DataSource = null;
-            dgvOrder.DataSource = _orderBLL.GetAll();
+            dgvOrder.DataSource = orders;
 
             if (dgvOrder.Columns["OrderDetails"] != null)
                 dgvOrder.Columns["OrderDetails"].Visible = false;
@@ -31,10 +34,9 @@ namespace QuanLyBanHang.GUI
             if (dgvOrder.Columns["Customer"] != null)
                 dgvOrder.Columns["Customer"].Visible = false;
 
-            lblTongDon.Text = $"Tổng đơn hàng: {_orderBLL.GetAll().Count}";
+            lblTongDon.Text = $"Tổng đơn hàng: {orders.Count}";
 
             dgvDetail.DataSource = null;
-
             _selectedOrder = null;
         }
 
@@ -85,9 +87,21 @@ namespace QuanLyBanHang.GUI
 
                 LoadOrder();
             }
+            catch (DbUpdateException)
+            {
+                MessageBox.Show(
+                    "Không thể hủy đơn hàng.",
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(
+                    ex.Message,
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
