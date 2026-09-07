@@ -26,6 +26,11 @@ namespace QuanLyBanHang.GUI
         {
             dgvProduct.DataSource = null;
             dgvProduct.DataSource = _productBLL.GetAll();
+            dgvProduct.Columns["Id"].HeaderText = "Mã";
+            dgvProduct.Columns["MaSP"].HeaderText = "Mã sản phẩm";
+            dgvProduct.Columns["TenSP"].HeaderText = "Tên sản phẩm";
+            dgvProduct.Columns["DonGia"].HeaderText = "Đơn giá";
+            dgvProduct.Columns["SoLuongTon"].HeaderText = "Số lượng tồn";
             dgvProduct.Columns["OrderDetails"].Visible = false;
             lblTongSP.Text = $"Tổng số sản phẩm: {dgvProduct.Rows.Count}";
         }

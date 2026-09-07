@@ -62,6 +62,13 @@ namespace QuanLyBanHang.GUI
 
             dgvCart.DataSource = _cart;
 
+            dgvCart.Columns["ProductId"].HeaderText = "Mã ID";
+            dgvCart.Columns["MaSP"].HeaderText = "Mã sản phẩm";
+            dgvCart.Columns["TenSP"].HeaderText = "Tên sản phẩm";
+            dgvCart.Columns["DonGiaLucBan"].HeaderText = "Đơn giá";
+            dgvCart.Columns["SoLuong"].HeaderText = "Số lượng";
+            dgvCart.Columns["ThanhTien"].HeaderText = "Thành tiền";
+
             lblTongTien.Text = _cart.Sum(x => x.ThanhTien).ToString("N0") + " VNĐ";
         }
         private void btnAdd_Click(object sender, EventArgs e)

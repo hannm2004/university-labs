@@ -310,12 +310,6 @@ namespace QuanLyBanHang.GUI
         private GroupBox grpCart;
         private DataGridView dgvCart;
 
-        private DataGridViewTextBoxColumn colMaSP;
-        private DataGridViewTextBoxColumn colTenSP;
-        private DataGridViewTextBoxColumn colDonGia;
-        private DataGridViewTextBoxColumn colSoLuong;
-        private DataGridViewTextBoxColumn colThanhTien;
-
         private Label lblTongTienTitle;
         private Label lblTongTien;
 

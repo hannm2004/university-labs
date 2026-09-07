@@ -273,6 +273,7 @@
             grpDanhSach.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvProduct).EndInit();
             ResumeLayout(false);
+
         }
 
         #endregion
@@ -299,10 +300,5 @@
         private GroupBox grpDanhSach;
         private Label lblTongSP;
         private DataGridView dgvProduct;
-
-        private DataGridViewTextBoxColumn colMaSP;
-        private DataGridViewTextBoxColumn colTenSP;
-        private DataGridViewTextBoxColumn colDonGia;
-        private DataGridViewTextBoxColumn colSoLuongTon;
     }
 }

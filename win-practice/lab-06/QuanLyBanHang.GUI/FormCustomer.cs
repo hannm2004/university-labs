@@ -25,6 +25,9 @@ namespace QuanLyBanHang.GUI
         {
             dgvCustomer.DataSource = null;
             dgvCustomer.DataSource = _customerBLL.GetAll();
+            dgvCustomer.Columns["Id"].HeaderText = "Mã KH";
+            dgvCustomer.Columns["HoTen"].HeaderText = "Họ tên";
+            dgvCustomer.Columns["SoDienThoai"].HeaderText = "Số điện thoại";
             dgvCustomer.Columns["Orders"].Visible = false;
             lblTongKH.Text = $"Tổng số khách hàng: {dgvCustomer.Rows.Count}";
         }
