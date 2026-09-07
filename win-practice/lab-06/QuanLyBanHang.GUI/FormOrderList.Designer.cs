@@ -74,7 +74,6 @@
             grpOrder.Size = new Size(450, 470);
             grpOrder.TabIndex = 6;
             grpOrder.TabStop = false;
-            grpOrder.Text = "Danh sách đơn hàng";
             // 
             // lblTongDon
             // 
@@ -91,12 +90,12 @@
             dgvOrder.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvOrder.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvOrder.Location = new Point(18, 55);
+            dgvOrder.MultiSelect = false;
             dgvOrder.Name = "dgvOrder";
+            dgvOrder.ReadOnly = true;
+            dgvOrder.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvOrder.Size = new Size(415, 395);
             dgvOrder.TabIndex = 0;
-            dgvOrder.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvOrder.MultiSelect = false;
-            dgvOrder.ReadOnly = true;
             dgvOrder.CellClick += dgvOrder_CellClick;
             // 
             // grpDetail
@@ -107,7 +106,6 @@
             grpDetail.Size = new Size(610, 470);
             grpDetail.TabIndex = 5;
             grpDetail.TabStop = false;
-            grpDetail.Text = "Chi tiết đơn hàng";
             // 
             // dgvDetail
             // 
@@ -142,7 +140,8 @@
             btnDong.Size = new Size(140, 42);
             btnDong.TabIndex = 4;
             btnDong.Text = "Đóng";
-            btnDong.Click += new EventHandler(btnDong_Click);
+            btnDong.UseVisualStyleBackColor = false;
+            btnDong.Click += btnDong_Click;
             // 
             // FormOrderList
             // 

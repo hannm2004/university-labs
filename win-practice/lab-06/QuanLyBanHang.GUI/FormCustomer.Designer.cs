@@ -255,8 +255,5 @@
         private Label lblTongKH;
 
         private DataGridView dgvCustomer;
-
-        private DataGridViewTextBoxColumn colHoTen;
-        private DataGridViewTextBoxColumn colSoDienThoai;
     }
 }

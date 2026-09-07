@@ -28,6 +28,11 @@ namespace QuanLyBanHang.GUI
             dgvOrder.DataSource = null;
             dgvOrder.DataSource = orders;
 
+            dgvOrder.Columns["Id"].HeaderText = "Mã đơn";
+            dgvOrder.Columns["NgayDat"].HeaderText = "Ngày đặt";
+            dgvOrder.Columns["TrangThai"].HeaderText = "Trạng thái";
+            dgvOrder.Columns["CustomerId"].HeaderText = "Mã khách hàng";
+
             if (dgvOrder.Columns["OrderDetails"] != null)
                 dgvOrder.Columns["OrderDetails"].Visible = false;
 
@@ -54,6 +59,12 @@ namespace QuanLyBanHang.GUI
             dgvDetail.AutoGenerateColumns = true;
             dgvDetail.DataSource = null;
             dgvDetail.DataSource = _selectedOrder.OrderDetails.ToList();
+
+            dgvDetail.Columns["Id"].HeaderText = "Mã CT";
+            dgvDetail.Columns["OrderId"].HeaderText = "Mã đơn";
+            dgvDetail.Columns["ProductId"].HeaderText = "Mã sản phẩm";
+            dgvDetail.Columns["SoLuong"].HeaderText = "Số lượng";
+            dgvDetail.Columns["DonGiaLucBan"].HeaderText = "Đơn giá";
 
             if (dgvDetail.Columns["Order"] != null)
                 dgvDetail.Columns["Order"].Visible = false;
