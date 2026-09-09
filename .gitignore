@@ -64,3 +64,6 @@ obj/
 # Visual Studio
 .vs/
 *.user
+/computer-networks-lab/Bai02/nbproject/private/
+/computer-networks-lab/Bai02/build/
+/computer-networks-lab/Bai02/dist/
