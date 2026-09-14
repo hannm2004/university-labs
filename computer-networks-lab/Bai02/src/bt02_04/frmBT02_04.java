@@ -3,17 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package bt02_04;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author HP
  */
 public class frmBT02_04 extends javax.swing.JFrame {
+
     private JFileChooser fcpath = new JFileChooser();
 
     /**
@@ -124,111 +127,127 @@ public class frmBT02_04 extends javax.swing.JFrame {
         // TODO add your handling code here:
         fcpath.setFileSelectionMode(JFileChooser.FILES_ONLY);
 
-    if (fcpath.showOpenDialog(this)
-            == JFileChooser.APPROVE_OPTION) {
+        if (fcpath.showOpenDialog(this)
+                == JFileChooser.APPROVE_OPTION) {
 
-        try {
+            try {
 
-            txtFileNguon.setText(
-                    fcpath.getSelectedFile()
-                            .getCanonicalPath()
-            );
+                txtFileNguon.setText(
+                        fcpath.getSelectedFile()
+                                .getCanonicalPath()
+                );
 
-        } catch (IOException e) {
+            } catch (IOException e) {
 
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Lỗi: " + e.getMessage()
-            );
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Lỗi: " + e.getMessage()
+                );
+            }
         }
-    }
     }//GEN-LAST:event_btnChonNguonActionPerformed
 
     private void btnChonDichActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonDichActionPerformed
         // TODO add your handling code here:
         fcpath.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
-    if (fcpath.showOpenDialog(this)
-            == JFileChooser.APPROVE_OPTION) {
+        if (fcpath.showOpenDialog(this)
+                == JFileChooser.APPROVE_OPTION) {
 
-        try {
+            try {
 
-            txtFileDich.setText(
-                    fcpath.getSelectedFile()
-                            .getCanonicalPath()
-            );
+                txtFileDich.setText(
+                        fcpath.getSelectedFile()
+                                .getCanonicalPath()
+                );
 
-        } catch (IOException e) {
+            } catch (IOException e) {
 
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Lỗi: " + e.getMessage()
-            );
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Lỗi: " + e.getMessage()
+                );
+            }
         }
-    }
     }//GEN-LAST:event_btnChonDichActionPerformed
 
     private void btnCopyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCopyActionPerformed
         // TODO add your handling code here:
         String fileNguon = txtFileNguon.getText();
-    String fileDich = txtFileDich.getText();
+        String fileDich = txtFileDich.getText();
 
-    if (fileNguon.isEmpty()) {
-
-        JOptionPane.showMessageDialog(
-                this,
-                "Vui lòng chọn tập tin nguồn!"
-        );
-
-        return;
-    }
-
-    if (fileDich.isEmpty()) {
-
-        JOptionPane.showMessageDialog(
-                this,
-                "Vui lòng chọn thư mục đích!"
-        );
-
-        return;
-    }
-
-    try {
-
-        File fileInput = new File(fileNguon);
-
-        if (!fileInput.exists()) {
+        if (fileNguon.isEmpty()) {
 
             JOptionPane.showMessageDialog(
                     this,
-                    "Tập tin nguồn không tồn tại!"
+                    "Vui lòng chọn tập tin nguồn!"
             );
 
             return;
         }
 
-        File fileOutput =
-                new File(fileDich, "Mang.txt");
+        if (fileDich.isEmpty()) {
 
-        Scanner sc =
-                new Scanner(fileInput);
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Vui lòng chọn thư mục đích!"
+            );
 
-        FileWriter fw =
-                new FileWriter(fileOutput);
+            return;
+        }
 
-        int[] mang = new int[100];
+        try {
 
-        int soPhanTu = 0;
+            File fileInput = new File(fileNguon);
 
-        while (sc.hasNextInt()) {
+            if (!fileInput.exists()) {
 
-            mang[soPhanTu] =
-                    sc.nextInt();
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Tập tin nguồn không tồn tại!"
+                );
 
-            soPhanTu++;
+                return;
+            }
 
-            // Đủ 100 phần tử
-            if (soPhanTu == 100) {
+            File fileOutput
+                    = new File(fileDich, "Mang.txt");
+
+            Scanner sc
+                    = new Scanner(fileInput);
+
+            FileWriter fw
+                    = new FileWriter(fileOutput);
+
+            int[] mang = new int[100];
+
+            int soPhanTu = 0;
+
+            while (sc.hasNextInt()) {
+
+                mang[soPhanTu]
+                        = sc.nextInt();
+
+                soPhanTu++;
+
+                // Đủ 100 phần tử
+                if (soPhanTu == 100) {
+
+                    for (int i = 0; i < soPhanTu; i++) {
+
+                        fw.write(
+                                mang[i] + " "
+                        );
+                    }
+
+                    fw.write("\n");
+
+                    soPhanTu = 0;
+                }
+            }
+
+            // Ghi phần còn lại nếu < 100
+            if (soPhanTu > 0) {
 
                 for (int i = 0; i < soPhanTu; i++) {
 
@@ -238,41 +257,25 @@ public class frmBT02_04 extends javax.swing.JFrame {
                 }
 
                 fw.write("\n");
-
-                soPhanTu = 0;
-            }
-        }
-
-        // Ghi phần còn lại nếu < 100
-        if (soPhanTu > 0) {
-
-            for (int i = 0; i < soPhanTu; i++) {
-
-                fw.write(
-                        mang[i] + " "
-                );
             }
 
-            fw.write("\n");
+            sc.close();
+            fw.close();
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Đã tách tập tin và ghi vào:\n"
+                    + fileOutput.getAbsolutePath()
+            );
+
+        } catch (IOException e) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Lỗi xử lý file: "
+                    + e.getMessage()
+            );
         }
-
-        sc.close();
-        fw.close();
-
-        JOptionPane.showMessageDialog(
-                this,
-                "Đã tách tập tin và ghi vào:\n"
-                + fileOutput.getAbsolutePath()
-        );
-
-    } catch (IOException e) {
-
-        JOptionPane.showMessageDialog(
-                this,
-                "Lỗi xử lý file: "
-                + e.getMessage()
-        );
-    }
     }//GEN-LAST:event_btnCopyActionPerformed
 
     /**
