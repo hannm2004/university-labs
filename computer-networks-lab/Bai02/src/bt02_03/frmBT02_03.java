@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package bt02_03;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -16,7 +17,7 @@ import javax.swing.JOptionPane;
  * @author HP
  */
 public class frmBT02_03 extends javax.swing.JFrame {
-    
+
     private final String TEN_FILE = "PhanSo.dat";
 
     /**
@@ -114,118 +115,118 @@ public class frmBT02_03 extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
 
-        int n = Integer.parseInt(txtSoLuong.getText());
+            int n = Integer.parseInt(txtSoLuong.getText());
 
-        if (n <= 0) {
+            if (n <= 0) {
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Số lượng phải lớn hơn 0!"
+                );
+                return;
+            }
+
+            FileOutputStream fos
+                    = new FileOutputStream(TEN_FILE);
+
+            ObjectOutputStream oos
+                    = new ObjectOutputStream(fos);
+
+            for (int i = 0; i < n; i++) {
+
+                PhanSo ps = new PhanSo();
+
+                oos.writeObject(ps);
+            }
+
+            oos.close();
+            fos.close();
+
             JOptionPane.showMessageDialog(
                     this,
-                    "Số lượng phải lớn hơn 0!"
+                    "Đã tạo " + n
+                    + " phân số và ghi vào file "
+                    + TEN_FILE
             );
-            return;
+
+        } catch (NumberFormatException e) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Vui lòng nhập số lượng hợp lệ!"
+            );
+
+        } catch (IOException e) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Lỗi ghi file: " + e.getMessage()
+            );
         }
-
-        FileOutputStream fos =
-                new FileOutputStream(TEN_FILE);
-
-        ObjectOutputStream oos =
-                new ObjectOutputStream(fos);
-
-        for (int i = 0; i < n; i++) {
-
-            PhanSo ps = new PhanSo();
-
-            oos.writeObject(ps);
-        }
-
-        oos.close();
-        fos.close();
-
-        JOptionPane.showMessageDialog(
-                this,
-                "Đã tạo " + n +
-                " phân số và ghi vào file " +
-                TEN_FILE
-        );
-
-    } catch (NumberFormatException e) {
-
-        JOptionPane.showMessageDialog(
-                this,
-                "Vui lòng nhập số lượng hợp lệ!"
-        );
-
-    } catch (IOException e) {
-
-        JOptionPane.showMessageDialog(
-                this,
-                "Lỗi ghi file: " + e.getMessage()
-        );
-    }
     }//GEN-LAST:event_btnTaoActionPerformed
 
     private void btnDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDocActionPerformed
         // TODO add your handling code here:
         try {
 
-        FileInputStream fis =
-                new FileInputStream(TEN_FILE);
+            FileInputStream fis
+                    = new FileInputStream(TEN_FILE);
 
-        ObjectInputStream ois =
-                new ObjectInputStream(fis);
+            ObjectInputStream ois
+                    = new ObjectInputStream(fis);
 
-        StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
 
-        PhanSo ps;
+            PhanSo ps;
 
-        while (true) {
+            while (true) {
 
-            try {
+                try {
 
-                ps = (PhanSo) ois.readObject();
+                    ps = (PhanSo) ois.readObject();
 
-                if (ps.kiemTraNguyenTo()) {
+                    if (ps.kiemTraNguyenTo()) {
 
-                    sb.append(ps.toString())
-                      .append("\n");
+                        sb.append(ps.toString())
+                                .append("\n");
+                    }
+
+                } catch (EOFException e) {
+
+                    break;
                 }
-
-            } catch (EOFException e) {
-
-                break;
             }
-        }
 
-        ois.close();
-        fis.close();
+            ois.close();
+            fis.close();
 
-        if (sb.length() == 0) {
+            if (sb.length() == 0) {
 
-            txtNoiDung.setText(
-                    "Không có phân số nào có mẫu số là số nguyên tố."
+                txtNoiDung.setText(
+                        "Không có phân số nào có mẫu số là số nguyên tố."
+                );
+
+            } else {
+
+                txtNoiDung.setText(
+                        "Các phân số có mẫu số là số nguyên tố:\n\n"
+                        + sb.toString()
+                );
+            }
+
+        } catch (IOException e) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Lỗi đọc file: " + e.getMessage()
             );
 
-        } else {
+        } catch (ClassNotFoundException e) {
 
-            txtNoiDung.setText(
-                    "Các phân số có mẫu số là số nguyên tố:\n\n"
-                    + sb.toString()
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Không tìm thấy lớp PhanSo!"
             );
         }
-
-    } catch (IOException e) {
-
-        JOptionPane.showMessageDialog(
-                this,
-                "Lỗi đọc file: " + e.getMessage()
-        );
-
-    } catch (ClassNotFoundException e) {
-
-        JOptionPane.showMessageDialog(
-                this,
-                "Không tìm thấy lớp PhanSo!"
-        );
-    }
     }//GEN-LAST:event_btnDocActionPerformed
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
