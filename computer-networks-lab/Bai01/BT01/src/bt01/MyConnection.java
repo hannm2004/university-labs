@@ -14,11 +14,9 @@ public class MyConnection {
 
     public Connection getConnection() {
         try {
-            // Nap driver MySQL
             Class.forName("com.mysql.cj.jdbc.Driver");
             
-            // Dien dung ten database la: quanlytaikhoanquan
-            String URL = "jdbc:mysql://localhost:3306/quanlytaikhoanquan?user=root&password=";
+            String URL = "jdbc:mysql://localhost:3306/quanlytaikhoan?user=root&password=";
             
             Connection con = DriverManager.getConnection(URL);
             return con;
