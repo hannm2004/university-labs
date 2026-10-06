@@ -100,26 +100,46 @@ public class BT02 extends javax.swing.JFrame {
     private void btnTimIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimIPActionPerformed
         // TODO add your handling code here:
         try {
-            int i, j;
-            // Lấy tất cả các IP của địa chỉ tên miền nhập vào
-            InetAddress addr[] = InetAddress.getAllByName(txtDomainName.getText().trim());
-            DefaultListModel dm = new DefaultListModel();
+        // Lấy tên miền người dùng nhập
+        String domain = txtDomainName.getText().trim();
 
-            for (i = 0; i < addr.length; i++) {
-                byte[] ipAddr = addr[i].getAddress();
-                String ipAddrStr = "";
-                for (j = 0; j < ipAddr.length; j++) {
-                    if (j > 0) {
-                        ipAddrStr += ".";
-                    }
-                    ipAddrStr += ipAddr[j] & 0xFF;
-                }
-                dm.addElement(ipAddrStr);
-            }
-            lstIP.setModel(dm);
-        } catch (UnknownHostException e) {
-            JOptionPane.showMessageDialog(null, "Địa chỉ của bạn nhập sai!!!");
+        // Kiểm tra không được để trống
+        if (domain.isEmpty()) {
+            JOptionPane.showMessageDialog(
+                this,
+                "Vui lòng nhập tên miền!",
+                "Thông báo",
+                JOptionPane.WARNING_MESSAGE
+            );
+            return;
         }
+
+        // Tìm tất cả địa chỉ IP tương ứng với tên miền
+        InetAddress[] addresses = InetAddress.getAllByName(domain);
+
+        // Tạo model cho JList<String>
+        DefaultListModel<String> model = new DefaultListModel<>();
+
+        // Duyệt qua tất cả địa chỉ IP
+        for (InetAddress address : addresses) {
+            // getHostAddress() trả về địa chỉ IP dạng String
+            String ip = address.getHostAddress();
+
+            // Thêm IP vào danh sách
+            model.addElement(ip);
+        }
+
+        // Hiển thị danh sách IP lên JList
+        lstIP.setModel(model);
+
+    } catch (UnknownHostException e) {
+        JOptionPane.showMessageDialog(
+            this,
+            "Không tìm thấy tên miền hoặc tên miền không hợp lệ!",
+            "Lỗi",
+            JOptionPane.ERROR_MESSAGE
+        );
+    }
     }//GEN-LAST:event_btnTimIPActionPerformed
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
