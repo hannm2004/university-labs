@@ -74,15 +74,14 @@ public class Balls extends Thread {
         g.dispose();
     }
 
-    @Override
     public void run() {
         draw();
 
-        for (int i = 0; i < 5000; i++) {
+        for (int i = 0; i < 1000; i++) {
             move();
 
             try {
-                sleep(1);
+                Thread.sleep(20);
             } catch (InterruptedException ex) {
                 JOptionPane.showMessageDialog(
                     null,
