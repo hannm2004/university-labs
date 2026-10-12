@@ -50,7 +50,10 @@ public class frmClient extends javax.swing.JFrame {
 
         jLabel2.setText("Kết quả");
 
+        txtso2.setColumns(10);
+
         txtketqua.setEditable(false);
+        txtketqua.setColumns(10);
 
         btnTinh.setText("Tính");
         btnTinh.addActionListener(new java.awt.event.ActionListener() {
@@ -65,6 +68,8 @@ public class frmClient extends javax.swing.JFrame {
                 btnThoatActionPerformed(evt);
             }
         });
+
+        txtso1.setColumns(10);
 
         cbopheptoan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "+", "-", "*", "/" }));
 
@@ -91,7 +96,7 @@ public class frmClient extends javax.swing.JFrame {
                                 .addComponent(txtso1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(53, 53, 53)
                                 .addComponent(cbopheptoan, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtso2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28))))
         );
