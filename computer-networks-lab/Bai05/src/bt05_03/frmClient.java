@@ -4,15 +4,18 @@
  */
 package bt05_03;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author HP
  */
 public class frmClient extends javax.swing.JFrame {
+
     private Socket socket = null;
     private PrintWriter out = null;
     private Scanner in = null;
@@ -128,29 +131,26 @@ public class frmClient extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_btnThoatActionPerformed
-    
-    public void Hienthi(String str){
+
+    public void Hienthi(String str) {
         txtchat.append(str);
     }
     private void btnGuiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuiActionPerformed
         // TODO add your handling code here:
-        String chuoi = txtsend.getText();
-        String nick = txtNick.getText();
-        String host = txtHost.getText();
-        try{
-            socket = new Socket(host, 1234);
-            out = new PrintWriter(socket.getOutputStream(),true);
-            in = new Scanner(socket.getInputStream());
-            out.println(nick + ": " + chuoi + "\n");
-            txtchat.append(nick + ": " + chuoi + "\n");
-            socket.close();
-        }catch (Exception e)
-        {
-            try{if(socket!=null)socket.close();}catch(Exception ex) {e.printStackTrace();}
-            e.printStackTrace();
+        String chuoi = txtsend.getText().trim();
+        String nick = txtNick.getText().trim();
+        String host = txtHost.getText().trim();
+        if (chuoi.isEmpty()) {
+            return;
         }
-        
-        
+        try (Socket s = new Socket(host, 1234); PrintWriter out = new PrintWriter(s.getOutputStream(), true)) {
+            out.println(nick + ": " + chuoi);
+            txtsend.setText("");                           // xóa ô nhập sau khi gửi
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Không gửi được: " + e.getMessage());
+        }
+
+
     }//GEN-LAST:event_btnGuiActionPerformed
 
     /**
